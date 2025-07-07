@@ -493,7 +493,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@repo/core@workspace:packages/core":
+"@repo/core@npm:*, @repo/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@repo/core@workspace:packages/core"
   dependencies:
@@ -958,6 +958,21 @@ __metadata:
   checksum: 10c0/895a23929da416f2bd3de7e9cb4eabd340949328ab85ddd6e484a637d8f6820d485f53933446f5291c3b760cbc488beb8e88573dd0f9c7daf83dccc8fe81b041
   languageName: node
   linkType: hard
+
+"api@workspace:apps/api":
+  version: 0.0.0-use.local
+  resolution: "api@workspace:apps/api"
+  dependencies:
+    "@repo/core": "npm:*"
+    "@repo/eslint-config": "npm:*"
+    "@repo/typescript-config": "npm:*"
+    "@types/node": "npm:^22.15.3"
+    "@types/react": "npm:19.1.0"
+    "@types/react-dom": "npm:19.1.1"
+    eslint: "npm:^9.30.0"
+    typescript: "npm:5.8.2"
+  languageName: unknown
+  linkType: soft
 
 "arg@npm:^4.1.0":
   version: 4.1.3

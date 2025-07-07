@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./*": "./src/*.ts"
+    ".": "./dist/index.js"
   },
   "scripts": {
     "dev": "tsc --watch",
