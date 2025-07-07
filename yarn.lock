@@ -499,6 +499,7 @@ __metadata:
   dependencies:
     "@repo/typescript-config": "workspace:*"
     axios: "npm:^1.10.0"
+    eslint: "npm:^9.30.0"
     typescript: "npm:latest"
   languageName: unknown
   linkType: soft

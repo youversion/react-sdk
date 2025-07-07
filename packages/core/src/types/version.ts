@@ -1,4 +1,4 @@
-import { Language } from "./language.js";
+import { Language } from "./language";
 
 export interface Version {
   id: number;

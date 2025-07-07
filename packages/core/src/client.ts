@@ -1,5 +1,5 @@
 import axios, { type AxiosInstance } from "axios";
-import { ApiConfig } from "./types/index.js";
+import { ApiConfig } from "./types";
 
 export type QueryParams = Record<string, string | number | boolean>;
 export type RequestData = Record<string, string | number | boolean | object>;
