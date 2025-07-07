@@ -1,5 +1,5 @@
-import { ApiClient } from "./client.js";
-import { Version } from "./types/version.js";
+import { ApiClient } from "./client";
+import { Version } from "./types/version";
 
 export class BibleClient {
   private client: ApiClient;
