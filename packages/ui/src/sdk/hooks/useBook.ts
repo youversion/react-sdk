@@ -6,23 +6,18 @@ import { Book } from "@repo/core";
 
 export function useBook(
   versionId: number,
-  usfm: string,
+  book: string,
   options?: UseApiDataOptions
 ) {
   const bibleClient = useBibleClient();
 
-  const {
-    data: book,
-    loading,
-    error,
-    refetch,
-  } = useApiData<Book>(
-    () => bibleClient.getBook(versionId, usfm),
-    [bibleClient, versionId, usfm],
+  const { data, loading, error, refetch } = useApiData<Book>(
+    () => bibleClient.getBook(versionId, book),
+    [bibleClient, versionId, book],
     {
       enabled: options?.enabled !== false,
     }
   );
 
-  return { book, loading, error, refetch };
+  return { book: data, loading, error, refetch };
 }
