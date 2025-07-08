@@ -1,6 +1,6 @@
 import { Language } from "./language";
 
-export interface Version {
+export type Version = {
   id: number;
   abbreviation: string;
   copyright: string;
@@ -10,4 +10,4 @@ export interface Version {
   info: string;
   info_url: string;
   title: string;
-}
+};
