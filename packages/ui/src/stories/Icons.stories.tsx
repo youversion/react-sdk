@@ -9,7 +9,7 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <div className='w-screen max-w-xs p-2'>
+      <div className='max-w-xs h-screen w-screen'>
         <Story />
       </div>
     ),
@@ -21,42 +21,26 @@ type Story = StoryObj;
 
 export const AllIcons: Story = {
   render: () => (
-    <div className='w-full grid grid-cols-3 gap-5 p-8'>
-      <div className='flex flex-col items-center gap-1'>
-        <CopyIcon size={24} />
-        <span>Copy Icon (24px)</span>
-      </div>
-      <div className='flex flex-col items-center gap-1'>
-        <CopyIcon size={32} />
-        <span>Copy Icon (32px)</span>
-      </div>
-      <div className='flex flex-col items-center gap-1'>
-        <CopyIcon size={48} />
-        <span>Copy Icon (48px)</span>
-      </div>
-      <div className='flex flex-col items-center gap-1'>
-        <ShareIcon size={24} />
-        <span>Share Icon (24px)</span>
-      </div>
-      <div className='flex flex-col items-center gap-1'>
-        <ShareIcon size={32} />
-        <span>Share Icon (32px)</span>
-      </div>
-      <div className='flex flex-col items-center gap-1'>
-        <ShareIcon size={48} />
-        <span>Share Icon (48px)</span>
-      </div>
+    <div className='flex flex-col gap-8'>
+      <h1 className='text-2xl font-bold'>Available Icons</h1>
+
+      <section className='flex flex-col gap-2'>
+        <h2 className='text-lg font-semibold'>Copy Icon</h2>
+        <div className='flex gap-4 items-center'>
+          <CopyIcon size={24} />
+          <CopyIcon size={32} />
+          <CopyIcon size={48} />
+        </div>
+      </section>
+
+      <section className='flex flex-col gap-2'>
+        <h2 className='text-lg font-semibold'>Share Icon</h2>
+        <div className='flex gap-4 items-center'>
+          <ShareIcon size={24} />
+          <ShareIcon size={32} />
+          <ShareIcon size={48} />
+        </div>
+      </section>
     </div>
   ),
-};
-
-// Individual icon stories
-export const CopyIconStory: Story = {
-  name: 'Copy Icon',
-  render: () => <CopyIcon size={24} />,
-};
-
-export const ShareIconStory: Story = {
-  name: 'Share Icon',
-  render: () => <ShareIcon size={24} />,
 };
