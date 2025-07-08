@@ -5,3 +5,4 @@ export * from "./language";
 export * from "./version";
 export * from "./verse";
 export * from "./collection";
+export * from "./user";

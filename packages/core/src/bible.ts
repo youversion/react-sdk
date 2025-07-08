@@ -15,13 +15,19 @@ export class BibleClient {
     this.client = client;
   }
 
+  private get rootPath(): string {
+    return `/${this.client.config.version}`;
+  }
+
   /**
    * Fetches a Bible version by its ID.
    * @param id The version ID.
    * @returns The requested Version object.
    */
   async getVersion(id: number): Promise<Version> {
-    return this.client.get<Version>(`bibles/${id}`);
+    return this.client.get<Version>(
+      `${this.rootPath}/bibles/${id}`
+    );
   }
 
   /**
@@ -30,7 +36,9 @@ export class BibleClient {
    * @returns An array of Book objects.
    */
   async getBooks(versionId: number): Promise<Collection<Book>> {
-    return this.client.get<Collection<Book>>(`bibles/${versionId}/books`);
+    return this.client.get<Collection<Book>>(
+      `${this.rootPath}/bibles/${versionId}/books`
+    );
   }
 
   /**
@@ -40,7 +48,9 @@ export class BibleClient {
    * @returns The requested Book object.
    */
   async getBook(versionId: number, book: string): Promise<Book> {
-    return this.client.get<Book>(`bibles/${versionId}/books/${book}`);
+    return this.client.get<Book>(
+      `${this.rootPath}/bibles/${versionId}/books/${book}`
+    );
   }
 
   /**
@@ -54,7 +64,7 @@ export class BibleClient {
     book: string
   ): Promise<Collection<Chapter>> {
     return this.client.get<Collection<Chapter>>(
-      `bibles/${versionId}/books/${book}/chapters`
+      `${this.rootPath}/bibles/${versionId}/books/${book}/chapters`
     );
   }
 
@@ -71,7 +81,7 @@ export class BibleClient {
     chapter: number
   ): Promise<Chapter> {
     return this.client.get<Chapter>(
-      `bibles/${versionId}/books/${book}/chapters/${chapter}`
+      `${this.rootPath}/bibles/${versionId}/books/${book}/chapters/${chapter}`
     );
   }
 
@@ -88,7 +98,7 @@ export class BibleClient {
     chapter: number
   ): Promise<Collection<Verse>> {
     return this.client.get<Collection<Verse>>(
-      `bibles/${versionId}/books/${book}/chapters/${chapter}/verses`
+      `${this.rootPath}/bibles/${versionId}/books/${book}/chapters/${chapter}/verses`
     );
   }
 
@@ -107,7 +117,7 @@ export class BibleClient {
     verse: number
   ): Promise<Verse> {
     return this.client.get<Verse>(
-      `bibles/${versionId}/books/${book}/chapters/${chapter}/verses/${verse}`
+      `${this.rootPath}/bibles/${versionId}/books/${book}/chapters/${chapter}/verses/${verse}`
     );
   }
 }

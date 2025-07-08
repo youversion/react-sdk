@@ -41,7 +41,7 @@ export class ApiClient {
    * @returns A promise resolving to the response data of type T.
    */
   async get<T>(path: string, params?: QueryParams): Promise<T> {
-    const response = await this.http.get<T>(`/${this.config.version}/${path}`, {
+    const response = await this.http.get<T>(path, {
       params,
     });
     return response.data;
@@ -61,11 +61,7 @@ export class ApiClient {
     data?: RequestData,
     params?: QueryParams
   ): Promise<T> {
-    const response = await this.http.post<T>(
-      `/${this.config.version}/${path}`,
-      data,
-      { params }
-    );
+    const response = await this.http.post<T>(path, data, { params });
     return response.data;
   }
 }
