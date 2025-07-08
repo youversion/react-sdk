@@ -6,7 +6,7 @@ import { Verse } from "@repo/core";
 
 export function useVerse(
   versionId: number,
-  usfm: string,
+  book: string,
   chapter: number,
   verse: number,
   options?: UseApiDataOptions
@@ -19,8 +19,8 @@ export function useVerse(
     error,
     refetch,
   } = useApiData<Verse>(
-    () => bibleClient.getVerse(versionId, usfm, chapter, verse),
-    [bibleClient, versionId, usfm, chapter, verse],
+    () => bibleClient.getVerse(versionId, book, chapter, verse),
+    [bibleClient, versionId, book, chapter, verse],
     {
       enabled: options?.enabled !== false,
     }

@@ -5,7 +5,7 @@ import { Chapter } from "@repo/core";
 
 export function useChapter(
   versionId: number,
-  usfm: string,
+  book: string,
   chapter: number,
   options?: UseApiDataOptions
 ) {
@@ -17,8 +17,8 @@ export function useChapter(
     error,
     refetch,
   } = useApiData<Chapter>(
-    () => bibleClient.getChapter(versionId, usfm, chapter),
-    [bibleClient, versionId, usfm, chapter],
+    () => bibleClient.getChapter(versionId, book, chapter),
+    [bibleClient, versionId, book, chapter],
     {
       enabled: options?.enabled !== false,
     }
