@@ -6,5 +6,5 @@
  * @return {JSX.Element} JSX element representing the Bible Navigator component.
  */
 export function BibleNavigator() {
-  return <>Bible Navigator</>
+  return <div className='w-full bg-gray-500 flex text-center justify-center'>Bible Navigator</div>
 }

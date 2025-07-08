@@ -1,11 +1,12 @@
 "use client";
 
-import { BibleKitProvider, useVersion } from "@repo/ui";
+import { BibleKitProvider, BibleNavigator, useVersion } from "@repo/ui";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
     <BibleKitProvider apiKey="V8lOX2LMfC6PGBawNiyywXbFTHafIvOjDIr9U82Zy5qGsrjv">
+      <BibleNavigator />
       <HomeContent />
     </BibleKitProvider>
   );
@@ -18,18 +19,18 @@ function HomeContent() {
     <div className={styles.page}>
       <main className={styles.main}>
         <h1>Bible SDK Demo</h1>
-        
+
         <div style={{ padding: "2rem", border: "1px solid #ccc", borderRadius: "8px" }}>
           <h2>Version 206 Information</h2>
-          
+
           {loading && <p>Loading version data...</p>}
-          
+
           {error && (
             <div style={{ color: "red" }}>
               <p>Error: {error.message}</p>
             </div>
           )}
-          
+
           {version && (
             <div>
               <h3>{version.title}</h3>
