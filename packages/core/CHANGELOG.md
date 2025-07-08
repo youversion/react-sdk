@@ -1,4 +1,4 @@
-# @repo/core
+# @youversion/bible-core
 
 ## 0.0.1
 

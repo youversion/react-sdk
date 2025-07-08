@@ -14,4 +14,10 @@ export * from "./sdk/authentication";
 export type { UseApiDataOptions } from "./sdk/hooks/useApiData";
 
 // Re-export core types for convenience
-export type { Book, Chapter, Verse, Version, Collection } from "@repo/core";
+export type {
+  Book,
+  Chapter,
+  Verse,
+  Version,
+  Collection,
+} from "@youversion/bible-core";

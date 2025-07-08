@@ -1,4 +1,4 @@
-import { ApiClient, BibleClient } from "@repo/core";
+import { ApiClient, BibleClient } from "@youversion/bible-core";
 
 async function main() {
   const apiClient = new ApiClient({

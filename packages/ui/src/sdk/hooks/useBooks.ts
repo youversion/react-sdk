@@ -1,7 +1,7 @@
 "use client";
 import { useBibleClient } from "./useBibleClient";
 import { useApiData, UseApiDataOptions } from "./useApiData";
-import { Book, Collection } from "@repo/core";
+import { Book, Collection } from "@youversion/bible-core";
 
 export function useBooks(versionId: number, options?: UseApiDataOptions) {
   const bibleClient = useBibleClient();

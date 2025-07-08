@@ -2,7 +2,7 @@
 
 import { useBibleClient } from "./useBibleClient";
 import { useApiData, UseApiDataOptions } from "./useApiData";
-import { Verse } from "@repo/core";
+import { Verse } from "@youversion/bible-core";
 
 export function useVerse(
   versionId: number,

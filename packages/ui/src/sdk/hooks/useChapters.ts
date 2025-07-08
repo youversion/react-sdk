@@ -2,7 +2,7 @@
 
 import { useBibleClient } from "./useBibleClient";
 import { useApiData, UseApiDataOptions } from "./useApiData";
-import { Chapter, Collection } from "@repo/core";
+import { Chapter, Collection } from "@youversion/bible-core";
 
 export function useChapters(
   versionId: number,

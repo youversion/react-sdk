@@ -2,7 +2,7 @@
 
 import { useBibleClient } from "./useBibleClient";
 import { useApiData, UseApiDataOptions } from "./useApiData";
-import { Book } from "@repo/core";
+import { Book } from "@youversion/bible-core";
 
 export function useBook(
   versionId: number,
