@@ -1,5 +1,6 @@
 // Context
 export { BibleKitContext } from "./sdk/context/BibleKitContext";
+export { ReaderContext } from "./sdk/context/ReaderContext";
 
 // Components
 export * from "./sdk/components";
