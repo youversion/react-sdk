@@ -21,28 +21,37 @@ npm install @react-sdk/core
 ```ts
 import { ApiClient, BibleClient } from "@react-sdk/core";
 
-// Initialize the API client (provide your App ID)
-const apiClient = new ApiClient({ appId: "" });
+async function main() {
+  const apiClient = new ApiClient({
+    appId: "YOUR_APP_ID",
+  });
+  const bibleClient = new BibleClient(apiClient);
 
-// Create a BibleClient instance
-const bible = new BibleClient(apiClient);
+  try {
+    const versionId = 206;
+    const version = await bibleClient.getVersion(versionId);
+    console.log("Version:", version);
 
-async function fetchGenesis1() {
-  // Get the ESV version (example ID: 1)
-  const version = await bible.getVersion(1);
-  // Get all books in this version
-  const books = await bible.getBooks(version.id);
-  // Find Genesis by USFM code (usually "GEN")
-  const genesis = books.find((b) => b.usfm === "GEN");
-  if (!genesis) throw new Error("Genesis not found");
-  // Get chapters in Genesis
-  const chapters = await bible.getChapters(version.id, genesis.usfm);
-  // Get the first chapter
-  const chapter1 = await bible.getChapter(version.id, genesis.usfm, 1);
-  // Get verses in the first chapter
-  const verses = await bible.getVerses(version.id, genesis.usfm, 1);
-  console.log(verses);
+    const books = await bibleClient.getBooks(versionId);
+    console.log("Books:", books.data);
+    const genesis = books.data.find((b) => b.usfm === "GEN");
+
+    if (!genesis) {
+      throw new Error("Genesis not found");
+    }
+
+    const chapter = await bibleClient.getChapter(versionId, genesis.usfm, 1);
+    console.log("Chapter:", chapter);
+
+    const verses = await bibleClient.getVerses(versionId, genesis.usfm, 1);
+    console.log("Verses:", verses.data);
+
+    const verse = await bibleClient.getVerse(versionId, genesis.usfm, 1, 1);
+    console.log("Verse:", verse);
+  } catch (error) {
+    console.error("Error fetching:", error);
+  }
 }
 
-fetchGenesis1();
+main();
 ```
