@@ -5,13 +5,13 @@ import { BibleKitContext } from '../context/BibleKitContext';
 
 type BibleKitProviderProps = {
   children: ReactNode;
-  apiKey: string;
+  appId: string;
   // theme?: BibleKitTheme; Optional -> Later...
 }
 
-export function BibleKitProvider({ apiKey, children }: PropsWithChildren<BibleKitProviderProps>) {
+export function BibleKitProvider({ appId, children }: PropsWithChildren<BibleKitProviderProps>) {
   return (
-    <BibleKitContext.Provider value={{ apiKey }}>
+    <BibleKitContext.Provider value={{ appId }}>
       {children}
     </BibleKitContext.Provider>
   )

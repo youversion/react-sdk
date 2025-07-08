@@ -3,7 +3,7 @@
 import { createContext } from 'react';
 
 type BibleKitContextData = {
-  apiKey: string;
+  appId: string;
 }
 
 export const BibleKitContext = createContext<BibleKitContextData | null>(null);

@@ -7,11 +7,11 @@ import { BibleClient, ApiClient } from "@repo/core";
 export function useBibleClient(): BibleClient {
   const context = useContext(BibleKitContext);
   return useMemo(() => {
-    if (!context?.apiKey) {
+    if (!context?.appId) {
       throw new Error(
         "BibleKit context not found. Make sure your component is wrapped with BibleKitProvider and an API key is provided."
       );
     }
-    return new BibleClient(new ApiClient({ appId: context.apiKey }));
-  }, [context?.apiKey]);
+    return new BibleClient(new ApiClient({ appId: context.appId }));
+  }, [context?.appId]);
 }

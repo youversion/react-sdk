@@ -1,14 +1,14 @@
 "use client";
 
-import { BibleKitProvider, BibleNavigator, useVersion } from "@repo/ui";
+import { BibleNavigator, useVersion } from "@repo/ui";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <BibleKitProvider apiKey="V8lOX2LMfC6PGBawNiyywXbFTHafIvOjDIr9U82Zy5qGsrjv">
+    <>
       <BibleNavigator />
       <HomeContent />
-    </BibleKitProvider>
+    </>
   );
 }
 
