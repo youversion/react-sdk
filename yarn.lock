@@ -1916,22 +1916,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@repo/core@npm:*, @repo/core@workspace:packages/core":
-  version: 0.0.0-use.local
-  resolution: "@repo/core@workspace:packages/core"
-  dependencies:
-    "@repo/typescript-config": "workspace:*"
-    "@types/jest": "npm:^30.0.0"
-    axios: "npm:^1.10.0"
-    eslint: "npm:^9.30.0"
-    jest: "npm:^30.0.4"
-    msw: "npm:^2.10.3"
-    ts-jest: "npm:^29.4.0"
-    tsup: "npm:^8.5.0"
-    typescript: "npm:latest"
-  languageName: unknown
-  linkType: soft
-
 "@repo/eslint-config@npm:*, @repo/eslint-config@workspace:packages/eslint-config":
   version: 0.0.0-use.local
   resolution: "@repo/eslint-config@workspace:packages/eslint-config"
@@ -1961,7 +1945,6 @@ __metadata:
   resolution: "@repo/ui@workspace:packages/ui"
   dependencies:
     "@chromatic-com/storybook": "npm:^4.0.1"
-    "@repo/core": "npm:*"
     "@repo/eslint-config": "npm:*"
     "@repo/typescript-config": "npm:*"
     "@storybook/addon-a11y": "npm:^9.0.15"
@@ -1980,6 +1963,7 @@ __metadata:
     "@types/react-dom": "npm:19.1.1"
     "@vitest/browser": "npm:^3.2.4"
     "@vitest/coverage-v8": "npm:^3.2.4"
+    "@youversion/bible-core": "npm:*"
     autoprefixer: "npm:^10.4.21"
     eslint: "npm:^9.30.0"
     eslint-plugin-storybook: "npm:^9.0.15"
@@ -3742,6 +3726,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@youversion/bible-core@npm:*, @youversion/bible-core@workspace:packages/core":
+  version: 0.0.0-use.local
+  resolution: "@youversion/bible-core@workspace:packages/core"
+  dependencies:
+    "@repo/typescript-config": "workspace:*"
+    "@types/jest": "npm:^30.0.0"
+    axios: "npm:^1.10.0"
+    eslint: "npm:^9.30.0"
+    jest: "npm:^30.0.4"
+    msw: "npm:^2.10.3"
+    ts-jest: "npm:^29.4.0"
+    tsup: "npm:^8.5.0"
+    typescript: "npm:latest"
+  languageName: unknown
+  linkType: soft
+
 "abbrev@npm:^3.0.0":
   version: 3.0.1
   resolution: "abbrev@npm:3.0.1"
@@ -3943,12 +3943,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "api@workspace:apps/api"
   dependencies:
-    "@repo/core": "npm:*"
     "@repo/eslint-config": "npm:*"
     "@repo/typescript-config": "npm:*"
     "@types/node": "npm:^22.15.3"
     "@types/react": "npm:19.1.0"
     "@types/react-dom": "npm:19.1.1"
+    "@youversion/bible-core": "npm:*"
     eslint: "npm:^9.30.0"
     typescript: "npm:5.8.2"
   languageName: unknown

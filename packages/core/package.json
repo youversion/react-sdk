@@ -1,5 +1,5 @@
 {
-  "name": "@repo/core",
+  "name": "@youversion/bible-core",
   "version": "0.0.1",
   "publishConfig": {
     "access": "public"

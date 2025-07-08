@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "node --experimental-strip-types index.ts"
   },
+  "private": true,
   "dependencies": {
-    "@repo/core": "*"
+    "@youversion/bible-core": "*"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",

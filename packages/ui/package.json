@@ -50,8 +50,8 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "@repo/core": "*",
     "@tailwindcss/postcss": "^4.1.11",
+    "@youversion/bible-core": "*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   }
