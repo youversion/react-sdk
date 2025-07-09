@@ -29,7 +29,7 @@ export default function RootLayout({
             className="mx-6"
           />
         </header>
-        <Providers>{children}</Providers>
+        <Providers appId={process.env.BIBLE_SDK_APP_ID ?? ""}>{children}</Providers>
       </body>
     </html>
   );

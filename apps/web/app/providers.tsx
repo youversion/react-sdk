@@ -5,11 +5,12 @@ import { ReactNode } from "react";
 
 interface ProvidersProps {
   children: ReactNode;
+  appId: string;
 }
 
-export function Providers({ children }: ProvidersProps) {
+export function Providers({ children, appId }: ProvidersProps) {
   return (
-    <BibleSDKProvider appId={process.env.NEXT_PUBLIC_BIBLE_SDK_APP_ID ?? ""}>
+    <BibleSDKProvider appId={appId}>
       {children}
     </BibleSDKProvider>
   );
