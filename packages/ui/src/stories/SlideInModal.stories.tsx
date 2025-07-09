@@ -60,7 +60,7 @@ export function WithBackdrop() {
   }, [booksSearch])
 
   return (
-    <div className="p-8 bg-gray-100 min-h-screen">
+    <div className="p-8 bg-gray-100 min-h-screen scrollbar-hidden">
       <div className="mb-6">
         <h1 className="text-2xl font-bold mb-2">Modal With Backdrop</h1>
         <p className="text-gray-600 mb-4">
@@ -106,7 +106,7 @@ export function WithBackdrop() {
         distance={24}
         backdrop={true}
         closeOnClickOutside={true}
-        className='w-[500px]'
+        className='w-screen sm:w-[500px] sm:rounded-lg'
       >
         <ModalHeader title='Books' onCloseClicked={() => setIsOpen(false)}>
           <SearchBar onChange={(v) => setBooksSearch(v)} debounceTime={50} />
@@ -118,7 +118,16 @@ export function WithBackdrop() {
 }
 
 const books = [
-  { id: 1, name: 'Genesis', chapters: Array.from({ length: 50 }, (_, i) => i + 1) },
+  { id: 1, name: 'Genesis', chapters: Array.from({ length: 12 }, (_, i) => i + 1) },
   { id: 2, name: 'Exodus', chapters: Array.from({ length: 20 }, (_, i) => i + 1) },
   { id: 3, name: 'Leviticus', chapters: Array.from({ length: 50 }, (_, i) => i + 1) },
+  { id: 4, name: 'Genesis', chapters: Array.from({ length: 50 }, (_, i) => i + 1) },
+  { id: 5, name: 'Exodus', chapters: Array.from({ length: 20 }, (_, i) => i + 1) },
+  { id: 6, name: 'Leviticus', chapters: Array.from({ length: 35 }, (_, i) => i + 1) },
+  { id: 7, name: 'Genesis', chapters: Array.from({ length: 32 }, (_, i) => i + 1) },
+  { id: 8, name: 'Exodus', chapters: Array.from({ length: 20 }, (_, i) => i + 1) },
+  { id: 9, name: 'Leviticus', chapters: Array.from({ length: 23 }, (_, i) => i + 1) },
+  { id: 10, name: 'Genesis', chapters: Array.from({ length: 4 }, (_, i) => i + 1) },
+  { id: 11, name: 'Exodus', chapters: Array.from({ length: 8 }, (_, i) => i + 1) },
+  { id: 12, name: 'Leviticus', chapters: Array.from({ length: 13 }, (_, i) => i + 1) },
 ];

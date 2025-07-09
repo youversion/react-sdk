@@ -7,7 +7,7 @@ interface ModalHeaderProps {
 
 export function ModalHeader({ children, onCloseClicked, title }: PropsWithChildren<ModalHeaderProps>) {
   return (
-    <div className='bg-[#F6F4F4] w-full min-h-[50px] border-b-[#DDDBDB] border-b-1 flex flex-col gap-2 p-4'>
+    <div className='bg-[#F6F4F4] w-full min-h-[50px] border-b-[#DDDBDB] sticky top-0 border-b-1 flex flex-col gap-2 p-4'>
       <div className='flex w-full justify-between'>
         <h2 className='text-md font-bold'>{title}</h2>
         {onCloseClicked && (

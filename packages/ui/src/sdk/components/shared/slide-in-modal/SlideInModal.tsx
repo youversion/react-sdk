@@ -126,15 +126,16 @@ export function SlideInModal({
       <div
         ref={modalRef}
         className={`
-          bg-white rounded-lg shadow-[0_0_3px_rgba(0,0,0,0.2)] border border-gray-200 overflow-hidden
+          bg-white shadow-[0_0_3px_rgba(0,0,0,0.2)] border border-gray-200 overflow-hidden
           transition-transform duration-${animationDuration} ease-out bg-white min-w-[200px] min-h-[150px]
+          scrollbar-hidden
           ${className}
         `}
         style={getPositionStyles()}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Content */}
-        <div className="overflow-y-auto" style={{ maxHeight: maxHeight }}>
+        <div className="overflow-y-scroll scrollbar-hidden" style={{ maxHeight: maxHeight }}>
           {children}
         </div>
       </div>

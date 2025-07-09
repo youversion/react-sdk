@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hidden {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+}
+
 /* Bible Reader Styles */
 .bible-reader {
   font-family: ArialMT, 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
