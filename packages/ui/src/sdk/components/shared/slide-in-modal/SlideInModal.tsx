@@ -27,7 +27,6 @@ export function SlideInModal({
                               closeOnEscape = true,
                               animationDuration = 300,
                               maxHeight = '80vh',
-                              width = 'auto',
                               backdrop = false
                             }: BottomModalProps) {
   const [isAnimating, setIsAnimating] = useState(false);

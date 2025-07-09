@@ -1,9 +1,10 @@
 import type { Meta } from "@storybook/react";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import {ModalHeader, SearchBar, SlideInModal} from "../sdk/components/shared";
+import {BookSelector} from "../sdk/components";
 
 const meta: Meta<typeof SlideInModal> = {
-  title: 'Design Components/BottomModal',
+  title: 'Design Components/Slide In Modal',
   component: SlideInModal,
   parameters: {
     layout: 'fullscreen',
@@ -45,6 +46,18 @@ export function Basic() {
 export function WithBackdrop() {
   const [isOpen, setIsOpen] = useState(false);
   const [openDirection, setOpenDirection] = useState<'top' | 'bottom'>('bottom');
+
+  const [filteredBooks, setFilteredBooks] = useState<typeof books>(books);
+  const [booksSearch, setBooksSearch] = useState('');
+
+  useEffect(() => {
+    console.log(booksSearch)
+    if (booksSearch == '' || booksSearch == null) {
+      setFilteredBooks(books)
+      return;
+    }
+    setFilteredBooks(books.filter(book => book.name.toLowerCase().includes(booksSearch.toLowerCase())))
+  }, [booksSearch])
 
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
@@ -96,10 +109,16 @@ export function WithBackdrop() {
         className='w-[500px]'
       >
         <ModalHeader title='Books' onCloseClicked={() => setIsOpen(false)}>
-          <SearchBar onChange={(v) => console.log(v)} />
+          <SearchBar onChange={(v) => setBooksSearch(v)} debounceTime={50} />
         </ModalHeader>
+        <BookSelector className='px-4 mt-2' books={filteredBooks} onSelect={(selection) => console.log(selection)} />
       </SlideInModal>
     </div>
   );
 }
 
+const books = [
+  { id: 1, name: 'Genesis', chapters: Array.from({ length: 50 }, (_, i) => i + 1) },
+  { id: 2, name: 'Exodus', chapters: Array.from({ length: 20 }, (_, i) => i + 1) },
+  { id: 3, name: 'Leviticus', chapters: Array.from({ length: 50 }, (_, i) => i + 1) },
+];

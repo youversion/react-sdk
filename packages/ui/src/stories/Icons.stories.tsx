@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import {CopyIcon, MagnifyingGlassIcon, ShareIcon} from "../sdk/components/shared";
+import {ChevronDownIcon, ChevronUpIcon, CopyIcon, MagnifyingGlassIcon, ShareIcon} from "../sdk/components/shared";
 
 const meta = {
   title: 'Design Components/Icons',
@@ -48,6 +48,24 @@ export const AllIcons: Story = {
           <MagnifyingGlassIcon size={24} />
           <MagnifyingGlassIcon size={32} />
           <MagnifyingGlassIcon size={48} />
+        </div>
+      </section>
+
+      <section className='flex flex-col gap-2'>
+        <h2 className='text-lg font-semibold'>Copy Icon</h2>
+        <div className='flex gap-4 items-center'>
+          <ChevronDownIcon size={24} />
+          <ChevronDownIcon size={32} />
+          <ChevronDownIcon size={48} />
+        </div>
+      </section>
+
+      <section className='flex flex-col gap-2'>
+        <h2 className='text-lg font-semibold'>Copy Icon</h2>
+        <div className='flex gap-4 items-center'>
+          <ChevronUpIcon size={24} />
+          <ChevronUpIcon size={32} />
+          <ChevronUpIcon size={48} />
         </div>
       </section>
     </div>

@@ -1,0 +1,71 @@
+import {useEffect, useRef, useState} from "react";
+import {ChevronDownIcon, ChevronUpIcon} from "./shared";
+
+interface ChapterGridProps {
+  chapters: number[];
+  onChapterClicked: (chapter: number) => void;
+  visible: boolean;
+}
+
+function ChapterGrid({ chapters, onChapterClicked, visible }: ChapterGridProps) {
+  return (
+    <div className={`overflow-hidden transition-all ease-in-out ${visible ? 'duration-300 max-h-[1000px]' : 'duration-100 max-h-[0px]'}`}>
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(50px,3fr))] gap-2 mt-2">
+        {chapters.map((chapter: number) => (
+          <button
+            key={chapter}
+            className="w-12 h-12 font-bold bg-[#EDEBEB] rounded flex items-center justify-center hover:cursor-pointer hover:bg-gray-300 transition-colors"
+            onClick={() => onChapterClicked(chapter)}
+          >
+            {chapter}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+interface BookSelectorProps {
+  className?: string;
+  books: {
+    id: number;
+    name: string;
+    chapters: number[];
+  }[];
+  onSelect: (book: { bookId: number; chapter: number; }) => void;
+  closeOnSelect?: boolean;
+}
+
+export function BookSelector({ className, closeOnSelect, books, onSelect }: BookSelectorProps) {
+
+  const [openBook, setOpenBook] = useState<number | null>(null);
+
+  const toggleBook = (id: number) => {
+    setOpenBook(openBook === id ? null : id);
+  };
+
+  function onChapterClicked(chapter: number) {
+    if (!chapter || !openBook) return;
+    onSelect({ bookId: openBook, chapter })
+
+    if (closeOnSelect) {
+      setOpenBook(null);
+    }
+  }
+
+  return (
+    <div className={`min-w-[300px] ${className || ''}`}>
+      {books.map((book) => (
+        <div key={book.id} className="mb-2">
+          <button
+            onClick={() => toggleBook(book.id)}
+            className={`${openBook === book.id ? 'border-b-0' : 'border-b-1'} w-full text-left py-2 px-3 border-[#DDDBDB] rounded-t-md flex justify-between items-center hover:cursor-pointer hover:bg-gray-100 transition-colors`}
+          >
+            <h2>{book.name}</h2> <span>{openBook === book.id ? <ChevronUpIcon /> : <ChevronDownIcon />}</span>
+          </button>
+          <ChapterGrid chapters={book.chapters} visible={openBook === book.id} onChapterClicked={onChapterClicked}/>
+        </div>
+      ))}
+    </div>
+  );
+}
