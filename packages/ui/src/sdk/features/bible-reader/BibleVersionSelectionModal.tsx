@@ -19,6 +19,7 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
   remainOpenOnSelect?: boolean;
+  languages?: string[];
 }
 
 export function BibleVersionSelectionModal({
@@ -28,12 +29,13 @@ export function BibleVersionSelectionModal({
   onSelect,
   onClose,
   remainOpenOnSelect,
+  languages,
 }: Props) {
   const [filteredVersions, setFilteredVersions] = useState<Array<VersionOption>>([]);
   const [versionSearch, setVersionSearch] = useState("");
 
   const { currentVersion } = useReaderContext();
-  const { versions, loading: loadingVersions } = useVersions();
+  const { versions, loading: loadingVersions } = useVersions(languages?.join(',') ?? '*');
 
   const versionOptions: VersionOption[] = useMemo(() => {
     if (!versions?.data) return [];
