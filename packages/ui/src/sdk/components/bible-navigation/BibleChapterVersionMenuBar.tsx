@@ -5,8 +5,8 @@ import React, { useState } from 'react';
 interface BibleChapterVersionSelectorProps {
   chapter?: string;
   version?: string;
-  onChapterChange?: (chapter: string) => void;
-  onVersionChange?: (version: string) => void;
+  onChapterButtonClicked?: () => void;
+  onVersionButtonClicked?: () => void;
   disabled?: boolean;
   className?: string;
 }
@@ -14,8 +14,8 @@ interface BibleChapterVersionSelectorProps {
 export function BibleChapterVersionMenuBar({
                                               chapter = "James 1",
                                               version = "NIV",
-                                              onChapterChange,
-                                              onVersionChange,
+                                              onChapterButtonClicked,
+                                              onVersionButtonClicked,
                                               disabled = false,
                                               className = ""
                                             }: BibleChapterVersionSelectorProps) {
@@ -23,14 +23,14 @@ export function BibleChapterVersionMenuBar({
   const [isVersionPressed, setIsVersionPressed] = useState(false);
 
   const handleChapterClick = () => {
-    if (!disabled && onChapterChange) {
-      onChapterChange(chapter);
+    if (!disabled && onChapterButtonClicked) {
+      onChapterButtonClicked();
     }
   };
 
   const handleVersionClick = () => {
-    if (!disabled && onVersionChange) {
-      onVersionChange(version);
+    if (!disabled && onVersionButtonClicked) {
+      onVersionButtonClicked();
     }
   };
 

@@ -94,7 +94,7 @@ export function SlideInModal({
       transform: 'translateX(-50%)',
       maxHeight: maxHeight,
       minHeight: minHeight,
-      zIndex: 1000,
+      zIndex: 800,
     };
 
     if (position === 'bottom') {

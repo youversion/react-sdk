@@ -1,4 +1,4 @@
-import { BibleChapterSelectionModal, BookChapterSelection } from "../components";
+import {BibleChapterSelectionModal, BibleChapterVersionMenuBar, BookChapterSelection} from "../components";
 import { useReaderContext } from "../context/ReaderContext";
 import { useBooks, useChapters } from "../hooks";
 import { useState } from "react";
@@ -6,7 +6,7 @@ import { useState } from "react";
 export function BibleReaderNavigator() {
   const [isChapterSelectionOpen, setIsChapterSelectionOpen] = useState(false);
 
-  const { setBook, setChapter, currentVersion, currentBook } = useReaderContext();
+  const { setBook, setChapter, currentVersion, currentBook, currentChapter } = useReaderContext();
 
   const { books, loading } = useBooks(currentVersion.id);
 
@@ -14,8 +14,6 @@ export function BibleReaderNavigator() {
 
   function onSelection(selection: BookChapterSelection) {
     const book = books?.data.find(b => b.usfm === selection.bookId);
-    console.log(book);
-    console.log(selection.chapter);
     if (book) {
       setBook(book);
       setChapter(selection.chapter);
@@ -32,8 +30,16 @@ export function BibleReaderNavigator() {
         onSelect={onSelection}
         isOpen={isChapterSelectionOpen}
         onClose={() => setIsChapterSelectionOpen(false)}
+        screenEdgeGap={90}
       />
       <button onClick={() => setIsChapterSelectionOpen(!isChapterSelectionOpen)}>Select Chapter</button>
+      <div className="fixed bottom-[30px] left-0 right-0 z-900">
+        <div className="flex justify-center">
+          <BibleChapterVersionMenuBar
+            chapter={`${currentBook.title} ${currentChapter.title}`}
+            onChapterButtonClicked={() => setIsChapterSelectionOpen(true)} />
+        </div>
+      </div>
     </div>
   )
 }
