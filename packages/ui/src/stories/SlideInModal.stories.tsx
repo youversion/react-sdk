@@ -1,7 +1,7 @@
 import type { Meta } from "@storybook/react";
 import {useEffect, useState} from "react";
 import {ModalHeader, SearchBar, SlideInModal} from "../sdk/components/shared";
-import {BookSelector} from "../sdk/components";
+import {BookSelectionList} from "../sdk/components";
 
 const meta: Meta<typeof SlideInModal> = {
   title: 'Design Components/Slide In Modal',
@@ -111,7 +111,7 @@ export function WithBackdrop() {
         <ModalHeader title='Books' onCloseClicked={() => setIsOpen(false)}>
           <SearchBar onChange={(v) => setBooksSearch(v)} debounceTime={50} />
         </ModalHeader>
-        <BookSelector className='px-4 mt-2' books={filteredBooks} onSelect={(selection) => console.log(selection)} />
+        <BookSelectionList className='px-4 mt-2' books={filteredBooks} onSelect={(selection) => console.log(selection)} />
       </SlideInModal>
     </div>
   );

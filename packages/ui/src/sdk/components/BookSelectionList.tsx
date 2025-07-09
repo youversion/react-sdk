@@ -1,5 +1,5 @@
-import {useEffect, useRef, useState} from "react";
-import {ChevronDownIcon, ChevronUpIcon} from "./shared";
+import { useState } from "react";
+import { ChevronDownIcon, ChevronUpIcon } from "./shared";
 
 interface ChapterGridProps {
   chapters: number[];
@@ -25,7 +25,7 @@ function ChapterGrid({ chapters, onChapterClicked, visible }: ChapterGridProps) 
   );
 }
 
-interface BookSelectorProps {
+interface BookSelectionListProps {
   className?: string;
   books: {
     id: number;
@@ -36,8 +36,7 @@ interface BookSelectorProps {
   closeOnSelect?: boolean;
 }
 
-export function BookSelector({ className, closeOnSelect, books, onSelect }: BookSelectorProps) {
-
+export function BookSelectionList({ className, closeOnSelect, books, onSelect }: BookSelectionListProps) {
   const [openBook, setOpenBook] = useState<number | null>(null);
 
   const toggleBook = (id: number) => {
@@ -58,16 +57,17 @@ export function BookSelector({ className, closeOnSelect, books, onSelect }: Book
       {books.map((book) => {
         const isSelectedBook = openBook === book.id;
         return (
-        <div key={book.id} className="mb-2">
-          <button
-            onClick={() => toggleBook(book.id)}
-            className={`${isSelectedBook ? 'border-b-0' : 'border-b-1'} w-full text-left py-2 px-3 border-[#DDDBDB] rounded-t-md flex justify-between items-center hover:cursor-pointer hover:bg-gray-100 transition-colors`}
-          >
-            <h2 className={`${isSelectedBook ? 'font-semibold' : ''}`}>{book.name}</h2> <span>{isSelectedBook ? <ChevronUpIcon /> : <ChevronDownIcon />}</span>
-          </button>
-          <ChapterGrid chapters={book.chapters} visible={isSelectedBook} onChapterClicked={onChapterClicked}/>
-        </div>
-      )})}
+          <div key={book.id} className="mb-2">
+            <button
+              onClick={() => toggleBook(book.id)}
+              className={`${isSelectedBook ? 'border-b-0' : 'border-b-1'} w-full text-left py-2 px-3 border-[#DDDBDB] rounded-t-md flex justify-between items-center hover:cursor-pointer hover:bg-gray-100 transition-colors`}
+            >
+              <h2 className={`${isSelectedBook ? 'font-semibold' : ''}`}>{book.name}</h2> <span>{isSelectedBook ? <ChevronUpIcon /> : <ChevronDownIcon />}</span>
+            </button>
+            <ChapterGrid chapters={book.chapters} visible={isSelectedBook} onChapterClicked={onChapterClicked}/>
+          </div>
+        )}
+      )}
     </div>
   );
 }

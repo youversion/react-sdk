@@ -1,8 +1,8 @@
 import type { Meta } from "@storybook/react-webpack5";
-import { BibleChapterVersionSelector } from "../sdk/components";
+import { BibleChapterVersionMenuBar } from "../sdk/components";
 
 const meta = {
-  title: 'Bible Chapter Version Selector',
+  title: 'Bible Components/Chapter & Version Menu Bar',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -23,13 +23,13 @@ export function BasicRender() {
     <div className='flex flex-col gap-8'>
       <div className='flex flex-col gap-2 w-full items-center text-center'>
         <h2 className='font-bold text-lg'>Normal</h2>
-        <BibleChapterVersionSelector />
-        <BibleChapterVersionSelector chapter={'1 Corinthians 1'} />
+        <BibleChapterVersionMenuBar />
+        <BibleChapterVersionMenuBar chapter={'1 Corinthians 1'} />
       </div>
       <div className='flex gap-5'>
         <div className='flex flex-col gap-2 w-full justify-between items-center text-center'>
           <h1 className='font-bold text-lg'>Disabled</h1>
-          <BibleChapterVersionSelector className='w-[600px]' disabled={true} />
+          <BibleChapterVersionMenuBar className='w-[600px]' disabled={true} />
         </div>
       </div>
     </div>

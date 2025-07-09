@@ -11,7 +11,7 @@ interface BibleChapterVersionSelectorProps {
   className?: string;
 }
 
-export function BibleChapterVersionSelector({
+export function BibleChapterVersionMenuBar({
                                               chapter = "James 1",
                                               version = "NIV",
                                               onChapterChange,

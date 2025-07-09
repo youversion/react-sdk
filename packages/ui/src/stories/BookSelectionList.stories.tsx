@@ -1,9 +1,9 @@
 import type { Meta } from "@storybook/react-webpack5";
-import { BookSelector } from "../sdk/components";
-import {useState} from "react";
+import { BookSelectionList } from "../sdk/components";
+import { useState } from "react";
 
 const meta = {
-  title: 'Bible/Book Selector',
+  title: 'Bible Components/Book Selection List',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -31,9 +31,9 @@ export function BasicRender() {
   return (
     <div className='flex flex-col gap-8'>
       <div className='flex flex-col gap-2 w-full items-center text-center'>
-        <h2 className='font-bold text-lg'>Normal</h2>
+        <p>Basic Book & Chapter Selection List</p>
         { selectedBook ? <p>Selection: {selectedBook.bookId} - {selectedBook.chapter}</p> : <p>No Selection</p> }
-        <BookSelector closeOnSelect={true} books={books} onSelect={(selection) => setSelectedBook(selection)} />
+        <BookSelectionList closeOnSelect={true} books={books} onSelect={(selection) => setSelectedBook(selection)} />
       </div>
     </div>
   )
