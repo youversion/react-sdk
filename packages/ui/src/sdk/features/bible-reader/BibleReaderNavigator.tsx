@@ -25,6 +25,7 @@ export function BibleReaderNavigator() {
     if (book) {
       setBook(book);
       setChapter(selection.chapter);
+      setIsChapterSelectionOpen(false);
     }
   }
 
