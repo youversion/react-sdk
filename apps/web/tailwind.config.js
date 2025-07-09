@@ -6,7 +6,7 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "../../packages/ui/src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: ['class', '[data-mode="dark"]'],
+  // darkMode: ['class', '[data-mode="dark"]'],
   theme: {
     extend: {},
   },

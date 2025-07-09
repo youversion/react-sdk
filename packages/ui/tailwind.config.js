@@ -6,7 +6,7 @@ module.exports = {
     "./node_modules/@youversion/bible-ui/dist/**/*.{js,jsx}",
     "./.storybook/**/*.{js,jsx,ts,tsx}",
   ],
-  darkMode: ["class", '[data-mode="dark"]'],
+  // darkMode: ["class", '[data-mode="dark"]'],
   theme: {
     extend: {},
   },

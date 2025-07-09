@@ -6,12 +6,12 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/*@media (prefers-color-scheme: dark) {*/
+/*  :root {*/
+/*    --background: #0a0a0a;*/
+/*    --foreground: #ededed;*/
+/*  }*/
+/*}*/
 
 html,
 body {
@@ -29,19 +29,19 @@ a {
   text-decoration: none;
 }
 
-.imgDark {
-  display: none;
-}
+/*.imgDark {*/
+/*  display: none;*/
+/*}*/
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/*@media (prefers-color-scheme: dark) {*/
+/*  html {*/
+/*    color-scheme: dark;*/
+/*  }*/
 
-  .imgLight {
-    display: none;
-  }
-  .imgDark {
-    display: unset;
-  }
-}
+/*  .imgLight {*/
+/*    display: none;*/
+/*  }*/
+/*  .imgDark {*/
+/*    display: unset;*/
+/*  }*/
+/*}*/
