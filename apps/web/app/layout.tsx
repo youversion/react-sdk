@@ -3,6 +3,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import Image from "next/image";
 import youbibleLogo from "./assets/youbible.png";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "YouBible",
@@ -29,7 +30,10 @@ export default function RootLayout({
             className="mx-6"
           />
         </header>
-        <Providers appId={process.env.BIBLE_SDK_APP_ID ?? ""}>{children}</Providers>
+        <Analytics />
+        <Providers appId={process.env.BIBLE_SDK_APP_ID ?? ""}>
+          {children}
+        </Providers>
       </body>
     </html>
   );
