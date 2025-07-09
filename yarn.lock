@@ -3735,6 +3735,7 @@ __metadata:
     postcss-loader: "npm:^8.1.1"
     react: "npm:^19.1.0"
     react-dom: "npm:^19.1.0"
+    react-tiny-popover: "npm:^8.1.6"
     storybook: "npm:^9.0.15"
     tailwindcss: "npm:4.0.0"
     typescript: "npm:5.8.2"
