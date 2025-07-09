@@ -39,13 +39,20 @@ export function ChapterRenderer() {
   }
 
   return (
-    <div
-      className="bible-reader w-8/12 mx-auto my-0"
-      style={{ width: "512px" }}
-    >
+    <div style={{ width: "512px", margin: "0 auto" }}>
       <div className="text-center">
-        <h1>{currentBook.title}</h1>
-        <h2>{currentChapter.title}</h2>
+        <div
+          className="text-center text-2xl leading-[125%] text-[#636161] font-[Untitled_Serif]"
+          style={{ marginTop: "48px" }}
+        >
+          {currentBook.title}
+        </div>
+        <div
+          className="text-center text-5xl leading-[125%] text-[#636161] font-[Untitled_Serif]"
+          style={{ marginBottom: "24px" }}
+        >
+          {currentChapter.title}
+        </div>
       </div>
       {verses.data.map((verse) => (
         <div

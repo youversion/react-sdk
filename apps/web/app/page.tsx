@@ -13,8 +13,8 @@ export default function Home() {
 }
 
 const DEFAULT_VERSION = 206;
-const DEFAULT_BOOK = "EZR";
-const DEFAULT_CHAPTER = 2;
+const DEFAULT_BOOK = "GEN";
+const DEFAULT_CHAPTER = 1;
 
 function HomeContent() {
   const {
