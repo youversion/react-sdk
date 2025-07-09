@@ -44,9 +44,10 @@ export function BibleChapterVersionMenuBar({
 
   const chapterButtonClasses = `
     ${baseButtonClasses}
+    flex-grow
     ${isChapterPressed && !disabled
-    ? 'bg-gray-200 shadow-inner'
-    : 'bg-gray-100 hover:bg-gray-150 active:bg-gray-200 active:scale-95'
+    ? 'bg-[#e7e4e4] shadow-inner'
+    : 'bg-[#EDEBEB] hover:bg-gray-150 active:bg-[#e7e4e4]'
     }
   `;
 
@@ -54,14 +55,14 @@ export function BibleChapterVersionMenuBar({
     ${baseButtonClasses}
     px-3
     ${isVersionPressed && !disabled
-    ? 'bg-gray-200 shadow-inner'
-    : 'bg-gray-100 hover:bg-gray-150 active:bg-gray-200 active:scale-95'
+    ? 'bg-[#e7e4e4] shadow-inner'
+    : 'bg-[#EDEBEB] hover:bg-gray-150 active:bg-[#e7e4e4]'
     }
   `;
 
   return (
     <div className={`
-      flex gap-1 rounded-2xl bg-white overflow-hidden w-fit 
+      flex gap-1 rounded-full bg-white overflow-hidden w-fit 
       drop-shadow-md hover:drop-shadow-lg transition-shadow duration-200
       ${className}
     `}>

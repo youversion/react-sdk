@@ -28,7 +28,7 @@ export function SlideInModal({
                               closeOnEscape = true,
                               animationDuration = 300,
                               maxHeight = '80vh',
-                              minHeight = maxHeight,
+                              minHeight,
                               backdrop = false
                             }: BottomModalProps) {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -93,7 +93,7 @@ export function SlideInModal({
       left: '50%',
       transform: 'translateX(-50%)',
       maxHeight: maxHeight,
-      minHeight: minHeight,
+      minHeight: minHeight ?? maxHeight,
       zIndex: 800,
     };
 

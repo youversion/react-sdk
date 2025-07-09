@@ -63,7 +63,6 @@ export function BibleChapterSelectionModal({modalPlacement, screenEdgeGap, isOpe
       backdrop={true}
       closeOnClickOutside={true}
       className='w-screen sm:w-[500px] sm:rounded-lg'
-      minHeight='300px'
     >
       <ModalHeader title='Books' onCloseClicked={onClose}>
         <SearchBar onChange={(v) => setBooksSearch(v)} debounceTime={50} />
