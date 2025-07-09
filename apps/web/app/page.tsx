@@ -1,51 +1,54 @@
 "use client";
 
-import { BibleNavigator, useVersion } from "@repo/ui";
-import styles from "./page.module.css";
+import {
+  useVersion,
+  useBook,
+  useChapter,
+  useVerse,
+  ReaderProvider,
+  ChapterRenderer,
+} from "@repo/ui";
 
 export default function Home() {
-  return (
-    <>
-      <BibleNavigator />
-      <HomeContent />
-    </>
-  );
+  return <HomeContent />;
 }
 
 function HomeContent() {
-  const { version, loading, error } = useVersion(206);
+  const {
+    version,
+    loading: versionLoading,
+    error: versionError,
+  } = useVersion(206);
+  const { book, loading: bookLoading, error: bookError } = useBook(206, "GEN");
+  const {
+    chapter,
+    loading: chapterLoading,
+    error: chapterError,
+  } = useChapter(206, "GEN", 2);
+
+  const loading = versionLoading || bookLoading || chapterLoading;
+  const error = versionError || bookError || chapterError;
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <h1>Bible SDK Demo</h1>
+    <>
+      {loading && <p>Loading chapter data...</p>}
 
-        <div style={{ padding: "2rem", border: "1px solid #ccc", borderRadius: "8px" }}>
-          <h2>Version 206 Information</h2>
-
-          {loading && <p>Loading version data...</p>}
-
-          {error && (
-            <div style={{ color: "red" }}>
-              <p>Error: {error.message}</p>
-            </div>
-          )}
-
-          {version && (
-            <div>
-              <h3>{version.title}</h3>
-              <p><strong>Abbreviation:</strong> {version.abbreviation}</p>
-              <p><strong>Local Title:</strong> {version.local_title}</p>
-              <p><strong>Language:</strong> {version.language.name} ({version.language.iso_639_3})</p>
-              <p><strong>Info:</strong> {version.info}</p>
-              <p><strong>Copyright:</strong> {version.copyright}</p>
-              {version.info_url && (
-                <p><strong>More Info:</strong> <a href={version.info_url} target="_blank" rel="noopener">Link</a></p>
-              )}
-            </div>
-          )}
+      {error && (
+        <div style={{ color: "red" }}>
+          <p>Error loading chapter data: {error.message}</p>
         </div>
-      </main>
-    </div>
+      )}
+
+      {version && book && chapter && (
+        <ReaderProvider
+          currentVersion={version}
+          currentBook={book}
+          currentChapter={chapter}
+          currentVerse={null}
+        >
+          <ChapterRenderer />
+        </ReaderProvider>
+      )}
+    </>
   );
 }

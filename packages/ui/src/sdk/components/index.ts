@@ -3,3 +3,4 @@ export * from "./BibleKitProvider";
 export * from "./YouVersionLoginButton";
 export * from './ReaderProvider';
 export * from './bible-navigation/BibleChapterVersionSelector';
+export * from './reader';

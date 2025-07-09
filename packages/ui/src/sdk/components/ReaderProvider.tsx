@@ -9,12 +9,23 @@ type ReaderProviderProps = {
   currentVersion: Version;
   currentChapter: Chapter;
   currentBook: Book;
-  currentVerse: Verse;
+  currentVerse: Verse | null;
 }
 
-export function ReaderProvider({ children }: PropsWithChildren<ReaderProviderProps>) {
+export function ReaderProvider({ 
+  children, 
+  currentVersion, 
+  currentChapter, 
+  currentBook, 
+  currentVerse 
+}: PropsWithChildren<ReaderProviderProps>) {
   return (
-    <ReaderContext.Provider value={{}}>
+    <ReaderContext.Provider value={{
+      currentVersion,
+      currentChapter,
+      currentBook,
+      currentVerse
+    }}>
       {children}
     </ReaderContext.Provider>
   )

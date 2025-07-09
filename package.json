@@ -23,6 +23,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "@changesets/cli": "^2.29.5"
+    "@changesets/cli": "^2.29.5",
+    "@tailwindcss/postcss": "^4.1.11"
   }
 }

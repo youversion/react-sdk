@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+/* Bible Reader Styles */
+.bible-reader {
+  font-family: ArialMT, 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+  font-size: 18px;
+  color: #121212;
+  line-height: 1.7em;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.bible-reader h1, .bible-reader h2 {
+  color: #121212;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.bible-reader h1 {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.bible-reader h2 {
+  font-size: 1.25rem;
+}
+
+.verse-container {
+  display: inline;
+}
+
+.verse-container .p {
+  display: inline;
+  margin: 0;
+  text-indent: 0;
+}
+
+.verse-container .version,
+.verse-container .book,
+.verse-container .chapter {
+  display: inline;
+}
+
+.line-break {
+  display: block;
+  height: 1em;
+  margin: 0.5em 0;
+}
+
+
+.verse {
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 6px;
+  padding: 1px 3px;
+  margin: 0;
+  display: inline;
+}
+
+.verse:hover {
+  background-color: #f0f4ff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.verse .label {
+  font-size: 14px;
+  color: #777a7b;
+  margin-right: 5px;
+  vertical-align: super;
+  font-size: 0.75em;
+  line-height: 1;
+}
+
+.verse .content {
+  display: inline;
+}
+
+.verse-selected {
+  border-bottom: dotted 1px #777a7b;
+}
+
+/* Note styles (simplified) */
+.note {
+  position: relative;
+  display: inline;
+}
+
+.note .label {
+  display: none;
+}
+
+.note::before {
+  content: '📝';
+  font-size: 0.8em;
+  opacity: 0.6;
+  margin: 0 2px;
+}
+
+.note:hover::before {
+  opacity: 1;
+}
+
+/* Paragraph styles */
+.p {
+  margin-bottom: 0.5rem;
+  text-indent: 1em;
+}
+
+/* Heading styles */
+.s, .s1, .ms, .ms1 {
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 1.5em;
+  margin: 1rem 0 0.5rem 0;
+  text-align: center;
+}
+
+.s2, .s3, .s4, .ms2, .ms3, .ms4 {
+  font-weight: bold;
+  line-height: 1.5em;
+  margin: 1rem 0 0.5rem 0;
+  text-align: center;
+}
+
+/* Quote styles */
+.q, .q1 {
+  padding-left: 2em;
+  text-indent: -1em;
+  line-height: 1.7em;
+}
+
+.q2, .q3 {
+  padding-left: 3em;
+  text-indent: -1em;
+  line-height: 1.7em;
+}
+
+/* Emphasis styles */
+.add, .it, .qt, .tl {
+  font-style: italic;
+}
+
+.bd, .em {
+  font-weight: bold;
+}
+
+.bdit {
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* Words of Christ */
+.wj .content {
+  color: #d73527;
+}
+
+/* Descriptive text */
+.d {
+  font-style: italic;
+  margin-bottom: 1em;
+  text-align: center;
+  color: #777a7b;
+}
+
+/* Small caps for divine names */
+.nd, .sc {
+  font-variant: small-caps;
+}
+
+/* Words of Christ */
+.wj .content {
+  color: #d73527;
+}
+
+/* Text formatting */
+.add, .it, .qt, .tl {
+  font-style: italic;
+}
+
+.bd, .em {
+  font-weight: bold;
+}
+
+.bdit {
+  font-weight: bold;
+  font-style: italic;
+}
