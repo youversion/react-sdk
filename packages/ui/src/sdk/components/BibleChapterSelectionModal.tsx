@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { ModalHeader, SearchBar, SlideInModal } from "./shared";
 import { BookSelectionList } from "./BookSelectionList";
 
-type BookOption = {
-  id: number;
+export type BookOption = {
+  id: number | string;
   name: string;
   chapters: number[];
 }
 
 export type BookChapterSelection = {
-  bookId: number;
+  bookId: number | string;
   chapter: number;
 }
 

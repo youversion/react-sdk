@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "./shared";
+import { BookOption } from "./BibleChapterSelectionModal";
 
 interface ChapterGridProps {
   chapters: number[];
@@ -27,19 +28,15 @@ function ChapterGrid({ chapters, onChapterClicked, visible }: ChapterGridProps) 
 
 interface BookSelectionListProps {
   className?: string;
-  books: {
-    id: number;
-    name: string;
-    chapters: number[];
-  }[];
-  onSelect: (book: { bookId: number; chapter: number; }) => void;
+  books: BookOption[];
+  onSelect: (book: { bookId: BookOption['id']; chapter: number; }) => void;
   closeOnSelect?: boolean;
 }
 
 export function BookSelectionList({ className, closeOnSelect, books, onSelect }: BookSelectionListProps) {
-  const [openBook, setOpenBook] = useState<number | null>(null);
+  const [openBook, setOpenBook] = useState<BookOption['id'] | null>(null);
 
-  const toggleBook = (id: number) => {
+  const toggleBook = (id: BookOption['id']) => {
     setOpenBook(openBook === id ? null : id);
   };
 

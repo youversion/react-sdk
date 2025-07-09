@@ -1,17 +1,10 @@
 "use client";
 
-import { useContext, useMemo } from "react";
-import { ReaderContext } from "../../context/ReaderContext";
-import { useVerses } from "../../hooks/useVerses";
+import { useVerses } from "../../hooks";
+import { useReaderContext } from "../../context/ReaderContext";
 
 export function ChapterRenderer() {
-  const context = useContext(ReaderContext);
-
-  if (!context) {
-    throw new Error("ChapterRenderer must be used within a ReaderProvider");
-  }
-
-  const { currentVersion, currentBook, currentChapter } = context;
+  const { currentVersion, currentBook, currentChapter } = useReaderContext();
 
   const { verses, loading, error } = useVerses(
     currentVersion.id,
@@ -22,13 +15,13 @@ export function ChapterRenderer() {
   const preprocessHTML = (html: string) => {
     // Replace empty paragraph divs with line breaks
     let processedHTML = html;
-    
+
     // Find all <div class="p"> elements that contain only whitespace
     processedHTML = processedHTML.replace(
       /<div class="p"><span class="verse[^"]*"[^>]*><span class="content">\s*<\/span><\/span><\/div>/g,
       '<div class="line-break"></div>'
     );
-    
+
     return processedHTML;
   };
 

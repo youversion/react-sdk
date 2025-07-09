@@ -1,32 +1,34 @@
 "use client";
 
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import { ReaderContext } from "../context/ReaderContext";
 import { Book, Chapter, Verse, Version } from "@youversion/bible-core";
 
 type ReaderProviderProps = {
-  children: ReactNode;
   currentVersion: Version;
   currentChapter: Chapter;
   currentBook: Book;
   currentVerse: Verse | null;
 }
 
-export function ReaderProvider({ 
-  children, 
-  currentVersion, 
-  currentChapter, 
-  currentBook, 
-  currentVerse 
-}: PropsWithChildren<ReaderProviderProps>) {
+export function ReaderProvider(props: PropsWithChildren<ReaderProviderProps>) {
+  const [currentVersion, setCurrentVersion] = useState<Version>(props.currentVersion);
+  const [currentBook, setCurrentBook] = useState<Book>(props.currentBook);
+  const [currentChapter, setCurrentChapter] = useState<Chapter>(props.currentChapter);
+  const [currentVerse, setCurrentVerse] = useState<Verse | null>(props.currentVerse);
+
   return (
     <ReaderContext.Provider value={{
       currentVersion,
-      currentChapter,
       currentBook,
-      currentVerse
+      currentChapter,
+      currentVerse,
+      setVersion: setCurrentVersion,
+      setChapter: setCurrentChapter,
+      setBook: setCurrentBook,
+      setVerse: setCurrentVerse,
     }}>
-      {children}
+      {props.children}
     </ReaderContext.Provider>
-  )
+  );
 }

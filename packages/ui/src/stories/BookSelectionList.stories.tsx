@@ -1,5 +1,5 @@
 import type { Meta } from "@storybook/react-webpack5";
-import { BookSelectionList } from "../sdk/components";
+import { BookOption, BookSelectionList } from "../sdk/components";
 import { useState } from "react";
 
 const meta = {
@@ -26,7 +26,7 @@ const books = [
 ];
 
 export function BasicRender() {
-  const [selectedBook, setSelectedBook] = useState<{ bookId: number, chapter: number } | null>(null);
+  const [selectedBook, setSelectedBook] = useState<{ bookId: BookOption['id'], chapter: number } | null>(null);
 
   return (
     <div className='flex flex-col gap-8'>

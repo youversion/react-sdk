@@ -4,7 +4,6 @@ import {
   useVersion,
   useBook,
   useChapter,
-  useVerse,
   ReaderProvider,
   ChapterRenderer,
 } from "@repo/ui";

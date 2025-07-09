@@ -1,7 +1,7 @@
 import type { Meta } from "@storybook/react";
-import {useEffect, useState} from "react";
-import {ModalHeader, SearchBar, SlideInModal} from "../sdk/components/shared";
-import {BookSelectionList} from "../sdk/components";
+import { useEffect, useState } from "react";
+import { ModalHeader, SearchBar, SlideInModal } from "../sdk/components/shared";
+import { BookSelectionList } from "../sdk/components";
 
 const meta: Meta<typeof SlideInModal> = {
   title: 'Design Components/Slide In Modal',
