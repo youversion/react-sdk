@@ -1,11 +1,11 @@
-import { createPortal } from 'react-dom';
+import { createPortal } from "react-dom";
 import { ReactNode, useEffect, useState, useRef } from "react";
 
 interface BottomModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
-  position?: 'top' | 'bottom';
+  position?: "top" | "bottom";
   distance?: number; // Distance from edge in pixels
   className?: string;
   closeOnClickOutside?: boolean;
@@ -18,19 +18,19 @@ interface BottomModalProps {
 }
 
 export function SlideInModal({
-                              isOpen,
-                              onClose,
-                              children,
-                              position = 'bottom',
-                              distance = 24,
-                              className = '',
-                              closeOnClickOutside = false,
-                              closeOnEscape = true,
-                              animationDuration = 300,
-                              maxHeight = '80vh',
-                              minHeight,
-                              backdrop = false
-                            }: BottomModalProps) {
+  isOpen,
+  onClose,
+  children,
+  position = "bottom",
+  distance = 24,
+  className = "",
+  closeOnClickOutside = false,
+  closeOnEscape = true,
+  animationDuration = 300,
+  maxHeight = "80vh",
+  minHeight,
+  backdrop = false,
+}: BottomModalProps) {
   const [isAnimating, setIsAnimating] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -55,13 +55,13 @@ export function SlideInModal({
     if (!isOpen || !closeOnEscape) return;
 
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         onClose();
       }
     };
 
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [isOpen, closeOnEscape, onClose]);
 
   // Handle click outside
@@ -74,8 +74,8 @@ export function SlideInModal({
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen, closeOnClickOutside, onClose]);
 
   // Handle backdrop click (only if backdrop is enabled)
@@ -89,25 +89,25 @@ export function SlideInModal({
 
   const getPositionStyles = () => {
     const baseStyles = {
-      position: 'fixed' as const,
-      left: '50%',
-      transform: 'translateX(-50%)',
+      position: "fixed" as const,
+      left: "50%",
+      transform: "translateX(-50%)",
       maxHeight: maxHeight,
       minHeight: minHeight ?? maxHeight,
       zIndex: 800,
     };
 
-    if (position === 'bottom') {
+    if (position === "bottom") {
       return {
         ...baseStyles,
         bottom: `${distance}px`,
-        transform: `translateX(-50%) translateY(${isAnimating ? '0' : '125%'})`,
+        transform: `translateX(-50%) translateY(${isAnimating ? "0" : "125%"})`,
       };
     } else {
       return {
         ...baseStyles,
         top: `${distance}px`,
-        transform: `translateX(-50%) translateY(${isAnimating ? '0' : '-125%'})`,
+        transform: `translateX(-50%) translateY(${isAnimating ? "0" : "-125%"})`,
       };
     }
   };
@@ -119,7 +119,7 @@ export function SlideInModal({
         <div
           className={`
             fixed inset-0 z-40 bg-black transition-opacity duration-${animationDuration}
-            ${isAnimating ? 'opacity-30' : 'opacity-0'}
+            ${isAnimating ? "opacity-30" : "opacity-0"}
           `}
           onClick={handleBackdropClick}
         />
@@ -138,7 +138,10 @@ export function SlideInModal({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Content */}
-        <div className="overflow-y-scroll scrollbar-hidden" style={{ maxHeight: maxHeight }}>
+        <div
+          className="overflow-y-scroll scrollbar-hidden"
+          style={{ maxHeight: maxHeight }}
+        >
           {children}
         </div>
       </div>

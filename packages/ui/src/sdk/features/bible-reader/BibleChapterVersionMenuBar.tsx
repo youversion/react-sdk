@@ -65,7 +65,7 @@ export function BibleChapterVersionMenuBar({
   return (
     <div
       className={`
-      flex gap-1 rounded-full bg-white overflow-hidden w-fit 
+      flex gap-[2px] rounded-full bg-white overflow-hidden w-fit 
       drop-shadow-md hover:drop-shadow-lg transition-shadow duration-200
       ${className}
     `}

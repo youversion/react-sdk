@@ -34,30 +34,21 @@ function HomeContent() {
     error: chapterError,
   } = useChapter(DEFAULT_VERSION, DEFAULT_BOOK, DEFAULT_CHAPTER);
 
-  const loading = versionLoading || bookLoading || chapterLoading;
-  const error = versionError || bookError || chapterError;
+  if (!version || !book || !chapter) {
+    return <></>;
+  }
 
   return (
     <>
-      {loading && <p>Loading chapter data...</p>}
-
-      {error && (
-        <div style={{ color: "red" }}>
-          <p>Error loading chapter data: {error.message}</p>
-        </div>
-      )}
-
-      {version && book && chapter && (
-        <ReaderProvider
-          currentVersion={version}
-          currentBook={book}
-          currentChapter={chapter}
-          currentVerse={null}
-        >
-          <BibleReaderNavigator />
-          <ChapterRenderer />
-        </ReaderProvider>
-      )}
+      <ReaderProvider
+        currentVersion={version}
+        currentBook={book}
+        currentChapter={chapter}
+        currentVerse={null}
+      >
+        <BibleReaderNavigator />
+        <ChapterRenderer />
+      </ReaderProvider>
     </>
   );
 }

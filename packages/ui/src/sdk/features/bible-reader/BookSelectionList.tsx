@@ -36,7 +36,7 @@ function ChapterGrid({
   if (loading) {
     return (
       <div className={containerClass}>
-        <div>Loading...</div>
+        <></>
       </div>
     );
   }

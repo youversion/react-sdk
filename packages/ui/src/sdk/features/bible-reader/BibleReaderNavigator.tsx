@@ -25,7 +25,7 @@ export function BibleReaderNavigator() {
     }
   }
 
-  if (!chapters || !books) return <div>Loading...</div>;
+  if (!chapters || !books) return <></>;
 
   return (
     <div>
@@ -44,9 +44,9 @@ export function BibleReaderNavigator() {
           <BibleChapterVersionMenuBar
             className="min-w-[215px]"
             chapter={`${currentBook.title} ${currentChapter.title}`}
-            onChapterButtonClicked={() =>
-              !isChapterSelectionOpen && setIsChapterSelectionOpen(true)
-            }
+            onChapterButtonClicked={() => {
+              setIsChapterSelectionOpen(prev => !prev);
+            }}
           />
           <ChapterNavigationButton direction="right" />
         </div>

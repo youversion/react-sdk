@@ -73,7 +73,7 @@ export function BibleChapterSelectionModal({
       distance={screenEdgeGap ?? 100}
       backdrop={true}
       closeOnClickOutside={true}
-      className="w-screen sm:w-[500px] sm:rounded-lg"
+      className="w-full sm:w-[500px] rounded-lg"
     >
       <ModalHeader title="Books" onCloseClicked={onClose}>
         <SearchBar onChange={(v) => setBooksSearch(v)} debounceTime={50} />
@@ -86,7 +86,7 @@ export function BibleChapterSelectionModal({
           onSelect={onChapterSelected}
         />
       ) : (
-        <div>Loading...</div>
+        <></>
       )}
     </SlideInModal>
   );
