@@ -5,3 +5,4 @@ export * from "./BookSelectionList";
 export * from "./ChapterRenderer";
 export * from "./ChapterNavigationButton";
 export * from "./VersionSelectionList";
+export * from "./BibleReader";

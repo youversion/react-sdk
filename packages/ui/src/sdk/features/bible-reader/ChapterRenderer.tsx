@@ -51,7 +51,7 @@ export function ChapterRenderer() {
   }
 
   return (
-    <div className="max-w-[512px] mx-auto px-6">
+    <div className="max-w-[512px] mx-auto px-6 mb-18">
       <div className="text-center">
         <div className="text-center text-2xl leading-[125%] mt-12 text-[#636161] font-[Untitled_Serif]">
           {currentBook.title}
