@@ -12,18 +12,26 @@ export default function Home() {
   return <HomeContent />;
 }
 
+const DEFAULT_VERSION = 206;
+const DEFAULT_BOOK = "EZR";
+const DEFAULT_CHAPTER = 2;
+
 function HomeContent() {
   const {
     version,
     loading: versionLoading,
     error: versionError,
-  } = useVersion(206);
-  const { book, loading: bookLoading, error: bookError } = useBook(206, "GEN");
+  } = useVersion(DEFAULT_VERSION);
+  const {
+    book,
+    loading: bookLoading,
+    error: bookError,
+  } = useBook(DEFAULT_VERSION, DEFAULT_BOOK);
   const {
     chapter,
     loading: chapterLoading,
     error: chapterError,
-  } = useChapter(206, "GEN", 2);
+  } = useChapter(DEFAULT_VERSION, DEFAULT_BOOK, DEFAULT_CHAPTER);
 
   const loading = versionLoading || bookLoading || chapterLoading;
   const error = versionError || bookError || chapterError;

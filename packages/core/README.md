@@ -1,4 +1,4 @@
-# @react-sdk/core
+# @youversion/bible-core
 
 Core logic and API client for the React SDK Bible project. This package provides TypeScript interfaces, API client utilities, and the main `BibleClient` class for interacting with Bible data.
 
@@ -11,15 +11,15 @@ Core logic and API client for the React SDK Bible project. This package provides
 ## Installation
 
 ```bash
-yarn add @react-sdk/core
+yarn add @youversion/bible-core
 # or
-npm install @react-sdk/core
+npm install @youversion/bible-core
 ```
 
 ## Usage Example
 
 ```ts
-import { ApiClient, BibleClient } from "@react-sdk/core";
+import { ApiClient, BibleClient } from "@youversion/bible-core";
 
 async function main() {
   const apiClient = new ApiClient({

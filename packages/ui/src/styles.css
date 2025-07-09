@@ -2,8 +2,8 @@
 
 @layer utilities {
   /* Chrome, Safari and Opera */
-  .scrollbar-hidden::-webkit-scrollbar {
     display: none;
+  .scrollbar-hidden::-webkit-scrollbar {
   }
 
   .scrollbar-hidden {
@@ -11,195 +11,1641 @@
     -ms-overflow-style: none; /* IE and Edge */
   }
 }
+/* chapter.css */
 
-/* Bible Reader Styles */
-.bible-reader {
-  font-family: ArialMT, 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
-  font-size: 18px;
-  color: #121212;
-  line-height: 1.7em;
-  -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: transparent;
-  text-align: left;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.bible-reader h1, .bible-reader h2 {
-  color: #121212;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.bible-reader h1 {
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.bible-reader h2 {
-  font-size: 1.25rem;
-}
-
-.verse-container {
-  display: inline;
-}
-
-.verse-container .p {
-  display: inline;
+* {
   margin: 0;
-  text-indent: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
 }
 
-.verse-container .version,
-.verse-container .book,
-.verse-container .chapter {
-  display: inline;
-}
-
-.line-break {
-  display: block;
-  height: 1em;
-  margin: 0.5em 0;
-}
-
-
-.verse {
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 6px;
-  padding: 1px 3px;
-  margin: 0;
-  display: inline;
-}
-
-.verse:hover {
-  background-color: #f0f4ff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.verse .label {
-  font-size: 14px;
-  color: #777a7b;
-  margin-right: 5px;
-  vertical-align: super;
-  font-size: 0.75em;
-  line-height: 1;
-}
-
-.verse .content {
-  display: inline;
-}
-
-.verse-selected {
-  border-bottom: dotted 1px #777a7b;
-}
-
-/* Note styles (simplified) */
-.note {
-  position: relative;
-  display: inline;
-}
-
-.note .label {
+.id,
+.ide,
+.sts,
+.rem,
+.toc1,
+.toc2,
+.toc3,
+.imte,
+.ie,
+.mte,
+.cl {
   display: none;
 }
 
-.note::before {
-  content: '📝';
-  font-size: 0.8em;
-  opacity: 0.6;
-  margin: 0 2px;
+/* .version {
+  margin-top: 32px;
+  padding: 24px;
+} */
+
+.chapter>.label {
+  display: none;
 }
 
-.note:hover::before {
-  opacity: 1;
+.verse>.label,
+.fv {
+  display: inline;
+  padding-right: 0.3em;
+  font-size: 0.5em;
+  color: #2B3031;
+  line-height: 1em;
+  vertical-align: baseline;
+  position: relative;
+  top: -0.6em;
 }
 
-/* Paragraph styles */
-.p {
-  margin-bottom: 0.5rem;
+.vp {
+  display: inline;
+  font-size: 0.5em;
+  color: #777;
+  line-height: 1em;
+  vertical-align: baseline;
+  position: relative;
+  top: -0.6em;
+}
+
+.imt,
+.imt1,
+.mt,
+.mt1,
+.ms,
+.ms1 {
+  font-size: 1.3em;
+  font-weight: bold;
+  line-height: 1.8em;
+  margin: 1em 0 0;
+}
+
+.iot {
+  font-size: 1.3em;
+  font-weight: 700;
+  line-height: 1.8em;
+  margin: 0.5em 0;
+}
+
+.io,
+.io1 {
+  list-style-type: disc;
+  margin-left: 1em;
+  display: list-item;
+}
+
+.io2,
+.io3 {
+  list-style-type: disc;
+  margin-left: 2em;
+  display: list-item;
+}
+
+.ipi {
+  text-indent: 1.5em;
+}
+
+.imt2,
+.imt3,
+.imt4,
+.mt2,
+.mt3,
+.mt4 {
+  /* 	font-size: 1em; */
+  line-height: 1.8em;
+  margin: 0.5em 0;
+  font-weight: bold;
+}
+
+.is,
+.s,
+.s1,
+.ms1,
+.is1,
+.is2 {
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 1.8em;
+  margin: 0 0 0.5em;
+}
+
+.heading {
+  /* 	font-size: 1em; */
+  font-weight: bold;
+  line-height: 1.8em;
+  margin: 0 0 0.5em 0;
+}
+
+/* for notes within headings */
+.s1 .note .heading,
+.s .note .heading {
+  font-size: .67em;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.s1 .note_close,
+.s .note_close {
+  font-size: .67em;
+}
+
+.s .note,
+.is .note,
+.s1 .note,
+.ms1 .note,
+.is1 .note,
+.is2 .note,
+.mr .note {
+  font-size: .9em;
+}
+
+/* other styles within a footnote */
+.note .fr {
+  padding-right: 5px;
+}
+
+.note .fq,
+.note .fqa {
+  font-style: italic;
+}
+
+.note .fv {
+  vertical-align: super;
+  font-size: .75em;
+}
+
+.note .fk {
+  font-style: italic;
+  font-weight: bold;
+}
+
+
+.p,
+.ip {
+  margin-bottom: 0;
   text-indent: 1em;
 }
 
-/* Heading styles */
-.s, .s1, .ms, .ms1 {
-  font-size: 1.1em;
-  font-weight: bold;
-  line-height: 1.5em;
-  margin: 1rem 0 0.5rem 0;
-  text-align: center;
+.pi+.p,
+.pi1+.p,
+.s+.pi,
+.s+.pi1,
+.s1+.pi,
+.s1+.pi1,
+.ms+.p,
+.ms1+.p,
+.ms2+.p,
+.q+.m,
+.q1+.m,
+.q2+.m,
+.q3+.m {
+  margin-top: 0.5em;
+  text-indent: 0;
 }
 
-.s2, .s3, .s4, .ms2, .ms3, .ms4 {
-  font-weight: bold;
-  line-height: 1.5em;
-  margin: 1rem 0 0.5rem 0;
-  text-align: center;
+.label+.p {
+  text-indent: 0;
 }
 
-/* Quote styles */
-.q, .q1 {
+.chapter div:first-child {
+  margin-top: 0;
+}
+
+.d+.d {
+  margin-top: -1.25em;
+}
+
+/* Giving top margins to body text that follows headers and to headers that follow body text */
+.p+.s,
+.p+.s1,
+.p+.s2,
+.p+.ms,
+.p+.ms1,
+.p+.ms2,
+.p+.q,
+.p+.q1,
+.p+.li,
+.p+.li1,
+.li+.li2,
+.li1+.li2,
+.li2+.li,
+.li2+.li1,
+.m+.s,
+.m+.s1,
+.m+.s2,
+.q+p,
+.q1+.p,
+.q2+.p,
+.q+.s,
+.q+.s1,
+.q+.s2,
+.q+.ms,
+.q+.ms1,
+.q+.ms2,
+.q1+.s,
+.q1+.s1,
+.q1+.s2,
+.q1+.ms,
+.q1+.ms1,
+.q1+.ms2,
+.q2+.s,
+.q2+.s1,
+.q2+.s2,
+.q2+.ms,
+.q2+.m1,
+.q2+.m2,
+.q3+.s,
+.q3+.s1,
+.q3+.s2,
+.q3+.ms,
+.q3+.m1,
+.q3+.m2,
+.imt+.is,
+.imt+.is1,
+.imt1+.is,
+.imt1+.is1,
+.ip+.is,
+.ip+.is1,
+.io+.is,
+.io+.is1,
+.io1+.is,
+.io1+.is1,
+.io2+.is,
+.io2+.is1,
+.io3+.is,
+.io3+.is1,
+.ip+.io,
+.ip+.io1,
+.ip+.io2,
+.ip+.io3,
+.table+.p,
+.p+.table,
+.pi1+.s,
+.pi+.s {
+  margin-top: 1em;
+}
+
+.p+.pm,
+.p+.pmo,
+.p+.pmc,
+.p+.q1,
+.p+.q2,
+.p+.q3,
+.p+.q4,
+.p+.qr,
+.p+.qm1,
+.p+.qm2,
+.p+.pmr,
+.m+.pm,
+.m+.pmo,
+.m+.pmc,
+.m+.q1,
+.m+.q2,
+.m+.q3,
+.m+.q4,
+.m+.qr,
+.m+.qm1,
+.m+.qm2,
+.m+.pmr,
+.mi+.pm,
+.mi+.pmo,
+.mi+.pmc,
+.mi+.q1,
+.mi+.q2,
+.mi+.q3,
+.mi+.q4,
+.mi+.qr,
+.mi+.qm1,
+.mi+.qm2,
+.mi+.pmr,
+.pi1+.pm,
+.pi1+.pmo,
+.pi1+.pmc,
+.pi1+.q1,
+.pi1+.q2,
+.pi1+.q3,
+.pi1+.q4,
+.pi1+.qr,
+.pi1+.qm1,
+.pi1+.qm2,
+.pi1+.pmr,
+.pi2+.pm,
+.pi2+.pmo,
+.pi2+.pmc,
+.pi2+.q1,
+.pi2+.q2,
+.pi2+.q3,
+.pi2+.q4,
+.pi2+.qr,
+.pi2+.qm1,
+.pi2+.qm2,
+.pi2+.pmr,
+.pi3+.pm,
+.pi3+.pmo,
+.pi3+.pmc,
+.pi3+.q1,
+.pi3+.q2,
+.pi3+.q3,
+.pi3+.q4,
+.pi3+.qr,
+.pi3+.qm1,
+.pi3+.qm2,
+.pi3+.pmr,
+.li+.pm,
+.li+.pmo,
+.li+.pmc,
+.li+.q1,
+.li+.q2,
+.li+.q3,
+.li+.q4,
+.li+.qr,
+.li+.qm1,
+.li+.qm2,
+.li+.pmr,
+.li1+.pm,
+.li1+.pmo,
+.li1+.pmc,
+.li1+.q1,
+.li1+.q2,
+.li1+.q3,
+.li1+.q4,
+.li1+.qr,
+.li1+.qm1,
+.li1+.qm2,
+.li1+.pmr,
+.li2+.pm,
+.li2+.pmo,
+.li2+.pmc,
+.li2+.q1,
+.li2+.q2,
+.li2+.q3,
+.li2+.q4,
+.li2+.qr,
+.li2+.qm1,
+.li2+.qm2,
+.li2+.pmr,
+.li3+.pm,
+.li3+.pmo,
+.li3+.pmc,
+.li3+.q1,
+.li3+.q2,
+.li3+.q3,
+.li3+.q4,
+.li3+.qr,
+.li3+.qm1,
+.li3+.qm2,
+.li3+.pmr,
+.li4+.pm,
+.li4+.pmo,
+.li4+.pmc,
+.li4+.q1,
+.li4+.q2,
+.li4+.q3,
+.li4+.q4,
+.li4+.qr,
+.li4+.qm1,
+.li4+.qm2,
+.li4+.pmr,
+.lpi+.pm,
+.lpi+.pmo,
+.lpi+.pmc,
+.lpi+.q1,
+.lpi+.q2,
+.lpi+.q3,
+.lpi+.q4,
+.lpi+.qr,
+.lpi+.qm1,
+.lpi+.qm2,
+.lpi+.pmr,
+.tr+.pm,
+.tr+.pmo,
+.tr+.pmc,
+.tr+.q1,
+.tr+.q2,
+.tr+.q3,
+.tr+.q4,
+.tr+.qr,
+.tr+.qm1,
+.tr+.qm2,
+.tr+.pmr,
+.pm+.p,
+.pm+.m,
+.pm+.mi,
+.pm+.pi1,
+.pm+.pi2,
+.pm+.pi3,
+.pm+.li,
+.pm+.li1,
+.pm+.li2,
+.pm+.li3,
+.pm+.li4,
+.pm+.lpi,
+.pm+.tr,
+.pm+.q1,
+.pm+.q2,
+.pm+.q3,
+.pm+.q4,
+.pm+.qr,
+.pm+.qm1,
+.pm+.qm2,
+.pm+.pmr,
+.pmo+.p,
+.pmo+.m,
+.pmo+.mi,
+.pmo+.pi1,
+.pmo+.pi2,
+.pmo+.pi3,
+.pmo+.li,
+.pmo+.li1,
+.pmo+.li2,
+.pmo+.li3,
+.pmo+.li4,
+.pmo+.lpi,
+.pmo+.tr,
+.pmo+.q1,
+.pmo+.q2,
+.pmo+.q3,
+.pmo+.q4,
+.pmo+.qr,
+.pmo+.qm1,
+.pmo+.qm2,
+.pmo+.pmr,
+.pmc+.p,
+.pmc+.m,
+.pmc+.mi,
+.pmc+.pi1,
+.pmc+.pi2,
+.pmc+.pi3,
+.pmc+.li,
+.pmc+.li1,
+.pmc+.li2,
+.pmc+.li3,
+.pmc+.li4,
+.pmc+.lpi,
+.pmc+.tr,
+.pmc+.q1,
+.pmc+.q2,
+.pmc+.q3,
+.pmc+.q4,
+.pmc+.qr,
+.pmc+.qm1,
+.pmc+.qm2,
+.pmc+.pmr,
+.q1+.p,
+.q1+.m,
+.q1+.mi,
+.q1+.pi1,
+.q1+.pi2,
+.q1+.pi3,
+.q1+.li,
+.q1+.li1,
+.q1+.li2,
+.q1+.li3,
+.q1+.li4,
+.q1+.lpi,
+.q1+.tr,
+.q1+.pm,
+.q1+.pmo,
+.q1+.pmc,
+.q1+.qm1,
+.q1+.qm2,
+.q1+.pmr,
+.q2+.p,
+.q2+.m,
+.q2+.mi,
+.q2+.pi1,
+.q2+.pi2,
+.q2+.pi3,
+.q2+.li,
+.q2+.li1,
+.q2+.li2,
+.q2+.li3,
+.q2+.li4,
+.q2+.lpi,
+.q2+.tr,
+.q2+.pm,
+.q2+.pmo,
+.q2+.pmc,
+.q2+.qm1,
+.q2+.qm2,
+.q2+.pmr,
+.q3+.p,
+.q3+.m,
+.q3+.mi,
+.q3+.pi1,
+.q3+.pi2,
+.q3+.pi3,
+.q3+.li,
+.q3+.li1,
+.q3+.li2,
+.q3+.li3,
+.q3+.li4,
+.q3+.lpi,
+.q3+.tr,
+.q3+.pm,
+.q3+.pmo,
+.q3+.pmc,
+.q3+.qm1,
+.q3+.qm2,
+.q3+.pmr,
+.q4+.p,
+.q4+.m,
+.q4+.mi,
+.q4+.pi1,
+.q4+.pi2,
+.q4+.pi3,
+.q4+.li,
+.q4+.li1,
+.q4+.li2,
+.q4+.li3,
+.q4+.li4,
+.q4+.lpi,
+.q4+.tr,
+.q4+.pm,
+.q4+.pmo,
+.q4+.pmc,
+.q4+.qm1,
+.q4+.qm2,
+.q4+.pmr,
+.qr+.p,
+.qr+.m,
+.qr+.mi,
+.qr+.pi1,
+.qr+.pi2,
+.qr+.pi3,
+.qr+.li,
+.qr+.li1,
+.qr+.li2,
+.qr+.li3,
+.qr+.li4,
+.qr+.lpi,
+.qr+.tr,
+.qr+.pm,
+.qr+.pmo,
+.qr+.pmc,
+.qr+.qm1,
+.qr+.qm2,
+.qr+.pmr,
+.qm1+.p,
+.qm1+.m,
+.qm1+.mi,
+.qm1+.pi1,
+.qm1+.pi2,
+.qm1+.pi3,
+.qm1+.li,
+.qm1+.li1,
+.qm1+.li2,
+.qm1+.li3,
+.qm1+.li4,
+.qm1+.lpi,
+.qm1+.tr,
+.qm1+.q1,
+.qm1+.q2,
+.qm1+.q3,
+.qm1+.q4,
+.qm1+.qr,
+.qm1+.pm,
+.qm1+.pmo,
+.qm1+.pmc,
+.qm2+.p,
+.qm2+.m,
+.qm2+.mi,
+.qm2+.pi1,
+.qm2+.pi2,
+.qm2+.pi3,
+.qm2+.li,
+.qm2+.li1,
+.qm2+.li2,
+.qm2+.li3,
+.qm2+.li4,
+.qm2+.lpi,
+.qm2+.tr,
+.qm2+.q1,
+.qm2+.q2,
+.qm2+.q3,
+.qm2+.q4,
+.qm2+.qr,
+.qm2+.pm,
+.qm2+.pmo,
+.qm2+.pmc,
+.pmr+.p,
+.pmr+.m,
+.pmr+.mi,
+.pmr+.pi1,
+.pmr+.pi2,
+.pmr+.pi3,
+.pmr+.li,
+.pmr+.li1,
+.pmr+.li2,
+.pmr+.li3,
+.pmr+.li4,
+.pmr+.lpi,
+.pmr+.tr,
+.pmr+.q1,
+.pmr+.q2,
+.pmr+.q3,
+.pmr+.q4,
+.pmr+.qr,
+.pmr+.pm,
+.pmr+.pmo,
+.pmr+.pmc,
+.ms1+.s1,
+.ms1+.s,
+.ms1+.ms1,
+.ms2+.s1,
+.ms2+.s {
+  margin-top: 0.5em;
+}
+
+.b {
+  height: 1em;
+}
+
+.s,
+.s1 {
+  line-height: 1em;
+}
+
+.s2,
+.s3,
+.s4,
+.ms2,
+.ms3,
+.ms4 {
+  /* 	font-size: 1em;  removed to fix a bug ticket where user couldn't switch to smallest font size */
+  font-weight: bold;
+  line-height: 1.8em;
+  margin: 1em 0 0.5em;
+}
+
+.ip,
+.im,
+.iex,
+.p,
+.m,
+.nb,
+.cls {
+  /* 	font-size: 1em;  removed to fix a bug ticket where user couldn't switch to smallest font size */
+  line-height: 1.8em;
+  margin: 0;
+}
+
+
+.ipi,
+.imi,
+.pm,
+.pmc,
+.pi,
+.pi1,
+.pi2,
+.pi3,
+.mi {
+  line-height: 1.8em;
+  margin: 0 1em;
+}
+
+.imi {
+  margin-left: 1.5em;
+  text-indent: 0;
+}
+
+.pi,
+.pi1 {
+  text-indent: 1em;
+}
+
+.pi2 {
+  text-indent: 2em;
+}
+
+.pi3 {
+  text-indent: 3em;
+}
+
+.ipr,
+.pr,
+.qr {
+  text-align: right;
+}
+
+.iq,
+.iq1,
+.q,
+.q1,
+.qm1,
+.li1,
+.iq2,
+.q2,
+.qm2,
+.li2 {
+  padding-left: 2em;
+  text-indent: -2em;
+  line-height: 1.8em;
+}
+
+.iq3,
+.q3,
+.qm3,
+.q4 {
   padding-left: 2em;
   text-indent: -1em;
-  line-height: 1.7em;
+  line-height: 1.8em;
+  font-style: normal;
 }
 
-.q2, .q3 {
-  padding-left: 3em;
-  text-indent: -1em;
-  line-height: 1.7em;
+.iqt {
+  margin-left: 1em;
 }
 
-/* Emphasis styles */
-.add, .it, .qt, .tl {
+.lb,
+.b {
+  line-height: 1.8em;
+  height: 1.5em;
+}
+
+.ili,
+.ili1,
+.io1,
+.li1,
+.li,
+.pi {
+  margin-left: 2em;
+  padding-left: 0;
+  line-height: 1.8em;
+}
+
+.ili2,
+.io2,
+.li2,
+.ili3,
+.io3,
+.li3 {
+  margin-left: 2em;
+  padding-left: 0;
+  line-height: 1.8em;
+}
+
+.iot,
+.d,
+.qa {
+  font-size: 1.0em;
+  line-height: 1.8em;
+}
+
+.ior,
+.iqt,
+.bk,
+.sls,
+.tl,
+.r,
+.sp {
   font-style: italic;
 }
 
-.bd, .em {
+.mr {
+  /* 	font-size: 1em; */
+  font-style: italic;
   font-weight: bold;
 }
 
-.bdit {
-  font-weight: bold;
+.sr,
+.r,
+.sr .heading,
+.r .heading,
+.rq {
   font-style: italic;
+  /*   font-size: 1em; */
 }
 
-/* Words of Christ */
-.wj .content {
-  color: #d73527;
+.pmr {
+  text-align: right;
+  margin-right: 0.3em;
 }
 
-/* Descriptive text */
-.d {
-  font-style: italic;
-  margin-bottom: 1em;
+.pc,
+.qc {
   text-align: center;
-  color: #777a7b;
 }
 
-/* Small caps for divine names */
-.nd, .sc {
+.ph,
+.ph1 {
+  text-indent: -2em;
+  padding-left: 2em;
+}
+
+.ph2 {
+  text-indent: -2em;
+  padding-left: 4em;
+}
+
+/* qs is used for "Selah" in Psalms */
+.qs,
+.lit {
+  font-style: italic;
+  display: block;
+  text-align: right;
+}
+
+.rtl .qs,
+.rtl .lit {
+  text-align: left;
+}
+
+.table {
+  font-size: inherit;
+  color: inherit;
+  border-bottom: 1em;
+}
+
+.table th,
+.th1 {
+  background: #444;
+  color: #fff;
+  font-weight: bold;
+  padding: 0;
+  line-height: 1.8em;
+}
+
+.thr,
+.thr1 {
+  text-align: right;
+  font-weight: bold;
+  padding: 0;
+  line-height: 1.8em;
+}
+
+.table td,
+.tc {
+  padding: 0;
+  line-height: 1.8em;
+}
+
+td+td {
+  padding-left: 1em !important;
+}
+
+.tcr,
+.tcr1 {
+  padding: 0;
+  text-align: right;
+}
+
+.add,
+.dc,
+.k,
+.qt,
+.sig {
+  padding: 0;
+  margin: 0;
+  /* 	font-size: 1em;  removed to fix a bug ticket where user couldn't switch to smallest font size */
+  line-height: 1.8em;
+  text-indent: 0;
+  font-style: normal;
+  text-transform: none;
+  text-decoration: none;
+}
+
+.dc,
+.k,
+.sig {
+  font-weight: normal;
+}
+
+.nd {
   font-variant: small-caps;
 }
 
-/* Words of Christ */
-.wj .content {
-  color: #d73527;
+.ord {
+  font-size: 0.75em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  top: -0.5em;
 }
 
-/* Text formatting */
-.add, .it, .qt, .tl {
+.pn {
+  text-decoration: underline;
+}
+
+.em,
+.bd {
+  font-weight: bold;
+}
+
+.it,
+.cd,
+.add,
+.qt,
+.fq,
+.tl {
   font-style: italic;
 }
 
-.bd, .em {
-  font-weight: bold;
+.d {
+  font-style: italic;
+  margin-bottom: 1em;
 }
 
 .bdit {
   font-weight: bold;
   font-style: italic;
+}
+
+.no {
+  font-weight: normal;
+  font-style: normal;
+}
+
+.sc {
+  font-variant: small-caps;
+}
+
+a {
+  color: #888;
+}
+
+
+.imt {
+  display: none;
+}
+
+
+/* Poetry on Right-to-left versions   */
+
+
+.rtl .iq,
+.rtl .iq1,
+.rtl .q,
+.rtl .q1,
+.rtl .qm1,
+.rtl .li1,
+.rtl .iq2,
+.rtl .q2,
+.rtl .qm2,
+.rtl .li2 {
+  padding-left: 0 !important;
+  padding-right: 2em !important;
+  text-indent: -1em;
+
+}
+
+.rtl .iq3,
+.rtl .q3,
+.rtl .qm3,
+.rtl .q4 {
+  padding-left: 0 !important;
+  padding-right: 2em !important;
+  text-indent: -1em;
+}
+
+/* BOOKS VERSION */
+
+/* Hide verse labels */
+.vid31 .verse .label {
+  display: none;
+  /* Hide verse labels */
+}
+
+/* Hide section titles */
+.vid31 .s1 {
+  display: none;
+}
+
+/* add spacing where a section heading would be and donâ€™t indent the para  in BOOKS */
+.vid31 .s1+.p {
+  text-indent: 0;
+  margin-top: 1.5em;
+}
+
+/* add a little spacing between q2 & q1  in BOOKS */
+.vid31 .q2+.q1 {
+  margin-top: 0.25em;
+}
+
+/* hide all notes in BOOKS */
+.vid31 .note {
+  display: none;
+}
+
+/* force words of christ to NOT be in red in BOOKS */
+.vid31 .dark .wj,
+.vid31 .light .wj {
+  color: inherit !important;
+}
+
+
+/* for versions that have no space in front of the verse label*/
+.vid8 .content:after,
+.vid58 .content:after,
+.vid111 .content:after {
+  content: " ";
+}
+
+/* ...but prevent a space after LORD */
+.vid8 .nd .content:after,
+.vid58 .nd .content:after,
+.vid111 .nd .content:after {
+  content: "";
+}
+
+/* Underline proper nouns in Chinese */
+.iso6393zho .pn {
+  text-decoration: underline
+}
+
+/* BB version */
+
+.vid1276 .add {
+  color: #888;
+}
+
+/* NIV */
+
+.vid111 .bkPSA .it {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.vid111 .bkPSA .note .it {
+  display: inline;
+  margin-bottom: 0;
+}
+
+.vid111 .ms {
+  text-transform: uppercase;
+}
+
+.vid111 .sp {
+  margin-top: 0.5em;
+}
+
+.vid111 .ms,
+.vid111 .sp,
+.vid111 .s2 {
+  /* 	font-size: 0.9em; removed to fix a bug ticket where user couldn't switch to smallest font size */
+}
+
+.vid111 .d {
+  /* 	font-size: .8em removed to fix a bug ticket where user couldn't switch to smallest font size */
+}
+
+.vid111 .li,
+.vid111 .li1,
+.vid111 .li2 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.vid111 .pi3 {
+  margin-left: 2em;
+}
+
+.vid111 .bkPSA .ch136 .qr {
+  font-style: italic;
+}
+
+.vid111 .s1 .heading {
+  font-weight: normal;
+}
+
+.vid111 .s1 {
+  /* 	font-size: 1em;  .8em removed to fix a bug ticket where user couldn't switch to smallest font size */
+  font-style: italic;
+}
+
+/* NIVr, NIV, NIVUK: small caps for inscriptions */
+.vid110 .pc,
+.vid110 .qc,
+.vid111 .pc,
+.vid111 .qc,
+.vid113 .pc,
+.vid113 .qc {
+  font-variant: small-caps;
+}
+
+/* Å½J VERSION*/
+
+/* Add Bullets */
+.vid1383 .li {
+  display: list-item;
+  margin-left: 1em;
+}
+
+
+/* Hide cross references in ESV, HCSB & WLC */
+.vid59 .note.x,
+.vid72 .note.x,
+.vid2376 .note.x {
+  display: none;
+}
+
+/* Give space between verses for BOOKS version */
+.vid31 .verse+.verse {
+  margin-left: 3px;
+}
+
+/* Certain headlines should be centered in NABRE */
+.vid463 div.s2 {
+  text-align: center;
+}
+
+/* Naro NT */
+
+.vid1136 .add {
+  color: #ccc;
+}
+
+/* Amharic version*/
+
+.vid1260 .add {
+  font-size: .6em;
+}
+
+
+/* THE VOICE Version */
+
+.vid1278 .p {
+  margin-bottom: 1em;
+}
+
+.vid1278 .p+.b {
+  height: 0;
+}
+
+.vid1278 .q1 {
+  text-indent: 0;
+  padding-left: 2em;
+}
+
+.vid1278 .q1 {
+  text-indent: 0;
+  padding-left: 4em;
+}
+
+/* Add bullet points to list items in Å½J version */
+.vid1383 .li {
+  display: list-item;
+  margin-left: 1em;
+}
+
+/* Bulgarian Protestant Bible  */
+.vid1443 .k {
+  text-align: left;
+  font-weight: bold;
+}
+
+/* Bulgarian Orthodox Bible 2006 */
+.vid1558 .sls {
+  font-style: normal;
+}
+
+/* Passion Translation */
+.vid1849 .mt1,
+.vid1849 .mt2,
+.vid1849 .imt,
+.vid1849 .is {
+  text-align: center;
+}
+
+/* Crossway Greek NT */
+.vid2270 .p {
+  text-indent: -1.5em;
+  margin-left: 1.5em;
+}
+
+/* Revised Dumitru Cornilescu Edition 2019 */
+.vid2311 .add {
+  font-style: normal;
+}
+
+/* Tagalog Form-Based Bible (1905/1982) */
+.vid2196 .q1 {
+  text-indent: -1.5em;
+  margin-left: 1.5em;
+}
+
+/* Swedish Core Bible */
+.vid1111 .add {
+  font-size: .85em;
+}
+
+/*
+ Slovenian Standard Version
+ Slovenian Ecumenical Edition
+*/
+.vid2051 .ms .heading,
+.vid2051 .ms1 .heading,
+.vid2319 .ms .heading,
+.vid2319 .ms1 .heading {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.vid2051 .ms2 .heading,
+.vid2319 .ms2 .heading {
+  font-size: 1.3em;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.vid2051 .s .heading,
+.vid2051 .s1 .heading,
+.vid2319 .s .heading,
+.vid2319 .s1 .heading {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.vid2051 .s2 .heading,
+.vid2319 .s2 .heading {
+  font-size: 1em;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.vid2051 .qa,
+.vid2319 .qa {
+  display: none;
+}
+
+/*
+	The Love Fellowship - centered headings
+*/
+.vid2766 .s,
+.vid2767 .s,
+.vid2768 .s,
+.vid2769 .s,
+.vid2778 .s,
+.vid2766 .r,
+.vid2767 .r,
+.vid2768 .r,
+.vid2769 .r,
+.vid2778 .r {
+  text-align: center;
+}
+
+/*
+	TMA - centered headings
+*/
+.vid1714 .s,
+.vid1714 .ms,
+.vid1714 .ms1,
+.vid1714 .ms2,
+.vid1714 .ms3,
+.vid1714 .mt,
+.vid1714 .mt1,
+.vid1714 .mt2,
+.vid1714 .mt3 {
+  text-align: center;
+}
+
+/* app-version.css */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-wrap: normal;
+}
+
+.verse {
+  -webkit-text-size-adjust: none;
+}
+
+.verse.highlighted {
+  background-position-y: -2px;
+  border-radius: 4px;
+  -webkit-box-decoration-break: clone;
+}
+
+.verse.selecting.highlighted {
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+.verse.selecting.highlighted>.label {
+  border-radius: 2px;
+  padding: 0;
+  margin-right: 0.2em;
+}
+
+.verse.saved>.label {
+  padding: .4em .5em .8em .5em;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 0 4px 0 0;
+}
+
+.note {
+  text-indent: 0;
+}
+
+.note>.label {
+  vertical-align: baseline;
+  cursor: pointer;
+  display: inline-block;
+  text-indent: -9999px;
+  padding: 0 0.15em;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+  color: rgba(0, 0, 0, 0);
+}
+
+.note>.body {
+  display: none;
+  color: #414141;
+  padding: 10px;
+  border-radius: 2px;
+  margin-bottom: 1em;
+  text-indent: 0;
+  background: transparent;
+  border: 1px solid #ccc;
+}
+
+.note_close {
+  /* "Close" */
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  padding: 5px 0;
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 14px;
+  border-radius: 5px;
+  color: #999 !important;
+  background: transparent;
+
+}
+
+#containerButton {
+  /* "Read full chapter" */
+  display: none;
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  text-align: center;
+  padding: 0 15px;
+  border-radius: 48px !important;
+  border-color: transparent !important;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: -0.2px;
+  height: 48px;
+  line-height: 44px;
+  color: #000 !important;
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.publisher {
+  margin-top: 0;
+  padding: 0 20px !important;
+  border-radius: 2px;
+  text-align: center;
+}
+
+.publisher .copyright {
+  margin-bottom: 0;
+  color: #888;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.publisher .ad {
+  color: #888;
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.publisher .button {
+  /* "Learn More" */
+  margin-top: 0;
+  display: block;
+  padding: 0;
+  height: 24px !important;
+  line-height: 24px !important;
+  text-decoration: underline;
+  font-size: 12px !important;
+  color: #6AB750;
+  background-image: none !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  background-color: transparent;
+
+}
+
+/* WJ for Motel which has neither light nor dark */
+.light .wj {
+  color: #FF3D4D;
+}
+
+/* iphone.css */
+
+body .iphone {
+  background-color: transparent;
+  line-height: 1.8em;
+  padding: 0;
+}
+
+.iphone .chapterBlock {
+  padding: 10px;
+}
+
+.iphone #containerButton {
+  margin: 12px auto;
+}
+
+/* ipad.css */
+
+body .ipad {
+  line-height: 2.0em;
+  padding: 50px 0 20px 0;
+}
+
+.ipad .chapterBlock,
+.ipad .copyrightBlock {
+  width: auto;
+  margin-left: 80px;
+}
+
+.ipad .verse.selecting.highlighted .label {
+  margin: 0 0.2em 0 0;
+}
+
+.ipad #containerButton {
+  margin-bottom: 0.8em;
+  width: 150px !important;
+  /*was 278*/
+}
+
+.ipad .copyrightText {
+  font-size: 0.75em;
+  color: #cbcbcb;
+  line-height: 1.0em;
+}
+
+.ipad .k {
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ipad .publisher {
+  max-width: 400px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* dark-ipad.css */
+
+body .ipad .dark {
+  color: #bbbcbc;
+}
+
+.ipad .dark .selecting {
+  color: #bbbcbc;
+}
+
+.ipad .dark .underline {
+  border-bottom: 1px solid #bbbcbc;
+}
+
+.ipad .dark .verse.selecting.highlighted {
+  color: #bbbcbc !important;
+}
+
+/* dark.css */
+.dark .wj {
+  color: #F04C59;
+}
+
+.dark .selected {
+  border-bottom: 3px dotted white;
+}
+
+.dark #containerButton {
+  /* "Read full chapter */
+  color: #fff !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .publisher {
+  background: #000000;
+}
+
+.dark .publisher .ad {
+  color: #999;
+}
+
+.dark .publisher .button {
+  /* "Learn More */
+  color: #fff;
+}
+
+.dark .note>.body {
+  color: #999;
+  background: transparent;
+  border: 1px solid #353535;
+}
+
+.dark .note_close {
+  /* "Close */
+  color: #eee;
+}
+
+.dark .verse>.label {
+  color: #FFFFFF;
+}
+
+/* dark-iphone.css */
+
+body .iphone .dark {
+  color: #fff;
+}
+
+.iphone .dark .underline {
+  border-bottom: 1px solid #fff;
+}
+
+.iphone .dark .verse.selecting.highlighted {
+  color: #fff !important;
+}
+
+/* light.css */
+
+body .light {
+  color: #414141;
+}
+
+.light .selected {
+  border-bottom: 3px dotted #888;
+}
+
+.light .underline {
+  border-bottom: 1px solid #414141;
+}
+
+.light .verse.selecting.highlighted .content {
+  color: #3f3f3e !important;
+}
+
+.light .verse.selecting.highlighted .wj .content {
+  color: #FF3D4D !important;
+}
+
+.light #containerButton {
+  color: black !important;
+}
+
+.light .note_close {
+  color: #414141;
+  background: transparent;
+}
+
+.light .wj {
+  color: #FF3D4D;
+}
+
+body .ipad .light {
+  background: none;
+}
+
+.light .note>.body {
+  background: transparent;
+}
+
+.sub,
+.sup {
+  /* Specified in % so that the sup/sup is the
+     right size relative to the surrounding text */
+  font-size: 75%;
+
+  /* Zero out the line-height so that it doesn't
+     interfere with the positioning that follows */
+  line-height: 0;
+
+  /* Where the magic happens: makes all browsers position
+     the sup/sup properly, relative to the surrounding text */
+  position: relative;
+
+  /* Note that if you're using Eric Meyer's reset.css, this
+     is already set and you can remove this rule */
+  vertical-align: baseline;
+}
+
+.sup {
+  /* Move the super-scripted text up */
+  top: -0.25em;
+}
+
+.sub {
+  /* Move the sub-scripted text down, but only
+     half as far down as the superscript moved up */
+  bottom: -0.1em;
 }

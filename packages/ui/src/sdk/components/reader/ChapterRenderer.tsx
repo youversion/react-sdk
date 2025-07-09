@@ -12,19 +12,6 @@ export function ChapterRenderer() {
     parseInt(currentChapter.title)
   );
 
-  const preprocessHTML = (html: string) => {
-    // Replace empty paragraph divs with line breaks
-    let processedHTML = html;
-
-    // Find all <div class="p"> elements that contain only whitespace
-    processedHTML = processedHTML.replace(
-      /<div class="p"><span class="verse[^"]*"[^>]*><span class="content">\s*<\/span><\/span><\/div>/g,
-      '<div class="line-break"></div>'
-    );
-
-    return processedHTML;
-  };
-
   if (loading) {
     return (
       <div className="flex items-center justify-center h-full">
@@ -52,21 +39,20 @@ export function ChapterRenderer() {
   }
 
   return (
-    <div className="bible-reader">
-      <h1>{currentBook.title}</h1>
-      <h2>{currentChapter.title}</h2>
+    <div
+      className="bible-reader w-8/12 mx-auto my-0"
+      style={{ width: "512px" }}
+    >
+      <div className="text-center">
+        <h1>{currentBook.title}</h1>
+        <h2>{currentChapter.title}</h2>
+      </div>
       {verses.data.map((verse) => (
-        <span
+        <div
           key={verse.usfm}
-          className="verse-container"
-          data-usfm={verse.usfm}
-          data-reference={verse.reference}
-        >
-          <span
-            className="verse-content"
-            dangerouslySetInnerHTML={{ __html: preprocessHTML(verse.content) }}
-          />
-        </span>
+          className="verse-content"
+          dangerouslySetInnerHTML={{ __html: verse.content }}
+        />
       ))}
     </div>
   );
