@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BookOption } from "./BibleChapterSelectionModal";
 import { useChapters } from "../../hooks";
 import { Chapter } from "@youversion/bible-core";
-import { ChevronDownIcon, ChevronUpIcon } from "../../shared/Icons";
+import { ChevronDownIcon, ChevronUpIcon } from "../../shared";
 
 interface ChapterGridProps {
   book: string;

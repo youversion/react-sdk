@@ -52,7 +52,12 @@
     font-family: "aktiv-grotesk", "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
   }
 }
-
+@theme {
+  --color-canvas-secondary: #F6F4F4;
+  --color-border-primary: #DDDBDB;
+  --color-border-secondary: #BFBDBD;
+  --color-utility-info: #3D79C2;
+}
 
 /* chapter.css */
 
