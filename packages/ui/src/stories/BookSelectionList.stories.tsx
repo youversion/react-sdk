@@ -41,7 +41,7 @@ const books = [
 export function BasicRender() {
   const [selectedBook, setSelectedBook] = useState<{
     bookId: BookOption["id"];
-    chapter: any;
+    chapter: import("@youversion/bible-core").Chapter;
   } | null>(null);
 
   return (
@@ -50,7 +50,7 @@ export function BasicRender() {
         <p>Basic Book & Chapter Selection List</p>
         {selectedBook ? (
           <p>
-            Selection: {selectedBook.bookId} - {selectedBook.chapter}
+            Selection: {selectedBook.bookId} - {selectedBook.chapter.title}
           </p>
         ) : (
           <p>No Selection</p>
