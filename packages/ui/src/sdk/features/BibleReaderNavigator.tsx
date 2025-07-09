@@ -32,7 +32,6 @@ export function BibleReaderNavigator() {
         onClose={() => setIsChapterSelectionOpen(false)}
         screenEdgeGap={90}
       />
-      <button onClick={() => setIsChapterSelectionOpen(!isChapterSelectionOpen)}>Select Chapter</button>
       <div className="fixed bottom-[30px] left-0 right-0 z-900">
         <div className="flex justify-center">
           <BibleChapterVersionMenuBar
