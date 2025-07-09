@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { CopyIcon, ShareIcon } from "../sdk/components/shared";
+import {CopyIcon, MagnifyingGlassIcon, ShareIcon} from "../sdk/components/shared";
 
 const meta = {
-  title: 'Icons',
+  title: 'Design Components/Icons',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -39,6 +39,15 @@ export const AllIcons: Story = {
           <ShareIcon size={24} />
           <ShareIcon size={32} />
           <ShareIcon size={48} />
+        </div>
+      </section>
+
+      <section className='flex flex-col gap-2'>
+        <h2 className='text-lg font-semibold'>Copy Icon</h2>
+        <div className='flex gap-4 items-center'>
+          <MagnifyingGlassIcon size={24} />
+          <MagnifyingGlassIcon size={32} />
+          <MagnifyingGlassIcon size={48} />
         </div>
       </section>
     </div>

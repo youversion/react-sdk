@@ -8,7 +8,6 @@ interface BottomModalProps {
   position?: 'top' | 'bottom';
   distance?: number; // Distance from edge in pixels
   className?: string;
-  showCloseButton?: boolean;
   closeOnClickOutside?: boolean;
   closeOnEscape?: boolean;
   animationDuration?: number; // In milliseconds
@@ -17,14 +16,13 @@ interface BottomModalProps {
   backdrop?: boolean;
 }
 
-export function BottomModal({
+export function SlideInModal({
                               isOpen,
                               onClose,
                               children,
                               position = 'bottom',
                               distance = 24,
                               className = '',
-                              showCloseButton = true,
                               closeOnClickOutside = false,
                               closeOnEscape = true,
                               animationDuration = 300,
@@ -93,7 +91,6 @@ export function BottomModal({
       position: 'fixed' as const,
       left: '50%',
       transform: 'translateX(-50%)',
-      width: width,
       maxHeight: maxHeight,
       zIndex: 1000,
     };
@@ -102,13 +99,13 @@ export function BottomModal({
       return {
         ...baseStyles,
         bottom: `${distance}px`,
-        transform: `translateX(-50%) translateY(${isAnimating ? '0' : '100%'})`,
+        transform: `translateX(-50%) translateY(${isAnimating ? '0' : '125%'})`,
       };
     } else {
       return {
         ...baseStyles,
         top: `${distance}px`,
-        transform: `translateX(-50%) translateY(${isAnimating ? '0' : '-100%'})`,
+        transform: `translateX(-50%) translateY(${isAnimating ? '0' : '-125%'})`,
       };
     }
   };
@@ -130,27 +127,15 @@ export function BottomModal({
       <div
         ref={modalRef}
         className={`
-          bg-white rounded-lg shadow-xl border border-gray-200
-          transition-transform duration-${animationDuration} ease-out
+          bg-white rounded-lg shadow-[0_0_3px_rgba(0,0,0,0.2)] border border-gray-200 overflow-hidden
+          transition-transform duration-${animationDuration} ease-out bg-white min-w-[200px] min-h-[150px]
           ${className}
         `}
         style={getPositionStyles()}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
-        {showCloseButton && (
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100 z-10"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        )}
-
         {/* Content */}
-        <div className="p-6 overflow-y-auto" style={{ maxHeight: maxHeight }}>
+        <div className="overflow-y-auto" style={{ maxHeight: maxHeight }}>
           {children}
         </div>
       </div>

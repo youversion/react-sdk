@@ -21,3 +21,11 @@ export function ShareIcon({ size = 24, className, ...props }: IconProps) {
     </svg>
   )
 }
+
+export function MagnifyingGlassIcon({ size = 24, className, ...props }: IconProps) {
+  return (
+    <svg className={className} {...props} xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 18C7.91015 18 5 15.0899 5 11.5C5 7.91015 7.91015 5 11.5 5C15.0899 5 18 7.91015 18 11.5C18 12.9341 17.5356 14.2597 16.7489 15.3347L19.2071 17.7929C19.5976 18.1834 19.5976 18.8166 19.2071 19.2071C18.8166 19.5976 18.1834 19.5976 17.7929 19.2071L15.3347 16.7489C14.2597 17.5356 12.9341 18 11.5 18ZM11.5 16C13.9853 16 16 13.9853 16 11.5C16 9.01472 13.9853 7 11.5 7C9.01472 7 7 9.01472 7 11.5C7 13.9853 9.01472 16 11.5 16Z" fill="#636161"/>
+    </svg>
+  )
+}
