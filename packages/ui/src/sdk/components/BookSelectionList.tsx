@@ -1,24 +1,57 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "./shared";
 import { BookOption } from "./BibleChapterSelectionModal";
+import { useChapters } from "../hooks";
+import { Chapter } from "@youversion/bible-core";
 
 interface ChapterGridProps {
-  chapters: number[];
-  onChapterClicked: (chapter: number) => void;
+  book: string;
+  versionId: number;
+  onChapterClicked: (chapter: Chapter) => void;
   visible: boolean;
 }
 
-function ChapterGrid({ chapters, onChapterClicked, visible }: ChapterGridProps) {
+function ChapterGrid({ book, versionId, onChapterClicked, visible }: ChapterGridProps) {
+  const { chapters, loading, refetch } = useChapters(versionId, book, { enabled: visible });
+
+  useEffect(() => {
+    // Enabled on the hook only works on initial render, and will not trigger a load when changed.
+    // This effect will trigger a load when the component is made visible.
+    if (!chapters && !loading && visible) {
+      refetch();
+    }
+  }, [visible, chapters, loading, refetch]);
+
+  const containerClass = `overflow-y-scroll scrollbar-hidden transition-all ease-in-out ${
+    visible ? 'duration-300 max-h-[1000px]' : 'duration-100 max-h-[0px]'
+  }`;
+
+  if (loading) {
+    return (
+      <div className={containerClass}>
+        <div>Loading...</div>
+      </div>
+    );
+  }
+
+  if (!chapters?.data || chapters.data.length === 0) {
+    return (
+      <div className={containerClass}>
+        <div>No chapters</div>
+      </div>
+    );
+  }
+
   return (
-    <div className={`overflow-y-scroll scrollbar-hidden transition-all ease-in-out ${visible ? 'duration-300 max-h-[1000px]' : 'duration-100 max-h-[0px]'}`}>
+    <div className={containerClass}>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(60px,3fr))] sm:grid-cols-[repeat(auto-fill,minmax(45px,3fr))] gap-2 mt-2">
-        {chapters.map((chapter: number) => (
+        {chapters.data.map((chapter) => (
           <button
-            key={chapter}
+            key={chapter.usfm}
             className="w-16 h-16 sm:w-12 sm:h-12 font-bold bg-[#EDEBEB] rounded flex items-center justify-center hover:cursor-pointer hover:bg-gray-300 transition-colors"
             onClick={() => onChapterClicked(chapter)}
           >
-            {chapter}
+            {chapter.title}
           </button>
         ))}
       </div>
@@ -29,19 +62,21 @@ function ChapterGrid({ chapters, onChapterClicked, visible }: ChapterGridProps) 
 interface BookSelectionListProps {
   className?: string;
   books: BookOption[];
-  onSelect: (book: { bookId: BookOption['id']; chapter: number; }) => void;
+  versionId: number;
+  onSelect: (book: { bookId: BookOption['id']; chapter: Chapter; }) => void;
   closeOnSelect?: boolean;
 }
 
-export function BookSelectionList({ className, closeOnSelect, books, onSelect }: BookSelectionListProps) {
+export function BookSelectionList({ className, closeOnSelect, books, onSelect, versionId }: BookSelectionListProps) {
   const [openBook, setOpenBook] = useState<BookOption['id'] | null>(null);
 
   const toggleBook = (id: BookOption['id']) => {
     setOpenBook(openBook === id ? null : id);
   };
 
-  function onChapterClicked(chapter: number) {
+  function onChapterClicked(chapter: Chapter) {
     if (!chapter || !openBook) return;
+
     onSelect({ bookId: openBook, chapter })
 
     if (closeOnSelect) {
@@ -61,7 +96,7 @@ export function BookSelectionList({ className, closeOnSelect, books, onSelect }:
             >
               <h2 className={`${isSelectedBook ? 'font-semibold' : ''}`}>{book.name}</h2> <span>{isSelectedBook ? <ChevronUpIcon /> : <ChevronDownIcon />}</span>
             </button>
-            <ChapterGrid chapters={book.chapters} visible={isSelectedBook} onChapterClicked={onChapterClicked}/>
+            <ChapterGrid book={book.id as string} versionId={versionId} visible={isSelectedBook} onChapterClicked={onChapterClicked}/>
           </div>
         )}
       )}

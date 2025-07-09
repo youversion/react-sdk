@@ -1,4 +1,4 @@
-import { BibleChapterSelectionModal, BookChapterSelection, BookOption } from "../components";
+import { BibleChapterSelectionModal, BookChapterSelection } from "../components";
 import { useReaderContext } from "../context/ReaderContext";
 import { useBooks, useChapters } from "../hooks";
 import { useState } from "react";
@@ -13,9 +13,12 @@ export function BibleReaderNavigator() {
   const { chapters, loading: chaptersIsLoading } = useChapters(currentVersion.id, currentBook.usfm);
 
   function onSelection(selection: BookChapterSelection) {
-    const book = books?.data.find(b => b.usfm);
+    const book = books?.data.find(b => b.usfm === selection.bookId);
+    console.log(book);
+    console.log(selection.chapter);
     if (book) {
       setBook(book);
+      setChapter(selection.chapter);
     }
   }
 
@@ -23,17 +26,14 @@ export function BibleReaderNavigator() {
     <div>Loading...</div>
   )
 
-  const bookChapters = chapters.data.map(c => Number(c.usfm));
-  const bookOptions: Array<BookOption> = books.data.map(b => ({ id: b.usfm, name: b.title, chapters: bookChapters })) ?? [];
-
   return (
     <div>
       <BibleChapterSelectionModal
-        books={bookOptions}
         onSelect={onSelection}
         isOpen={isChapterSelectionOpen}
         onClose={() => setIsChapterSelectionOpen(false)}
       />
+      <button onClick={() => setIsChapterSelectionOpen(!isChapterSelectionOpen)}>Select Chapter</button>
     </div>
   )
 }

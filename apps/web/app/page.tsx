@@ -6,6 +6,7 @@ import {
   useChapter,
   ReaderProvider,
   ChapterRenderer,
+  BibleReaderNavigator
 } from "@repo/ui";
 
 export default function Home() {
@@ -53,6 +54,7 @@ function HomeContent() {
           currentChapter={chapter}
           currentVerse={null}
         >
+          <BibleReaderNavigator />
           <ChapterRenderer />
         </ReaderProvider>
       )}

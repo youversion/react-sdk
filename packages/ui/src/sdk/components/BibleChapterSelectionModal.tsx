@@ -1,20 +1,22 @@
-import { useEffect, useState } from "react";
+import {useEffect, useMemo, useState} from "react";
 import { ModalHeader, SearchBar, SlideInModal } from "./shared";
 import { BookSelectionList } from "./BookSelectionList";
+import { useReaderContext } from "../context/ReaderContext";
+import { useBooks } from "../hooks";
+import { Chapter } from "@youversion/bible-core";
 
 export type BookOption = {
-  id: number | string;
+  id: string;
   name: string;
   chapters: number[];
 }
 
 export type BookChapterSelection = {
-  bookId: number | string;
-  chapter: number;
+  bookId: string;
+  chapter: Chapter;
 }
 
 interface Props {
-  books: Array<BookOption>;
   onSelect: (selection: BookChapterSelection) => void;
   modalPlacement?: 'top' | 'bottom';
   screenEdgeGap?: number;
@@ -23,17 +25,26 @@ interface Props {
   remainOpenOnSelect?: boolean;
 }
 
-export function BibleChapterSelectionModal({ books, modalPlacement, screenEdgeGap, isOpen, onSelect, onClose, remainOpenOnSelect }: Props) {
-  const [filteredBooks, setFilteredBooks] = useState<Array<BookOption>>(books);
+export function BibleChapterSelectionModal({modalPlacement, screenEdgeGap, isOpen, onSelect, onClose, remainOpenOnSelect }: Props) {
+  const [filteredBooks, setFilteredBooks] = useState<Array<BookOption>>([]);
   const [booksSearch, setBooksSearch] = useState('');
 
+  const { currentVersion } = useReaderContext();
+
+  const { books, loading: loadingBooks } = useBooks(currentVersion.id);
+
+  const bookOptions: BookOption[] = useMemo(() => {
+    if (!books?.data) return [];
+    return books.data.map(b => ({ id: b.usfm, name: b.title, chapters: [] }));
+  }, [books])
+
   useEffect(() => {
-    if (booksSearch == '' || booksSearch == null) {
-      setFilteredBooks(books)
+    if (bookOptions && booksSearch == '' || booksSearch == null) {
+      setFilteredBooks(bookOptions)
       return;
     }
-    setFilteredBooks(books.filter(book => book.name.toLowerCase().includes(booksSearch.toLowerCase())))
-  }, [booksSearch, books])
+    setFilteredBooks(bookOptions.filter((b: BookOption) => b.name.toLowerCase().includes(booksSearch.toLowerCase())))
+  }, [booksSearch, bookOptions])
 
   function onChapterSelected(selection: BookChapterSelection) {
     onSelect(selection);
@@ -52,11 +63,15 @@ export function BibleChapterSelectionModal({ books, modalPlacement, screenEdgeGa
       backdrop={true}
       closeOnClickOutside={true}
       className='w-screen sm:w-[500px] sm:rounded-lg'
+      minHeight='300px'
     >
       <ModalHeader title='Books' onCloseClicked={onClose}>
         <SearchBar onChange={(v) => setBooksSearch(v)} debounceTime={50} />
       </ModalHeader>
-      <BookSelectionList className='px-4 mt-2' books={filteredBooks} onSelect={onChapterSelected} />
+      { !loadingBooks ?
+        <BookSelectionList className='px-4 mt-2' books={filteredBooks} versionId={currentVersion.id} onSelect={onChapterSelected} />
+        : <div>Loading...</div>
+      }
     </SlideInModal>
   );
 }
