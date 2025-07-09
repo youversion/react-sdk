@@ -20,14 +20,26 @@ export class BibleClient {
   }
 
   /**
+   * Fetches a collection of Bible versions filtered by language ranges.
+   *
+   * @param language_ranges - A comma-separated list of language codes or ranges to filter the versions.
+   * @returns A promise that resolves to a collection of Version objects.
+   */
+  async getVersions(
+    language_ranges: string = "en*"
+  ): Promise<Collection<Version>> {
+    return this.client.get<Collection<Version>>(`${this.rootPath}/bibles`, {
+      language_ranges,
+    });
+  }
+
+  /**
    * Fetches a Bible version by its ID.
    * @param id The version ID.
    * @returns The requested Version object.
    */
   async getVersion(id: number): Promise<Version> {
-    return this.client.get<Version>(
-      `${this.rootPath}/bibles/${id}`
-    );
+    return this.client.get<Version>(`${this.rootPath}/bibles/${id}`);
   }
 
   /**

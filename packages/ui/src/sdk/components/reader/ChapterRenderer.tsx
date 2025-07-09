@@ -39,18 +39,12 @@ export function ChapterRenderer() {
   }
 
   return (
-    <div style={{ width: "512px", margin: "0 auto" }}>
+    <div style={{ maxWidth: "512px", margin: "0 auto" }}>
       <div className="text-center">
-        <div
-          className="text-center text-2xl leading-[125%] text-[#636161] font-[Untitled_Serif]"
-          style={{ marginTop: "48px" }}
-        >
+        <div className="text-center text-2xl leading-[125%] mt-12 text-[#636161] font-[Untitled_Serif]">
           {currentBook.title}
         </div>
-        <div
-          className="text-center text-5xl leading-[125%] text-[#636161] font-[Untitled_Serif]"
-          style={{ marginBottom: "24px" }}
-        >
+        <div className="text-center text-5xl leading-[125%] mb-6 text-[#636161] font-[Untitled_Serif]">
           {currentChapter.title}
         </div>
       </div>
