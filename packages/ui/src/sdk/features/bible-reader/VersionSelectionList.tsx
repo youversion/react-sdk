@@ -43,7 +43,7 @@ export function VersionSelectionList({
               </div>
               <div className='flex justify-center items-center ms-4'>
                 {isSelected ?
-                  <div className="w-3 h-3 -translate-x-[2px] bg-utility-info rounded-full ring ring-utility-info ring-offset-2" /> :
+                  <div className="w-3 h-3 mr-[2px] bg-utility-info rounded-full ring ring-utility-info ring-offset-2" /> :
                   <div className="w-4 h-4 border-1 border-border-secondary rounded-full" />
                 }
               </div>
