@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import BoxStackIcon from "../../../assets/box-stack.svg";
-import BoxArrowUpIcon from "../../../assets/box-arrow-up.svg";
+// import BoxStackIcon from "../../../assets/box-stack.svg";
+// import BoxArrowUpIcon from "../../../assets/box-arrow-up.svg";
 
 const X = ({ className }: { className: string }) => (
   <svg
@@ -66,7 +66,7 @@ export const VerseActionPicker = () => {
             onClick={handleCopy}
             aria-label="Copy verse text"
           >
-            <BoxStackIcon />
+            {/* <BoxStackIcon /> */}
             <span className="relative w-fit font-label-m font-[number:var(--label-m-font-weight)] text-color-mode-text-primary text-[length:var(--label-m-font-size)] text-center tracking-[var(--label-m-letter-spacing)] leading-[var(--label-m-line-height)] whitespace-nowrap [font-style:var(--label-m-font-style)]">
               Copy
             </span>
@@ -78,7 +78,7 @@ export const VerseActionPicker = () => {
           onClick={handleShare}
           aria-label="Share verse"
         >
-          <BoxArrowUpIcon />
+          {/* <BoxArrowUpIcon /> */}
           <span className="relative w-fit font-label-m font-[number:var(--label-m-font-weight)] text-color-mode-text-primary text-[length:var(--label-m-font-size)] text-center tracking-[var(--label-m-letter-spacing)] leading-[var(--label-m-line-height)] whitespace-nowrap [font-style:var(--label-m-font-style)]">
             Share
           </span>
