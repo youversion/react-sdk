@@ -1,20 +1,12 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from "./providers";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-});
+import Image from "next/image";
+import youbibleLogo from "./assets/youbible.png";
 
 export const metadata: Metadata = {
-  title: "Bible SDK Demo",
-  description: "Demo app using the Bible SDK",
+  title: "YouBible",
+  description: "Lightweight Bible Reader",
 };
 
 export default function RootLayout({
@@ -24,10 +16,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Providers>
-          {children}
-        </Providers>
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/wfn2tts.css" />
+      </head>
+      <body>
+        <header>
+          <Image
+            src={youbibleLogo}
+            alt="YouBible"
+            width={120}
+            height={40}
+            className="mx-6"
+          />
+        </header>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

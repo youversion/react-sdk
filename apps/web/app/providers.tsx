@@ -9,7 +9,7 @@ interface ProvidersProps {
 
 export function Providers({ children }: ProvidersProps) {
   return (
-    <BibleSDKProvider appId="V8lOX2LMfC6PGBawNiyywXbFTHafIvOjDIr9U82Zy5qGsrjv">
+    <BibleSDKProvider appId={process.env.NEXT_PUBLIC_BIBLE_SDK_APP_ID ?? ""}>
       {children}
     </BibleSDKProvider>
   );

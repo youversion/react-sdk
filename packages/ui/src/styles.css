@@ -1,5 +1,58 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Untitled Serif';
+  src: url(https://web-assets.youversion.com/fonts/untitled-serif/untitled-serif-web-regular.woff2) format('woff2-variations');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Untitled Serif';
+  src: url(https://web-assets.youversion.com/fonts/untitled-serif/untitled-serif-web-regular-italic.woff2) format('woff2-variations');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Untitled Serif';
+  src: url(https://web-assets.youversion.com/fonts/untitled-serif/untitled-serif-web-bold.woff2) format('woff2-variations');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Untitled Serif';
+  src: url(https://web-assets.youversion.com/fonts/untitled-serif/untitled-serif-web-bold-italic.woff2) format('woff2-variations');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Untitled Serif';
+  src: url(https://web-assets.youversion.com/fonts/untitled-serif/untitled-serif-web-medium.woff2) format('woff2-variations');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Untitled Serif';
+  src: url(https://web-assets.youversion.com/fonts/untitled-serif/untitled-serif-web-medium-italic.woff2) format('woff2-variations');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@layer base {
+
+  html,
+  body {
+    font-family: "aktiv-grotesk", "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+  }
+}
+
 
 /* chapter.css */
 
