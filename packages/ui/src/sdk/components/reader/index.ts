@@ -1,1 +1,0 @@
-export { ChapterRenderer } from './ChapterRenderer';

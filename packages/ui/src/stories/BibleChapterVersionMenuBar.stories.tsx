@@ -1,15 +1,16 @@
-import type { Meta } from "@storybook/react-webpack5";
-import { BibleChapterVersionMenuBar } from "../sdk/components";
+import type { Meta } from "@storybook/react";
+import { BibleChapterVersionMenuBar } from "../sdk";
+import React from "react";
 
 const meta = {
-  title: 'Bible Components/Chapter & Version Menu Bar',
-  tags: ['autodocs'],
+  title: "Bible Components/Chapter & Version Menu Bar",
+  tags: ["autodocs"],
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
   decorators: [
     (Story) => (
-      <div className='max-w-xs h-screen w-screen'>
+      <div className="max-w-xs h-screen w-screen">
         <Story />
       </div>
     ),
@@ -20,18 +21,18 @@ export default meta;
 
 export function BasicRender() {
   return (
-    <div className='flex flex-col gap-8'>
-      <div className='flex flex-col gap-2 w-full items-center text-center'>
-        <h2 className='font-bold text-lg'>Normal</h2>
+    <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-2 w-full items-center text-center">
+        <h2 className="font-bold text-lg">Normal</h2>
         <BibleChapterVersionMenuBar />
-        <BibleChapterVersionMenuBar chapter={'1 Corinthians 1'} />
+        <BibleChapterVersionMenuBar chapter={"1 Corinthians 1"} />
       </div>
-      <div className='flex gap-5'>
-        <div className='flex flex-col gap-2 w-full justify-between items-center text-center'>
-          <h1 className='font-bold text-lg'>Disabled</h1>
-          <BibleChapterVersionMenuBar className='w-[600px]' disabled={true} />
+      <div className="flex gap-5">
+        <div className="flex flex-col gap-2 w-full justify-between items-center text-center">
+          <h1 className="font-bold text-lg">Disabled</h1>
+          <BibleChapterVersionMenuBar className="w-[600px]" disabled={true} />
         </div>
       </div>
     </div>
-  )
+  );
 }

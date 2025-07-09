@@ -6,8 +6,9 @@ import {
   useChapter,
   ReaderProvider,
   ChapterRenderer,
-  BibleReaderNavigator
-} from "@repo/ui";
+  BibleReaderNavigator,
+  VerseActionPicker,
+} from "@youversion/bible-ui";
 
 export default function Home() {
   return <HomeContent />;
@@ -46,6 +47,8 @@ function HomeContent() {
           <p>Error loading chapter data: {error.message}</p>
         </div>
       )}
+
+      <VerseActionPicker />
 
       {version && book && chapter && (
         <ReaderProvider

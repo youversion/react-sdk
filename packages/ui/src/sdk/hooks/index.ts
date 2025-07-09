@@ -6,3 +6,4 @@ export * from "./useVerse";
 export * from "./useVerses";
 export * from "./useVersion";
 export * from "./useYouVersionLogin";
+export * from "./utility/useDebounce";

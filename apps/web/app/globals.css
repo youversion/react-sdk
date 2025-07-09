@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "@repo/ui/styles.css";
+@import "@youversion/bible-ui/styles.css";
 
 :root {
   --background: #ffffff;

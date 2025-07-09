@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   YouVersionLoginButton,
   useYouVersionLogin,
   LoginSuccess,
   LoginError,
-} from '@repo/ui';
+} from "@youversion/bible-ui";
 
 const Login = () => {
   const [loginData, setLoginData] = useState<LoginSuccess | null>(null);
@@ -16,11 +16,11 @@ const Login = () => {
     onSuccess: (result) => {
       setLoginData(result);
       setError(null);
-      console.log('Login successful! You can now use the LAT:', result.lat);
+      console.log("Login successful! You can now use the LAT:", result.lat);
     },
     onError: (error) => {
       setError(error);
-      console.error('Login failed:', error);
+      console.error("Login failed:", error);
     },
   });
 
@@ -35,7 +35,7 @@ const Login = () => {
       ) : (
         <YouVersionLoginButton onClick={login} />
       )}
-      {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
+      {error && <p style={{ color: "red" }}>Error: {error.message}</p>}
     </div>
   );
 };

@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react';
+import { useState } from "react";
 
 interface BibleChapterVersionSelectorProps {
   chapter?: string;
@@ -12,13 +12,13 @@ interface BibleChapterVersionSelectorProps {
 }
 
 export function BibleChapterVersionMenuBar({
-                                              chapter = "James 1",
-                                              version = "NIV",
-                                              onChapterButtonClicked,
-                                              onVersionButtonClicked,
-                                              disabled = false,
-                                              className = ""
-                                            }: BibleChapterVersionSelectorProps) {
+  chapter = "James 1",
+  version = "NIV",
+  onChapterButtonClicked,
+  onVersionButtonClicked,
+  disabled = false,
+  className = "",
+}: BibleChapterVersionSelectorProps) {
   const [isChapterPressed, setIsChapterPressed] = useState(false);
   const [isVersionPressed, setIsVersionPressed] = useState(false);
 
@@ -39,33 +39,37 @@ export function BibleChapterVersionMenuBar({
     font-bold text-[13px] 
     transition-all duration-150 ease-in-out
     select-none
-    ${disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:shadow-sm'}
+    ${disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer hover:shadow-sm"}
   `;
 
   const chapterButtonClasses = `
     ${baseButtonClasses}
     flex-grow
-    ${isChapterPressed && !disabled
-    ? 'bg-[#e7e4e4] shadow-inner'
-    : 'bg-[#EDEBEB] hover:bg-gray-150 active:bg-[#e7e4e4]'
+    ${
+      isChapterPressed && !disabled
+        ? "bg-[#e7e4e4] shadow-inner"
+        : "bg-[#EDEBEB] hover:bg-gray-150 active:bg-[#e7e4e4]"
     }
   `;
 
   const versionButtonClasses = `
     ${baseButtonClasses}
     px-3
-    ${isVersionPressed && !disabled
-    ? 'bg-[#e7e4e4] shadow-inner'
-    : 'bg-[#EDEBEB] hover:bg-gray-150 active:bg-[#e7e4e4]'
+    ${
+      isVersionPressed && !disabled
+        ? "bg-[#e7e4e4] shadow-inner"
+        : "bg-[#EDEBEB] hover:bg-gray-150 active:bg-[#e7e4e4]"
     }
   `;
 
   return (
-    <div className={`
+    <div
+      className={`
       flex gap-1 rounded-full bg-white overflow-hidden w-fit 
       drop-shadow-md hover:drop-shadow-lg transition-shadow duration-200
       ${className}
-    `}>
+    `}
+    >
       <button
         className={chapterButtonClasses}
         onClick={handleChapterClick}

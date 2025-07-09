@@ -1,6 +1,6 @@
 "use client";
 
-import { BibleKitProvider } from "@repo/ui";
+import { BibleSDKProvider } from "@youversion/bible-ui";
 import { ReactNode } from "react";
 
 interface ProvidersProps {
@@ -9,8 +9,8 @@ interface ProvidersProps {
 
 export function Providers({ children }: ProvidersProps) {
   return (
-    <BibleKitProvider appId="V8lOX2LMfC6PGBawNiyywXbFTHafIvOjDIr9U82Zy5qGsrjv">
+    <BibleSDKProvider appId="V8lOX2LMfC6PGBawNiyywXbFTHafIvOjDIr9U82Zy5qGsrjv">
       {children}
-    </BibleKitProvider>
+    </BibleSDKProvider>
   );
 }

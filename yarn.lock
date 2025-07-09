@@ -1940,45 +1940,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@repo/ui@npm:*, @repo/ui@workspace:packages/ui":
-  version: 0.0.0-use.local
-  resolution: "@repo/ui@workspace:packages/ui"
-  dependencies:
-    "@chromatic-com/storybook": "npm:^4.0.1"
-    "@repo/eslint-config": "npm:*"
-    "@repo/typescript-config": "npm:*"
-    "@storybook/addon-a11y": "npm:^9.0.15"
-    "@storybook/addon-docs": "npm:^9.0.15"
-    "@storybook/addon-onboarding": "npm:^9.0.15"
-    "@storybook/addon-styling-webpack": "npm:2.0.0"
-    "@storybook/addon-themes": "npm:9.0.16"
-    "@storybook/addon-vitest": "npm:^9.0.15"
-    "@storybook/addon-webpack5-compiler-swc": "npm:^3.0.0"
-    "@storybook/react": "npm:^9.0.16"
-    "@storybook/react-webpack5": "npm:^9.0.16"
-    "@tailwindcss/postcss": "npm:^4.1.11"
-    "@turbo/gen": "npm:^2.5.0"
-    "@types/node": "npm:^22.15.3"
-    "@types/react": "npm:19.1.0"
-    "@types/react-dom": "npm:19.1.1"
-    "@vitest/browser": "npm:^3.2.4"
-    "@vitest/coverage-v8": "npm:^3.2.4"
-    "@youversion/bible-core": "npm:*"
-    autoprefixer: "npm:^10.4.21"
-    eslint: "npm:^9.30.0"
-    eslint-plugin-storybook: "npm:^9.0.15"
-    playwright: "npm:^1.53.2"
-    postcss: "npm:^8.5.6"
-    postcss-loader: "npm:^8.1.1"
-    react: "npm:^19.1.0"
-    react-dom: "npm:^19.1.0"
-    storybook: "npm:^9.0.15"
-    tailwindcss: "npm:4.0.0"
-    typescript: "npm:5.8.2"
-    vitest: "npm:^3.2.4"
-  languageName: unknown
-  linkType: soft
-
 "@rollup/rollup-android-arm-eabi@npm:4.44.2":
   version: 4.44.2
   resolution: "@rollup/rollup-android-arm-eabi@npm:4.44.2"
@@ -3739,6 +3700,45 @@ __metadata:
     ts-jest: "npm:^29.4.0"
     tsup: "npm:^8.5.0"
     typescript: "npm:latest"
+  languageName: unknown
+  linkType: soft
+
+"@youversion/bible-ui@npm:*, @youversion/bible-ui@workspace:packages/ui":
+  version: 0.0.0-use.local
+  resolution: "@youversion/bible-ui@workspace:packages/ui"
+  dependencies:
+    "@chromatic-com/storybook": "npm:^4.0.1"
+    "@repo/eslint-config": "npm:*"
+    "@repo/typescript-config": "npm:*"
+    "@storybook/addon-a11y": "npm:^9.0.15"
+    "@storybook/addon-docs": "npm:^9.0.15"
+    "@storybook/addon-onboarding": "npm:^9.0.15"
+    "@storybook/addon-styling-webpack": "npm:2.0.0"
+    "@storybook/addon-themes": "npm:9.0.16"
+    "@storybook/addon-vitest": "npm:^9.0.15"
+    "@storybook/addon-webpack5-compiler-swc": "npm:^3.0.0"
+    "@storybook/react": "npm:^9.0.16"
+    "@storybook/react-webpack5": "npm:^9.0.16"
+    "@tailwindcss/postcss": "npm:^4.1.11"
+    "@turbo/gen": "npm:^2.5.0"
+    "@types/node": "npm:^22.15.3"
+    "@types/react": "npm:19.1.0"
+    "@types/react-dom": "npm:19.1.1"
+    "@vitest/browser": "npm:^3.2.4"
+    "@vitest/coverage-v8": "npm:^3.2.4"
+    "@youversion/bible-core": "npm:*"
+    autoprefixer: "npm:^10.4.21"
+    eslint: "npm:^9.30.0"
+    eslint-plugin-storybook: "npm:^9.0.15"
+    playwright: "npm:^1.53.2"
+    postcss: "npm:^8.5.6"
+    postcss-loader: "npm:^8.1.1"
+    react: "npm:^19.1.0"
+    react-dom: "npm:^19.1.0"
+    storybook: "npm:^9.0.15"
+    tailwindcss: "npm:4.0.0"
+    typescript: "npm:5.8.2"
+    vitest: "npm:^3.2.4"
   languageName: unknown
   linkType: soft
 
@@ -12416,10 +12416,10 @@ __metadata:
   dependencies:
     "@repo/eslint-config": "npm:*"
     "@repo/typescript-config": "npm:*"
-    "@repo/ui": "npm:*"
     "@types/node": "npm:^22.15.3"
     "@types/react": "npm:19.1.0"
     "@types/react-dom": "npm:19.1.1"
+    "@youversion/bible-ui": "npm:*"
     autoprefixer: "npm:^10.4.21"
     eslint: "npm:^9.30.0"
     next: "npm:^15.3.0"

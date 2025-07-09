@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { MagnifyingGlassIcon } from './Icons';
-import { useDebounce } from "../../hooks/utility/useDebounce";
+import { useEffect, useState } from "react";
+import { MagnifyingGlassIcon } from "./Icons";
+import { useDebounce } from "../hooks/utility/useDebounce";
 
 interface Props {
   onChange: (query: string) => void;
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export function SearchBar({ onChange, debounceTime = 300 }: Props) {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query, debounceTime);
 
   useEffect(() => {

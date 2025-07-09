@@ -1,7 +1,7 @@
 import { useEffect, useCallback, useContext } from "react";
-import { YouVersionLoginOptions } from "../authentication/types";
-import { generateSession } from "../authentication/generate-session";
-import { BibleKitContext } from "../context/BibleKitContext";
+import { YouVersionLoginOptions } from "../features/youversion-auth/types";
+import { generateSession } from "../features/youversion-auth/generate-session";
+import { BibleSDKContext } from "../context/BibleSDKContext";
 
 const YV_SESSION_KEY = "yv_login_session";
 const LOGIN_POPUP_FEATURES =
@@ -15,11 +15,11 @@ export const useYouVersionLogin = ({
   onSuccess,
   onError,
 }: YouVersionLoginOptions) => {
-  const context = useContext(BibleKitContext);
+  const context = useContext(BibleSDKContext);
 
   if (!context) {
     throw new Error(
-      "useYouVersionLogin must be used within a BibleKitProvider"
+      "useYouVersionLogin must be used within a BibleSDKProvider"
     );
   }
 

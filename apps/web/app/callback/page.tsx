@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from 'react';
-import { processLoginCallback } from '@repo/ui';
+import { useEffect } from "react";
+import { processLoginCallback } from "@youversion/bible-ui";
 
 const CallbackPage = () => {
   useEffect(() => {

@@ -3,12 +3,12 @@ module.exports = {
     // Your project files
     "./src/**/*.{js,ts,jsx,tsx}",
     // Include our package
-    "./node_modules/@repo/ui/dist/**/*.{js,jsx}",
-    './.storybook/**/*.{js,jsx,ts,tsx}',
+    "./node_modules/@youversion/bible-ui/dist/**/*.{js,jsx}",
+    "./.storybook/**/*.{js,jsx,ts,tsx}",
   ],
-  darkMode: ['class', '[data-mode="dark"]'],
+  darkMode: ["class", '[data-mode="dark"]'],
   theme: {
     extend: {},
   },
   plugins: [],
-}
+};
