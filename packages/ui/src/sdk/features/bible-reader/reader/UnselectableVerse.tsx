@@ -12,6 +12,7 @@ export function UnselectableVerse({
   return (
     <div
       className={`${className}`}
+      data-usfm={verse.usfm}
       dangerouslySetInnerHTML={{ __html: verse.content }}
     />
   );

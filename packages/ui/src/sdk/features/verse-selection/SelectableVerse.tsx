@@ -13,20 +13,23 @@ export function SelectableVerse({
   className = "verse-content cursor-pointer",
   selectedClassName = "underline decoration-dotted underline-offset-4 decoration-gray-400",
 }: SelectableVerseProps) {
-  const { toggleVerse, isSelected, shouldDim, setShouldDim, selectedCount } =
+  const { toggleVerse, isSelected, selectedCount } =
     useVerseSelection();
 
+  const isCurrentVerseSelected = isSelected(verse.usfm);
+  const shouldDim = selectedCount > 0 && !isCurrentVerseSelected;
+
   const styles = clsx(className, {
-    [selectedClassName]: isSelected(verse.usfm),
-    "opacity-70": shouldDim && !isSelected(verse.usfm),
+    [selectedClassName]: isCurrentVerseSelected,
+    "opacity-70": shouldDim,
   });
 
   return (
     <div
       id={verse.usfm}
+      data-usfm={verse.usfm}
       onClick={() => {
         toggleVerse(verse.usfm);
-        setShouldDim(selectedCount == 1 ? false : true);
       }}
       className={styles}
       dangerouslySetInnerHTML={{ __html: verse.content }}
