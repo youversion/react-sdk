@@ -29,16 +29,16 @@ export function BibleReader({
   }
 
   return (
-    <>
-      <ReaderProvider
-        currentVersion={version}
-        currentBook={book}
-        currentChapter={chapter}
-        currentVerse={null}
-      >
-        <BibleReaderNavigator />
+    <ReaderProvider
+      currentVersion={version}
+      currentBook={book}
+      currentChapter={chapter}
+      currentVerse={null}
+    >
+      <div className="mb-18">
         <ChapterRenderer />
-      </ReaderProvider>
-    </>
+      </div>
+      <BibleReaderNavigator />
+    </ReaderProvider>
   );
 }
