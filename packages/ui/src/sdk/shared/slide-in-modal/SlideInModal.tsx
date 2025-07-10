@@ -22,7 +22,7 @@ export function SlideInModal({
   onClose,
   children,
   position = "bottom",
-  distance = 24,
+  distance = 0,
   className = "",
   closeOnClickOutside = false,
   closeOnEscape = true,
@@ -146,9 +146,10 @@ export function SlideInModal({
           "fixed inset-0 sm:max-h-[500px] sm:inset-auto overflow-hidden ease-out min-w-[200px] min-h-[150px] scrollbar-hidden",
           `transition-transform duration-${animationDuration}`,
           {
-            "bg-white shadow-[0_0_3px_rgba(0,0,0,0.2)] border border-gray-200": background,
+            "bg-white shadow-[0_0_3px_rgba(0,0,0,0.2)] border border-gray-200":
+              background,
           },
-          className
+          className,
         )}
         style={getPositionStyles()}
         onClick={(e) => e.stopPropagation()}
