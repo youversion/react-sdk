@@ -67,21 +67,21 @@ console.log("Genesis 1:", chapter.content);
 import { ApiClient } from "@youversion/bible-core";
 
 const apiClient = new ApiClient({
-  appId: "YOUR_APP_ID",           // Required: Get your App ID from https://developers.youversion.com/
+  appId: "YOUR_APP_ID", // Required: Get your App ID from https://developers.youversion.com/
   baseUrl: "https://api.youversion.com", // Optional: API base URL
-  timeout: 10000,                 // Optional: Request timeout in ms (default: 10000)
-  version: "v1",                  // Optional: API version (default: "v1")
+  timeout: 10000, // Optional: Request timeout in ms (default: 10000)
+  version: "v1", // Optional: API version (default: "v1")
 });
 ```
 
 ### Configuration Options
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `appId` | `string` | **Required** | Your application ID for API authentication. Get one at https://developers.youversion.com/ |
-| `baseUrl` | `string` | `"https://api-dev.youversion.com"` | Base URL for the API |
-| `timeout` | `number` | `10000` | Request timeout in milliseconds |
-| `version` | `string` | `"v1"` | API version to use |
+| Option    | Type     | Default                            | Description                                                                               |
+| --------- | -------- | ---------------------------------- | ----------------------------------------------------------------------------------------- |
+| `appId`   | `string` | **Required**                       | Your application ID for API authentication. Get one at https://developers.youversion.com/ |
+| `baseUrl` | `string` | `"https://api-dev.youversion.com"` | Base URL for the API                                                                      |
+| `timeout` | `number` | `10000`                            | Request timeout in milliseconds                                                           |
+| `version` | `string` | `"v1"`                             | API version to use                                                                        |
 
 ## 📖 API Reference
 
@@ -121,7 +121,7 @@ Fetch all books for a specific Bible version.
 
 ```ts
 const books = await bibleClient.getBooks(206);
-books.data.forEach(book => {
+books.data.forEach((book) => {
   console.log(`${book.title} (${book.usfm})`);
 });
 ```
@@ -159,7 +159,7 @@ Fetch all verses for a specific chapter.
 
 ```ts
 const verses = await bibleClient.getVerses(206, "GEN", 1);
-verses.data.forEach(verse => {
+verses.data.forEach((verse) => {
   console.log(`${verse.verse}: ${verse.content}`);
 });
 ```
@@ -253,12 +253,20 @@ class BibleApp {
   }
 
   async loadChapter(versionId: number, bookUsfm: string, chapterNum: number) {
-    const chapter = await this.bibleClient.getChapter(versionId, bookUsfm, chapterNum);
-    const verses = await this.bibleClient.getVerses(versionId, bookUsfm, chapterNum);
-    
+    const chapter = await this.bibleClient.getChapter(
+      versionId,
+      bookUsfm,
+      chapterNum
+    );
+    const verses = await this.bibleClient.getVerses(
+      versionId,
+      bookUsfm,
+      chapterNum
+    );
+
     return {
       chapter,
-      verses: verses.data
+      verses: verses.data,
     };
   }
 
@@ -276,18 +284,18 @@ async function getVerseReference(reference: string, versionId: number) {
   // Parse reference like "GEN 1:1"
   const [book, chapterVerse] = reference.split(" ");
   const [chapter, verse] = chapterVerse.split(":");
-  
+
   const verseData = await bibleClient.getVerse(
     versionId,
     book,
     parseInt(chapter),
     parseInt(verse)
   );
-  
+
   return {
     reference,
     content: verseData.content,
-    version: await bibleClient.getVersion(versionId)
+    version: await bibleClient.getVersion(versionId),
   };
 }
 ```
@@ -305,17 +313,17 @@ async function compareVerses(
     versionIds.map(async (versionId) => {
       const [version, verseData] = await Promise.all([
         bibleClient.getVersion(versionId),
-        bibleClient.getVerse(versionId, book, chapter, verse)
+        bibleClient.getVerse(versionId, book, chapter, verse),
       ]);
-      
+
       return {
         version: version.title,
         language: version.language,
-        content: verseData.content
+        content: verseData.content,
       };
     })
   );
-  
+
   return comparisons;
 }
 ```
@@ -345,7 +353,7 @@ try {
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - TypeScript 4.8+
 
 ### Building
@@ -375,4 +383,3 @@ This is an internal YouVersion package. For issues or feature requests, please c
 ## 📚 Related Packages
 
 - `@youversion/bible-ui` - React UI components for Bible applications
-- `@youversion/bible-react` - React hooks and providers for Bible data
