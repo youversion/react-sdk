@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SearchBar } from "../../shared/SearchBar";
+import { SearchBar } from "../../shared";
 import { SearchResults } from "./SearchResults";
 
 export function Search() {

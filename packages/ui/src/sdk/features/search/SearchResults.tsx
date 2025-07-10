@@ -90,7 +90,7 @@ export function SearchResults({ query, isOpen, onClose }: Props) {
         isOpen={!isNavigating && isOpen}
         onClose={onClose}
         position="top"
-        distance={breakpoint === "xs" ? 0 : 130}
+        distance={breakpoint === "xs" ? 100 : 130}
         closeOnClickOutside
         className="w-screen top-0 sm:w-[500px] sm:rounded-lg"
       >

@@ -28,9 +28,7 @@ export default function RootLayout({
           <Image
             src={youbibleLogo}
             alt="YouBible"
-            width={120}
-            height={40}
-            className="mx-6"
+            className="mx-6 w-[70px] sm:w-[120px]"
           />
         </header>
         <Analytics />

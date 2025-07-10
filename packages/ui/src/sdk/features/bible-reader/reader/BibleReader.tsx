@@ -7,11 +7,11 @@ import {
   useVersion,
   VerseSelectionProvider,
 } from "@youversion/bible-hooks";
-import { Search } from "../../search/Search";
+import { Search } from "../../search";
 import { BibleReaderNavigator } from "../navigation";
 import { ChapterRenderer } from "./ChapterRenderer";
-import { DockedVerseActionBar } from "../../verse-action-picker/DockedVerseActionBar";
-import { useBreakpoint } from "../../../hooks/utility";
+import { DockedVerseActionBar } from "../../verse-action-picker";
+import { useBreakpoint } from "../../../hooks";
 import { MobileVerseActionBar } from "../../verse-action-picker/MobileVerseActionBar";
 
 const DEFAULT_VERSION = 206;
