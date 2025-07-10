@@ -1,5 +1,5 @@
 import { Verse } from "@youversion/bible-core";
-import { useVerseSelection } from "./useVerseSelection";
+import { useVerseSelection } from "@youversion/bible-hooks";
 import clsx from "clsx";
 
 interface SelectableVerseProps {
@@ -13,8 +13,7 @@ export function SelectableVerse({
   className = "verse-content cursor-pointer",
   selectedClassName = "underline decoration-dotted underline-offset-4 decoration-gray-400",
 }: SelectableVerseProps) {
-  const { toggleVerse, isSelected, selectedCount } =
-    useVerseSelection();
+  const { toggleVerse, isSelected, selectedCount } = useVerseSelection();
 
   const isCurrentVerseSelected = isSelected(verse.usfm);
   const shouldDim = selectedCount > 0 && !isCurrentVerseSelected;

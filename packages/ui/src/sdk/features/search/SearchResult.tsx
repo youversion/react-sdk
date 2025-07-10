@@ -3,10 +3,10 @@ import {
   useVerse,
   useReaderContext,
   useBibleClient,
+  useVerseSelection,
 } from "@youversion/bible-hooks";
 import { Passage } from "../../shared/Passage";
 import { useState } from "react";
-import { useVerseSelection } from "../verse-selection";
 
 interface Props {
   result: SearchResultItem;

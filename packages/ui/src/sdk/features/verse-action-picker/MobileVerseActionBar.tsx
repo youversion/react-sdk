@@ -1,11 +1,10 @@
-import { useVerseSelection } from "../verse-selection";
+import { useVerseSelection } from "@youversion/bible-hooks";
 import { HighlightsTray } from "./HighlightsTray";
 import { CopyButton } from "./CopyButton";
 import { ShareButton } from "./ShareButton";
 import { formatVerseSelection } from "./utils";
 import { useEffect, useState } from "react";
 import { PlayVersesButton } from "./PlaySelectedButton";
-import { Divider } from "../../shared/Divider";
 
 type MobileBarPosition = "bottom" | "top";
 
@@ -65,7 +64,7 @@ export const MobileVerseActionBar = ({
 
   // Format the verse selection for display
   const verseSelectionText = formatVerseSelection(
-    Array.from(selectedVerseUsfms),
+    Array.from(selectedVerseUsfms)
   );
 
   return (

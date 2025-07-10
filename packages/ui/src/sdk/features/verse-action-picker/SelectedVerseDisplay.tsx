@@ -1,4 +1,4 @@
-import { useVerseSelection } from "../verse-selection";
+import { useVerseSelection } from "@youversion/bible-hooks";
 import { formatVerseSelection } from "./utils";
 
 interface SelectedVerseDisplayProps {

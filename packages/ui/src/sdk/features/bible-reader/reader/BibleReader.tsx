@@ -5,9 +5,9 @@ import {
   useBook,
   useChapter,
   useVersion,
+  VerseSelectionProvider,
 } from "@youversion/bible-hooks";
 import { Search } from "../../search/Search";
-import { VerseSelectionProvider } from "../../verse-selection";
 import { BibleReaderNavigator } from "../navigation";
 import { ChapterRenderer } from "./ChapterRenderer";
 import { DockedVerseActionBar } from "../../verse-action-picker/DockedVerseActionBar";

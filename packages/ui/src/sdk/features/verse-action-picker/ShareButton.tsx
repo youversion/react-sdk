@@ -1,7 +1,10 @@
 import { BoxArrowUpIcon } from "../../shared";
 import { ActionButton, ActionButtonType } from "./ActionButton";
-import { useVerseSelection } from "../verse-selection";
-import { useBibleClient, useReaderContext } from "@youversion/bible-hooks";
+import {
+  useBibleClient,
+  useReaderContext,
+  useVerseSelection,
+} from "@youversion/bible-hooks";
 import { getVerseText } from "./utils";
 
 interface ShareButtonProps {
