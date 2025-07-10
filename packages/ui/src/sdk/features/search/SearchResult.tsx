@@ -13,7 +13,7 @@ interface Props {
 
 export function SearchResult({ result, onClose }: Props) {
   const { currentVersion, setBook, setChapter, setVerse } = useReaderContext();
-  const { toggleVerse, setShouldDim } = useVerseSelection();
+  const { toggleVerse } = useVerseSelection();
   const bibleClient = useBibleClient();
   const [book, chapter, verseNumber] = result.usfm.split(".");
   const [loading, setLoading] = useState(false);
@@ -54,7 +54,6 @@ export function SearchResult({ result, onClose }: Props) {
         const verseElement = document.getElementById(result.usfm);
         if (verseElement) {
           toggleVerse(result.usfm);
-          setShouldDim(true);
           verseElement.scrollIntoView({ behavior: "smooth", block: "center" });
         }
         onClose();
