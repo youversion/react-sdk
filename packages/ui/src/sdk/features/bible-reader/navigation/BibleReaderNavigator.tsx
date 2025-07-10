@@ -1,6 +1,6 @@
 import { useReaderContext } from "../../../context";
 import { useState } from "react";
-import { useBooks, useChapters } from "../../../hooks";
+import { useBook, useBooks, useChapters } from "../../../hooks";
 import {
   BibleChapterSelectionModal,
   BookChapterSelection,
@@ -10,12 +10,15 @@ import { ChapterNavigationButton } from "./ChapterNavigationButton";
 import { BibleVersionSelectionModal } from "../version-selector";
 import { AudioButton } from "../audio/AudioButton";
 import { Version } from "@youversion/bible-core";
+import { useBibleClient } from "../../../hooks/useBibleClient";
 
 interface Props {
-  placement?: 'top' | 'bottom';
+  placement?: "top" | "bottom";
 }
 
-export function BibleReaderNavigator({ placement = 'bottom' }: Props) {
+export function BibleReaderNavigator({ placement = "bottom" }: Props) {
+  const bibleClient = useBibleClient();
+
   const [isChapterSelectionOpen, setIsChapterSelectionOpen] = useState(false);
   const [isVersionSelectionOpen, setIsVersionSelectionOpen] = useState(false);
 
@@ -40,14 +43,49 @@ export function BibleReaderNavigator({ placement = 'bottom' }: Props) {
     }
   }
 
-  function onVersionSelection(version: Version) {
-    setVersion(version);
+  async function onVersionSelection(newVersion: Version) {
+    setVersion(newVersion);
+
+    const books = await bibleClient.getBooks(newVersion.id);
+
+    // Attempt to find the current book in the new version
+    const matchedBook = books.data.find((x) => x.usfm === currentBook.usfm);
+    if (matchedBook) {
+      setBook(matchedBook);
+      const chapter = await bibleClient.getChapter(
+        newVersion.id,
+        matchedBook.usfm,
+        parseInt(currentChapter.title)
+      );
+      if (chapter) {
+        setChapter(chapter);
+      }
+      setIsVersionSelectionOpen(false);
+      return;
+    } else {
+      // If the current book is not found, set the first book and chapter
+      const firstBook = books?.data[0];
+      if (firstBook) {
+        const chapters = await bibleClient.getChapters(
+          newVersion.id,
+          firstBook?.usfm
+        );
+        const firstChapter = chapters?.data[0];
+
+        setBook(firstBook);
+        if (firstChapter) {
+          setChapter(firstChapter);
+        }
+      }
+    }
+
+    setIsVersionSelectionOpen(false);
   }
 
   if (!chapters || !books) return <></>;
 
-  const topClasses = `top-0 border-b pt-6 sm:pt-5`
-  const bottomClasses = `bottom-0 border-t pb-6.5 sm:pb-5`
+  const topClasses = `top-0 border-b pt-6 sm:pt-5`;
+  const bottomClasses = `bottom-0 border-t pb-6.5 sm:pb-5`;
 
   return (
     <div>
@@ -63,10 +101,11 @@ export function BibleReaderNavigator({ placement = 'bottom' }: Props) {
         isOpen={isVersionSelectionOpen}
         onClose={() => setIsVersionSelectionOpen(false)}
         screenEdgeGap={87}
-        remainOpenOnSelect={true}
         modalPlacement={placement}
       />
-      <div className={`fixed p-5 left-0 right-0 z-900 bg-white border-border-primary ${placement === 'bottom' ? bottomClasses : topClasses}`}>
+      <div
+        className={`fixed p-5 left-0 right-0 z-900 bg-white border-border-primary ${placement === "bottom" ? bottomClasses : topClasses}`}
+      >
         <div className="flex justify-between px-2 sm:justify-center sm:px-0 sm:gap-4">
           <ChapterNavigationButton direction="left" />
           <BibleChapterVersionMenuBar
