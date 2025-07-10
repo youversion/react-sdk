@@ -38,11 +38,11 @@ Import the required CSS file in your application:
 import "@youversion/bible-ui/styles.css";
 ```
 
-## = Getting Started
+## Getting Started
 
 Before using the components, you'll need to obtain an App ID from the [YouVersion Developer Portal](https://developers.youversion.com/).
 
-## <� Quick Start
+## Quick Start
 
 ### Basic Bible Reader
 
@@ -52,12 +52,7 @@ import { BibleSDKProvider, BibleReader } from "@youversion/bible-ui";
 function App() {
   return (
     <BibleSDKProvider appId="YOUR_APP_ID">
-      <BibleReader
-        defaultVersion={206} // ESV
-        defaultBook="GEN"
-        defaultChapter={1}
-        navPlacement="bottom"
-      />
+      <BibleReader />
     </BibleSDKProvider>
   );
 }
@@ -97,7 +92,7 @@ function CustomBibleReader() {
 }
 ```
 
-## >� Core Components
+## Core Components
 
 ### BibleReader
 
@@ -153,7 +148,7 @@ import { YouVersionLoginButton } from "@youversion/bible-ui";
 />;
 ```
 
-## <� Hooks
+## Hooks
 
 ### Bible Data Hooks
 

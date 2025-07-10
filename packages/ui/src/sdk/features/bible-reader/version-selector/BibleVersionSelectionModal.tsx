@@ -100,7 +100,6 @@ export function BibleVersionSelectionModal({
           versions={filteredVersions}
           currentVersionId={currentVersion.id}
           onSelect={handleVersionSelect}
-          selectedLanguage={selectedLanguage}
         />
       )}
     </SlideInModal>
