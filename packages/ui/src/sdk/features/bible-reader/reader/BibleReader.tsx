@@ -3,7 +3,6 @@
 import { ReaderProvider } from "../../../context";
 import { useBook, useChapter, useVersion } from "../../../hooks";
 import { Search } from "../../search/Search";
-import { VerseActionPicker } from "../../verse-action-picker";
 import { VerseActionModal } from "../../verse-action-picker/VerseActionModal";
 import { VerseSelectionProvider } from "../../verse-selection";
 import { BibleReaderNavigator } from "../navigation";
