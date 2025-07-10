@@ -6,7 +6,6 @@ import { Search } from "../../search/Search";
 import { VerseSelectionProvider } from "../../verse-selection";
 import { BibleReaderNavigator } from "../navigation";
 import { ChapterRenderer } from "./ChapterRenderer";
-import { VerseSelectionProvider } from "../../verse-selection";
 
 const DEFAULT_VERSION = 206;
 const DEFAULT_BOOK = "GEN";

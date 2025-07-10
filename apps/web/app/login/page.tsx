@@ -9,7 +9,6 @@ import {
 } from "@youversion/bible-ui";
 
 const Login = () => {
-  const isLoggedIn = Boolean(localStorage.getItem("yv_lat"));
   const [loginData, setLoginData] = useState<LoginSuccess | null>();
   const [error, setError] = useState<LoginError | null>(null);
 
@@ -17,7 +16,7 @@ const Login = () => {
     onSuccess: (result) => {
       setLoginData(result);
       setError(null);
-      localStorage.setItem("yv_lat", result.lat); // Store LAT in localStorage
+      // localStorage.setItem("yv_lat", result.lat); // Store LAT in localStorage
       console.log("Login successful! You can now use the LAT:", result.lat);
     },
     onError: (error) => {
@@ -35,7 +34,7 @@ const Login = () => {
   return (
     <div>
       <h2>Sign In</h2>
-      {loginData || isLoggedIn ? (
+      {loginData ? (
         <div onClick={handleSignOut}>
           <p>Sign Out</p>
         </div>
