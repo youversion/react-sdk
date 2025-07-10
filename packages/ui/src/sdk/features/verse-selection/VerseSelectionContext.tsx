@@ -6,6 +6,9 @@ type VerseSelectionContextData = {
   isSelected: (usfm: string) => boolean;
   clearSelection: () => void;
   selectedCount: number;
-}
+  shouldDim: boolean;
+  setShouldDim: (shouldDim: boolean) => void;
+};
 
-export const VerseSelectionContext = createContext<VerseSelectionContextData | null>(null)
+export const VerseSelectionContext =
+  createContext<VerseSelectionContextData | null>(null);

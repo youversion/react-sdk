@@ -3,6 +3,7 @@ import { VerseSelectionContext } from ".";
 
 export function VerseSelectionProvider({ children }: PropsWithChildren) {
   const [selectedVerseUsfms, setSelectedVerseUsfms] = useState<Set<string>>(new Set());
+  const [shouldDim, setShouldDim] = useState(false);
 
   const toggleVerse = useCallback((usfm: string) => {
     setSelectedVerseUsfms(prev => {
@@ -30,6 +31,8 @@ export function VerseSelectionProvider({ children }: PropsWithChildren) {
     isSelected,
     clearSelection,
     selectedCount: selectedVerseUsfms.size,
+    shouldDim: shouldDim,
+    setShouldDim,
   };
 
   return (

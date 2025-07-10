@@ -3,6 +3,7 @@
 import { ReaderProvider } from "../../../context";
 import { useBook, useChapter, useVersion } from "../../../hooks";
 import { Search } from "../../search/Search";
+import { VerseSelectionProvider } from "../../verse-selection";
 import { BibleReaderNavigator } from "../navigation";
 import { ChapterRenderer } from "./ChapterRenderer";
 import { VerseSelectionProvider } from "../../verse-selection";
@@ -39,8 +40,8 @@ export function BibleReader({
       currentChapter={chapter}
       currentVerse={null}
     >
-      <Search />
       <VerseSelectionProvider>
+        <Search />
         <div className="mb-20">
           <ChapterRenderer />
         </div>

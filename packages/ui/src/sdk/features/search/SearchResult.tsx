@@ -4,6 +4,7 @@ import { useReaderContext } from "../../context";
 import { Passage } from "../../shared/Passage";
 import { useBibleClient } from "../../hooks/useBibleClient";
 import { useState } from "react";
+import { useVerseSelection } from "../verse-selection";
 
 interface Props {
   result: SearchResultItem;
@@ -12,6 +13,7 @@ interface Props {
 
 export function SearchResult({ result, onClose }: Props) {
   const { currentVersion, setBook, setChapter, setVerse } = useReaderContext();
+  const { toggleVerse, setShouldDim } = useVerseSelection();
   const bibleClient = useBibleClient();
   const [book, chapter, verseNumber] = result.usfm.split(".");
   const [loading, setLoading] = useState(false);
@@ -46,7 +48,17 @@ export function SearchResult({ result, onClose }: Props) {
       setChapter(chapterData);
       setVerse(verseData);
       setLoading(false);
-      onClose();
+
+      // Scroll to the verse after a brief delay to ensure DOM is updated
+      setTimeout(() => {
+        const verseElement = document.getElementById(result.usfm);
+        if (verseElement) {
+          toggleVerse(result.usfm);
+          setShouldDim(true);
+          verseElement.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        onClose();
+      }, 500);
     }
   };
 
