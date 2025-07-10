@@ -1,5 +1,16 @@
 # @youversion/bible-ui
 
+## 0.3.0
+
+### Minor Changes
+
+- 5b3e7e4: Updates to README, search, and more
+
+### Patch Changes
+
+- Updated dependencies [5b3e7e4]
+  - @youversion/bible-core@0.3.0
+
 ## 0.2.0
 
 ### Minor Changes

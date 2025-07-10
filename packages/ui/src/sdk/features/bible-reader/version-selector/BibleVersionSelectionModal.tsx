@@ -14,7 +14,6 @@ interface Props {
   screenEdgeGap?: number;
   isOpen: boolean;
   onClose: () => void;
-  remainOpenOnSelect?: boolean;
   languages?: string[];
 }
 
@@ -31,7 +30,6 @@ export function BibleVersionSelectionModal({
   isOpen,
   onSelect,
   onClose,
-  remainOpenOnSelect = false,
   languages,
 }: Props) {
   const [versionSearch, setVersionSearch] = useState("");

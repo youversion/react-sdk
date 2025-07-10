@@ -2,22 +2,11 @@
 
 A comprehensive React UI component library for building Bible applications. This package provides ready-to-use components, hooks, and providers for creating rich Bible reading experiences with features like verse selection, audio playback, search, and user authentication.
 
-## =� Features
+## Getting Started
 
-- **=� Complete Bible Reader** - Full-featured Bible reading component with navigation
-- **<� Verse Selection** - Interactive verse selection with action menus
-- **=
-  Audio Playback** - Text-to-speech integration with ElevenLabs
-- **=
-  Search Functionality** - Powerful Bible search with result highlighting
-- **= Authentication** - YouVersion login integration
-- **<� Customizable UI** - Tailwind CSS styling with theming support
-- **=� Responsive Design** - Mobile-first responsive components
-- **� Performance Optimized** - Efficient data fetching and caching
-- **=' TypeScript Support** - Full TypeScript definitions and type safety
-- **=� Storybook Integration** - Comprehensive component documentation
+Before using the components, you'll need to obtain an App ID from the [YouVersion Developer Portal](https://developers.youversion.com/).
 
-## =� Installation
+## Installation
 
 ```bash
 # npm
@@ -30,19 +19,15 @@ yarn add @youversion/bible-ui @youversion/bible-core
 pnpm add @youversion/bible-ui @youversion/bible-core
 ```
 
+## Quick Start
+
 ### CSS Import
 
-Import the required CSS file in your application:
+TailwindCSS is required for styling. Import the required CSS file in your application:
 
 ```ts
 import "@youversion/bible-ui/styles.css";
 ```
-
-## Getting Started
-
-Before using the components, you'll need to obtain an App ID from the [YouVersion Developer Portal](https://developers.youversion.com/).
-
-## Quick Start
 
 ### Basic Bible Reader
 
@@ -58,7 +43,20 @@ function App() {
 }
 ```
 
-### Custom Bible Reading Experience
+## Features
+
+- **Complete Bible Reader** - Full-featured Bible reading component with navigation
+- **Verse Selection** - Interactive verse selection with action menus
+- **Audio Playback** - Text-to-speech integration with ElevenLabs
+- **Search Functionality** - Powerful Bible search with result highlighting
+- **Authentication** - YouVersion login integration
+- **Customizable UI** - Tailwind CSS styling with theming support
+- **Responsive Design** - Mobile-first responsive components
+- **Performance Optimized** - Efficient data fetching and caching
+- **TypeScript Support** - Full TypeScript definitions and type safety
+- **Storybook Integration** - Comprehensive component documentation
+
+## Custom Bible Reading Experience
 
 ```tsx
 import {
