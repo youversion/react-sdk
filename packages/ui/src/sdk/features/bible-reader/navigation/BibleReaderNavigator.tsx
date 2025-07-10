@@ -4,13 +4,17 @@ import { useBooks, useChapters } from "../../../hooks";
 import {
   BibleChapterSelectionModal,
   BookChapterSelection,
-} from "../chapter-selector/BibleChapterSelectionModal";
+} from "../chapter-selector";
 import { BibleChapterVersionMenuBar } from "./BibleChapterVersionMenuBar";
 import { ChapterNavigationButton } from "./ChapterNavigationButton";
-import { BibleVersionSelectionModal } from "../version-selector/BibleVersionSelectionModal";
+import { BibleVersionSelectionModal } from "../version-selector";
 import { Version } from "@youversion/bible-core";
 
-export function BibleReaderNavigator() {
+interface Props {
+  placement?: 'top' | 'bottom';
+}
+
+export function BibleReaderNavigator({ placement = 'bottom' }: Props) {
   const [isChapterSelectionOpen, setIsChapterSelectionOpen] = useState(false);
   const [isVersionSelectionOpen, setIsVersionSelectionOpen] = useState(false);
 
@@ -41,6 +45,9 @@ export function BibleReaderNavigator() {
 
   if (!chapters || !books) return <></>;
 
+  const topClasses = `top-0 border-b pt-6 sm:pt-5`
+  const bottomClasses = `bottom-0 border-t pb-6.5 sm:pb-5`
+
   return (
     <div>
       <BibleChapterSelectionModal
@@ -48,6 +55,7 @@ export function BibleReaderNavigator() {
         isOpen={isChapterSelectionOpen}
         onClose={() => setIsChapterSelectionOpen(false)}
         screenEdgeGap={87}
+        modalPlacement={placement}
       />
       <BibleVersionSelectionModal
         onSelect={onVersionSelection}
@@ -55,8 +63,9 @@ export function BibleReaderNavigator() {
         onClose={() => setIsVersionSelectionOpen(false)}
         screenEdgeGap={87}
         remainOpenOnSelect={true}
+        modalPlacement={placement}
       />
-      <div className="fixed p-5 pb-7 sm:pb-5 bottom-0 left-0 right-0 z-900 bg-white border-t border-border-primary">
+      <div className={`fixed p-5 left-0 right-0 z-900 bg-white border-border-primary ${placement === 'bottom' ? bottomClasses : topClasses}`}>
         <div className="flex justify-between px-2 sm:justify-center sm:px-0 sm:gap-4">
           <ChapterNavigationButton direction="left" />
           <BibleChapterVersionMenuBar

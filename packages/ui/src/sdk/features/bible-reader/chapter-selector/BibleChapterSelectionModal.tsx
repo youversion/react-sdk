@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { BookSelectionList } from "./BookSelectionList";
-import { useReaderContext } from "../../../context/ReaderContext";
+import { useReaderContext } from "../../../context";
 import { useBooks } from "../../../hooks";
 import { Chapter } from "@youversion/bible-core";
 import { ModalHeader, SearchBar, SlideInModal } from "../../../shared";
@@ -73,7 +73,7 @@ export function BibleChapterSelectionModal({
       distance={screenEdgeGap ?? 100}
       backdrop={true}
       closeOnClickOutside={true}
-      className="w-full sm:w-[500px] rounded-lg"
+      className="w-full sm:w-[500px] sm:rounded-lg"
     >
       <ModalHeader title="Books" onCloseClicked={onClose}>
         <SearchBar onChange={(v) => setBooksSearch(v)} debounceTime={50} />

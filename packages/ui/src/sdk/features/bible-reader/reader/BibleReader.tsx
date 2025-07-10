@@ -2,7 +2,7 @@
 
 import { ReaderProvider } from "../../../context";
 import { useBook, useChapter, useVersion } from "../../../hooks";
-import { BibleReaderNavigator } from "../navigation/BibleReaderNavigator";
+import { BibleReaderNavigator } from "../navigation";
 import { ChapterRenderer } from "./ChapterRenderer";
 
 const DEFAULT_VERSION = 206;
@@ -13,12 +13,14 @@ interface Props {
   defaultVersion?: number;
   defaultBook?: string;
   defaultChapter?: number;
+  navPlacement?: 'bottom' | 'top';
 }
 
 export function BibleReader({
   defaultVersion = DEFAULT_VERSION,
   defaultBook = DEFAULT_BOOK,
   defaultChapter = DEFAULT_CHAPTER,
+  navPlacement = 'bottom',
 }: Props) {
   const { version } = useVersion(defaultVersion);
   const { book } = useBook(defaultVersion, defaultBook);
@@ -38,7 +40,7 @@ export function BibleReader({
       <div className="mb-20">
         <ChapterRenderer />
       </div>
-      <BibleReaderNavigator />
+      <BibleReaderNavigator placement={navPlacement} />
     </ReaderProvider>
   );
 }
