@@ -3,10 +3,12 @@
 import { ReaderProvider } from "../../../context";
 import { useBook, useChapter, useVersion } from "../../../hooks";
 import { Search } from "../../search/Search";
-import { VerseActionModal } from "../../verse-action-picker/VerseActionModal";
 import { VerseSelectionProvider } from "../../verse-selection";
 import { BibleReaderNavigator } from "../navigation";
 import { ChapterRenderer } from "./ChapterRenderer";
+import { DockedVerseActionBar } from "../../verse-action-picker/DockedVerseActionBar";
+import { useBreakpoint } from "../../../hooks/utility";
+import { MobileVerseActionBar } from "../../verse-action-picker/MobileVerseActionBar";
 
 const DEFAULT_VERSION = 206;
 const DEFAULT_BOOK = "GEN";
@@ -28,10 +30,18 @@ export function BibleReader({
   const { version } = useVersion(defaultVersion);
   const { book } = useBook(defaultVersion, defaultBook);
   const { chapter } = useChapter(defaultVersion, defaultBook, defaultChapter);
+  const breakpoint = useBreakpoint();
 
   if (!version || !book || !chapter) {
     return <></>;
   }
+
+  const actionBar =
+    breakpoint === "xs" ? (
+      <MobileVerseActionBar position="bottom" />
+    ) : (
+      <DockedVerseActionBar position="right" />
+    );
 
   return (
     <ReaderProvider
@@ -45,7 +55,7 @@ export function BibleReader({
         <div className="mb-20">
           <ChapterRenderer />
         </div>
-        <VerseActionModal />
+        {actionBar}
         <BibleReaderNavigator placement={navPlacement} />
       </VerseSelectionProvider>
     </ReaderProvider>

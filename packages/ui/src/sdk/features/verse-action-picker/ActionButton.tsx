@@ -1,36 +1,52 @@
-import clsx from "clsx";
+import React from "react";
 
-export enum ActionButtonType {
-  pill = "pill",
-  default = "default",
-  circle = "circle",
+export type ActionButtonType = "circle" | "regular";
+
+interface BaseActionButtonProps {
+  onClick: () => void;
+  className?: string;
 }
 
-export function ActionButton({
-  children,
-  onClick,
-  type = ActionButtonType.default,
-}: {
-  children: React.ReactNode;
-  onClick: () => void;
-  type?: ActionButtonType;
-}) {
-  const className = clsx("cursor-pointer", {
-    "rounded-xl w-fit px-6 py-2 flex flex-col items-center":
-      type === ActionButtonType.default,
-    "rounded-3xl w-fit p-2 flex flex items-center":
-      type === ActionButtonType.pill,
-    "rounded-full w-[40px] h-[40px] p-2 flex flex items-center":
-      type === ActionButtonType.circle,
-  });
+interface RegularActionButtonProps extends BaseActionButtonProps {
+  type: "regular";
+  icon: React.ReactNode;
+  text: string;
+}
 
+interface CircleActionButtonProps extends BaseActionButtonProps {
+  type: "circle";
+  icon: React.ReactNode;
+}
+
+type ActionButtonProps = RegularActionButtonProps | CircleActionButtonProps;
+
+export function ActionButton(props: ActionButtonProps) {
+  const { onClick, className = "", type } = props;
+
+  const baseStyles = "flex items-center justify-center cursor-pointer";
+  const backgroundColor = "#EDEBEB";
+
+  if (type === "circle") {
+    return (
+      <div
+        onClick={onClick}
+        className={`${baseStyles} w-10 h-10 rounded-full ${className}`}
+        style={{ backgroundColor }}
+      >
+        {props.icon}
+      </div>
+    );
+  }
+
+  // Regular type
   return (
     <div
       onClick={onClick}
-      className={className}
-      style={{ backgroundColor: "#EDEBEB" }}
+      className={`${baseStyles} gap-1 p-2 flex-wrap text-xs ${className}`}
+      style={{ backgroundColor }}
     >
-      {children}
+      {props.icon}
+      <span>{props.text}</span>
     </div>
   );
 }

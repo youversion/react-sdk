@@ -10,7 +10,7 @@ interface AudioButtonProps {
 }
 
 export function AudioButton({ className }: AudioButtonProps) {
-  const { isPlaying, isLoading, isAvailable, playChapter, playVerses, stop } =
+  const { isPlaying, isLoading, isAvailable, playChapter, stop } =
     useReaderTextToSpeech({
       onPlay: () => console.log("Audio started"),
       onPause: () => console.log("Audio paused"),
@@ -18,16 +18,9 @@ export function AudioButton({ className }: AudioButtonProps) {
       onError: (error: Error) => console.error("Audio error:", error),
     });
 
-  const { selectedVerseUsfms } = useVerseSelection();
-
   function onClick() {
     if (isPlaying) {
       stop();
-      return;
-    }
-
-    if (selectedVerseUsfms && selectedVerseUsfms.size > 0) {
-      playVerses(Array.from(selectedVerseUsfms));
       return;
     }
 
