@@ -1,5 +1,6 @@
 import React from "react";
 import { useVerseHighlight } from "./VerseHighlightContext";
+import { hexToRgba } from "./highlights";
 
 interface HighlightableProps {
   usfm: string;
@@ -39,7 +40,7 @@ export function Highlightable({
   return (
     <div
       className={`relative ${className}`}
-      style={{ backgroundColor: highlight.color }}
+      style={{ backgroundColor: hexToRgba(highlight.color, 0.35) }}
     >
       {children}
     </div>

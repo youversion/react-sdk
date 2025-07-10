@@ -1,6 +1,7 @@
 import { useVerseHighlight } from "./VerseHighlightContext";
 import { useEffect, useRef } from "react";
 import { useVerseSelection } from "@youversion/bible-hooks";
+import { hexToRgba } from "./highlights";
 
 interface Props {
   children: React.ReactNode;
@@ -50,7 +51,10 @@ export function ChapterHighlights({ children, className = "" }: Props) {
       if (element) {
         const contentElement = element.querySelector(".content") as HTMLElement;
         if (contentElement) {
-          contentElement.style.backgroundColor = highlight.color;
+          contentElement.style.backgroundColor = hexToRgba(
+            highlight.color,
+            0.35,
+          );
         }
       }
     });
