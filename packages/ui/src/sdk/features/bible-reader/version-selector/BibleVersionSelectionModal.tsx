@@ -1,10 +1,12 @@
-import { useMemo, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { BibleVersionLanguageFilter } from "./BibleVersionLangaugeFilter";
 import { useReaderContext } from "../../../context";
 import { useVersions } from "../../../hooks";
 import { Version } from "@youversion/bible-core";
 import { ModalHeader, SearchBar, SlideInModal } from "../../../shared";
 import { VersionSelectionList } from "..";
+import { useFilteredVersions } from "../../../hooks/useFilteredVersions";
+import { LANGUAGES } from "../../../shared/constants";
 
 interface Props {
   onSelect: (selection: Version) => void;
@@ -19,47 +21,6 @@ interface Props {
 const DEFAULT_SCREEN_EDGE_GAP = 100;
 const DEFAULT_DEBOUNCE_TIME = 50;
 
-/**
- * Custom hook to filter versions based on search term
- */
-function useFilteredVersions(
-  versions: Version[],
-  searchTerm: string,
-  selectedLanguage: string
-): Version[] {
-  return useMemo(() => {
-    let result = [...versions];
-
-    // Language filter
-    if (selectedLanguage && selectedLanguage !== "*") {
-      result = result.filter(
-        (v) =>
-          (
-            v.language.iso_639_1 ||
-            v.language.iso_639_3 ||
-            "unknown"
-          ).toLowerCase() === selectedLanguage.toLowerCase()
-      );
-    }
-
-    // Search filter
-    if (searchTerm.trim()) {
-      const searchLower = searchTerm.toLowerCase();
-      result = result.filter(
-        (version) =>
-          version.title.toLowerCase().includes(searchLower) ||
-          version.abbreviation.toLowerCase().includes(searchLower) ||
-          version.language.iso_639_1.toLowerCase().includes(searchLower)
-      );
-    }
-
-    return result;
-  }, [versions, searchTerm, selectedLanguage]);
-}
-
-/**
- * Loading state component
- */
 function VersionLoadingState() {
   return <div className="p-4">Loading versions...</div>;
 }
@@ -74,7 +35,12 @@ export function BibleVersionSelectionModal({
   languages,
 }: Props) {
   const [versionSearch, setVersionSearch] = useState("");
-  const [selectedLanguage, setSelectedLanguage] = useState<string>("*");
+  const defaultLanguage = LANGUAGES.find(
+    (l) => l.iso === navigator.language.split("-")[0]
+  );
+  const [selectedLanguage, setSelectedLanguage] = useState<string>(
+    defaultLanguage?.iso || "*"
+  );
   const { currentVersion } = useReaderContext();
   const { versions, loading: isLoading } = useVersions("*");
 

@@ -35,7 +35,7 @@ export function BibleReader({
       currentChapter={chapter}
       currentVerse={null}
     >
-      <div className="mb-18">
+      <div className="mb-20">
         <ChapterRenderer />
       </div>
       <BibleReaderNavigator />
