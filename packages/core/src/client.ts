@@ -3,6 +3,7 @@ import { ApiConfig } from "./types";
 
 export type QueryParams = Record<string, string | number | boolean>;
 export type RequestData = Record<string, string | number | boolean | object>;
+export type RequestHeaders = Record<string, string>;
 
 /**
  * ApiClient is a lightweight HTTP client for interacting with the API using Axios.
@@ -40,9 +41,10 @@ export class ApiClient {
    * @param params - Optional query parameters to include in the request.
    * @returns A promise resolving to the response data of type T.
    */
-  async get<T>(path: string, params?: QueryParams): Promise<T> {
+  async get<T>(path: string, params?: QueryParams, headers?: RequestHeaders): Promise<T> {
     const response = await this.http.get<T>(path, {
       params,
+      headers,
     });
     return response.data;
   }
