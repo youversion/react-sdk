@@ -30,6 +30,7 @@ export const HighlightsTray = ({
 
       if (existingHighlight && existingHighlight.colorId === colorId) {
         // If same color is selected, remove highlight
+        toggleVerse(usfm);
         removeHighlight(usfm);
       } else {
         // Add or update highlight
