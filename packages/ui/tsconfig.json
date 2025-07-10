@@ -8,6 +8,13 @@
     "module": "ESNext",
     "moduleResolution": "bundler"
   },
-  "include": ["src/**/*"],
-  "exclude": ["dist", "node_modules", "**/*.stories.*", "**/*.test.*"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "**/*.stories.*",
+    "**/*.test.*"
+  ]
 }

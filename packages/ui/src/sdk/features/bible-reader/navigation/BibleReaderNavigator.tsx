@@ -8,6 +8,7 @@ import {
 import { BibleChapterVersionMenuBar } from "./BibleChapterVersionMenuBar";
 import { ChapterNavigationButton } from "./ChapterNavigationButton";
 import { BibleVersionSelectionModal } from "../version-selector";
+import { AudioButton } from "../audio/AudioButton";
 import { Version } from "@youversion/bible-core";
 
 interface Props {
@@ -73,17 +74,16 @@ export function BibleReaderNavigator({ placement = 'bottom' }: Props) {
             chapter={`${currentBook.title} ${currentChapter.title}`}
             version={`${currentVersion.abbreviation}`}
             onChapterButtonClicked={() => {
-                setIsChapterSelectionOpen((prev) => !prev);
-                setIsVersionSelectionOpen(false);
-              }
-            }
+              setIsChapterSelectionOpen((prev) => !prev);
+              setIsVersionSelectionOpen(false);
+            }}
             onVersionButtonClicked={() => {
-                setIsVersionSelectionOpen((prev) => !prev);
-                setIsChapterSelectionOpen(false);
-              }
-            }
+              setIsVersionSelectionOpen((prev) => !prev);
+              setIsChapterSelectionOpen(false);
+            }}
           />
           <ChapterNavigationButton direction="right" />
+          <AudioButton />
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@
 
 import { useReaderContext } from "../../../context";
 import { useVerses } from "../../../hooks";
+import { SelectableVerse, VerseSelectionProvider } from "../../verse-selection";
 
 export function ChapterRenderer() {
   const { currentVersion, currentBook, currentChapter } = useReaderContext();
@@ -60,13 +61,12 @@ export function ChapterRenderer() {
           {currentChapter.title}
         </div>
       </div>
-      {verses.data.map((verse) => (
-        <div
-          key={verse.usfm}
-          className="verse-content"
-          dangerouslySetInnerHTML={{ __html: verse.content }}
-        />
-      ))}
+      <VerseSelectionProvider>
+        {verses.data.map((verse) => (
+          <SelectableVerse key={verse.usfm} verse={verse} />
+        ))}
+      </VerseSelectionProvider>
     </div>
   );
 }
+

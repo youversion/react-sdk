@@ -192,6 +192,69 @@ export function ChevronRightIcon({
   );
 }
 
+// Simple media control icons -----------------------
+export function PlayIcon({ size = 24, className, ...props }: IconProps) {
+  return (
+    <svg
+      className={className}
+      {...props}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M6 4L20 12L6 20V4Z" fill="#121212" />
+    </svg>
+  );
+}
+
+export function StopIcon({ size = 24, className, ...props }: IconProps) {
+  return (
+    <svg
+      className={className}
+      {...props}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect x="6" y="6" width="12" height="12" fill="#121212" />
+    </svg>
+  );
+}
+
+// Loading spinner
+export function SpinnerIcon({ size = 24, className, ...props }: IconProps) {
+  return (
+    <svg
+      className={`animate-spin ${className ?? ""}`}
+      {...props}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="#121212"
+        strokeOpacity="0.25"
+        strokeWidth="4"
+      />
+      <path
+        d="M22 12a10 10 0 00-10-10"
+        stroke="#121212"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export function ChevronLeftIcon({ size = 24, className, ...props }: IconProps) {
   return (
     <svg

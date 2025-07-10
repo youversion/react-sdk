@@ -34,7 +34,10 @@ export default function RootLayout({
           />
         </header>
         <Analytics />
-        <Providers appId={process.env.BIBLE_SDK_APP_ID ?? ""}>
+        <Providers
+          appId={process.env.BIBLE_SDK_APP_ID ?? ""}
+          elevenLabsApiKey={process.env.ELEVEN_LABS_API_KEY ?? ""}
+        >
           {children}
         </Providers>
       </body>

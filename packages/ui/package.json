@@ -39,7 +39,7 @@
     "@storybook/react": "^9.0.16",
     "@storybook/react-webpack5": "^9.0.16",
     "@turbo/gen": "^2.5.0",
-    "@types/node": "^22.15.3",
+    "@types/add": "^2",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
     "@vitest/browser": "^3.2.4",
@@ -56,10 +56,13 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
+    "@elevenlabs/elevenlabs-js": "^2.5.0",
     "@tailwindcss/postcss": "^4.1.11",
     "@youversion/bible-core": "*",
+    "add": "^2.0.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-tiny-popover": "^8.1.6"
+    "react-tiny-popover": "^8.1.6",
+    "yarn": "^1.22.22"
   }
 }
