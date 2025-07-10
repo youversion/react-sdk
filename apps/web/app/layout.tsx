@@ -8,6 +8,9 @@ import { Analytics } from "@vercel/analytics/next";
 export const metadata: Metadata = {
   title: "YouBible",
   description: "Lightweight Bible Reader",
+  icons: {
+    apple: "/assets/logo.png",
+  },
 };
 
 export default function RootLayout({
