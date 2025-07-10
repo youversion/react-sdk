@@ -2,6 +2,7 @@
 
 import { useReaderContext, useVerses } from "@youversion/bible-hooks";
 import { SelectableVerse } from "../../verse-selection";
+import { ChapterHighlights } from "../../highlights";
 
 export function ChapterRenderer() {
   const { currentVersion, currentBook, currentChapter } = useReaderContext();
@@ -9,7 +10,7 @@ export function ChapterRenderer() {
   const { verses, loading, error } = useVerses(
     currentVersion.id,
     currentBook.usfm,
-    parseInt(currentChapter.title)
+    parseInt(currentChapter.title),
   );
 
   if (loading) {
@@ -60,9 +61,11 @@ export function ChapterRenderer() {
           {currentChapter.title}
         </div>
       </div>
-      {verses.data.map((verse) => (
-        <SelectableVerse key={verse.usfm} verse={verse} />
-      ))}
+      <ChapterHighlights>
+        {verses.data.map((verse) => (
+          <SelectableVerse key={verse.usfm} verse={verse} />
+        ))}
+      </ChapterHighlights>
     </div>
   );
 }
