@@ -1,5 +1,6 @@
 import { createPortal } from "react-dom";
 import { ReactNode, useEffect, useState, useRef } from "react";
+import clsx from "clsx";
 
 interface BottomModalProps {
   isOpen: boolean;
@@ -13,6 +14,7 @@ interface BottomModalProps {
   animationDuration?: number; // In milliseconds
   width?: string;
   backdrop?: boolean;
+  background?: boolean; // Whether to show white background
 }
 
 export function SlideInModal({
@@ -26,6 +28,7 @@ export function SlideInModal({
   closeOnEscape = true,
   animationDuration = 300,
   backdrop = false,
+  background = true,
 }: BottomModalProps) {
   const [isAnimating, setIsAnimating] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
@@ -74,12 +77,11 @@ export function SlideInModal({
       const clickY = e.clientY;
 
       // Check if click is within modal bounds
-      const isWithinModalBounds = (
+      const isWithinModalBounds =
         clickX >= modalRect.left &&
         clickX <= modalRect.right &&
         clickY >= modalRect.top - (position === "top" ? distance : 0) &&
-        clickY <= modalRect.bottom + (position === "bottom" ? distance : 0)
-      );
+        clickY <= modalRect.bottom + (position === "bottom" ? distance : 0);
 
       if (isWithinModalBounds) return;
 
@@ -106,7 +108,7 @@ export function SlideInModal({
       left: "50%",
       transform: "translateX(-50%)",
       zIndex: 800,
-      height: `calc(100vh - ${distance}px)`
+      height: `calc(100vh - ${distance}px)`,
     };
 
     if (position === "bottom") {
@@ -140,20 +142,19 @@ export function SlideInModal({
       {/* Modal */}
       <div
         ref={modalRef}
-        className={`
-          fixed inset-0 sm:max-h-[500px] sm:inset-auto
-          bg-white shadow-[0_0_3px_rgba(0,0,0,0.2)] border border-gray-200 overflow-hidden
-          transition-transform duration-${animationDuration} ease-out bg-white min-w-[200px] min-h-[150px]
-          scrollbar-hidden
-          ${className}
-        `}
+        className={clsx(
+          "fixed inset-0 sm:max-h-[500px] sm:inset-auto overflow-hidden ease-out min-w-[200px] min-h-[150px] scrollbar-hidden",
+          `transition-transform duration-${animationDuration}`,
+          {
+            "bg-white shadow-[0_0_3px_rgba(0,0,0,0.2)] border border-gray-200": background,
+          },
+          className
+        )}
         style={getPositionStyles()}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Content */}
-        <div
-          className="overflow-y-scroll scrollbar-hidden h-full"
-        >
+        <div className="overflow-y-scroll scrollbar-hidden h-full">
           {children}
         </div>
       </div>

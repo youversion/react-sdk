@@ -1,1 +1,1 @@
-export * from "./verse-action-picker";
+export * from "./VerseActionPicker";

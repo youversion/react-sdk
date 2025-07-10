@@ -1,3 +1,3 @@
-export * from './useReaderTextToSpeech';
-export * from './AudioButton';
-export * from './ElevenLabs';
+export * from "../../../hooks/useReaderTextToSpeech";
+export * from "./AudioButton";
+export * from "./ElevenLabs";

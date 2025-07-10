@@ -12,3 +12,4 @@ export * from "./useFilteredVersions";
 export * from "./useElevenLabsService";
 export * from "./useSearch";
 export * from "./useSearchClient";
+export * from "./useReaderTextToSpeech";

@@ -1,8 +1,8 @@
 import { useCallback } from "react";
-import { extractTextFromHtml } from "./ElevenLabs";
-import { useVerses } from "../../../hooks";
-import { useReaderContext } from "../../../context";
-import { useTextToSpeech } from "../../../hooks/useTextToSpeech";
+import { useVerses } from ".";
+import { useReaderContext } from "../context";
+import { useTextToSpeech } from "./useTextToSpeech";
+import { extractTextFromHtml } from "../utils/extractTextFromHTML";
 
 interface Props {
   autoPlay?: boolean;
@@ -32,18 +32,23 @@ export function useReaderTextToSpeech(options: Props = {}) {
     await textToSpeech.playText(text);
   }, [verses, textToSpeech]);
 
-  const playVerses = useCallback(async (verseUsfms: string[]) => {
-    if (!verses?.data?.length) return;
+  const playVerses = useCallback(
+    async (verseUsfms: string[]) => {
+      if (!verses?.data?.length) return;
 
-    const selectedVerses = verses.data.filter(v => verseUsfms.includes(v.usfm));
-    if (!selectedVerses.length) return;
+      const selectedVerses = verses.data.filter((v) =>
+        verseUsfms.includes(v.usfm)
+      );
+      if (!selectedVerses.length) return;
 
-    const text = selectedVerses
-      .map((v) => extractTextFromHtml(v.content))
-      .join(" ");
+      const text = selectedVerses
+        .map((v) => extractTextFromHtml(v.content))
+        .join(" ");
 
-    await textToSpeech.playText(text);
-  }, [verses, textToSpeech]);
+      await textToSpeech.playText(text);
+    },
+    [verses, textToSpeech]
+  );
 
   return {
     ...textToSpeech,

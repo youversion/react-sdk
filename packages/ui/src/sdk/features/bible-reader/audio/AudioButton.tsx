@@ -1,7 +1,7 @@
 "use client";
 
 import { PlayIcon, StopIcon as PauseIcon, SpinnerIcon } from "../../../shared";
-import { useReaderTextToSpeech } from "./useReaderTextToSpeech";
+import { useReaderTextToSpeech } from "../../../hooks/useReaderTextToSpeech";
 import { useVerseSelection } from "../../verse-selection";
 
 interface AudioButtonProps {
@@ -10,12 +10,13 @@ interface AudioButtonProps {
 }
 
 export function AudioButton({ className }: AudioButtonProps) {
-  const { isPlaying, isLoading, isAvailable, playChapter, playVerses, stop } = useReaderTextToSpeech({
-    onPlay: () => console.log('Audio started'),
-    onPause: () => console.log('Audio paused'),
-    onEnd: () => console.log('Audio ended'),
-    onError: (error: Error) => console.error('Audio error:', error),
-  });
+  const { isPlaying, isLoading, isAvailable, playChapter, playVerses, stop } =
+    useReaderTextToSpeech({
+      onPlay: () => console.log("Audio started"),
+      onPause: () => console.log("Audio paused"),
+      onEnd: () => console.log("Audio ended"),
+      onError: (error: Error) => console.error("Audio error:", error),
+    });
 
   const { selectedVerseUsfms } = useVerseSelection();
 

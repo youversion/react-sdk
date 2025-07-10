@@ -1,6 +1,6 @@
 "use client";
 
-import { BibleSDKProvider, ElevenLabsProvider } from "@youversion/bible-ui";
+import { BibleSDKProvider, ElevenLabsProvider, ToastProvider } from "@youversion/bible-ui";
 import { ReactNode } from "react";
 
 interface ProvidersProps {
@@ -17,7 +17,9 @@ export function Providers({
   return (
     <BibleSDKProvider appId={appId}>
       <ElevenLabsProvider elevenLabsApiKey={elevenLabsApiKey}>
-        {children}
+        <ToastProvider>
+          {children}
+        </ToastProvider>
       </ElevenLabsProvider>
     </BibleSDKProvider>
   );
