@@ -39,7 +39,7 @@ export function BibleChapterVersionMenuBar({
     font-bold text-[13px] 
     transition-all duration-150 ease-in-out
     select-none
-    ${disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer hover:shadow-sm"}
+    ${disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"}
   `;
 
   const chapterButtonClasses = `
@@ -66,8 +66,7 @@ export function BibleChapterVersionMenuBar({
   return (
     <div
       className={`
-      flex gap-[2px] rounded-full bg-white overflow-hidden w-fit 
-      shadow-sm md:drop-shadow-md md:hover:drop-shadow-lg transition-shadow duration-200
+      flex gap-[2px] rounded-full bg-white overflow-hidden w-fit
       ${className}
     `}
     >
