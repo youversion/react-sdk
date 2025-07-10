@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { BookSelectionList } from "./BookSelectionList";
-import { useReaderContext } from "../../context/ReaderContext";
-import { useBooks } from "../../hooks";
+import { useReaderContext } from "../../../context/ReaderContext";
+import { useBooks } from "../../../hooks";
 import { Chapter } from "@youversion/bible-core";
-import { ModalHeader, SearchBar, SlideInModal } from "../../shared";
+import { ModalHeader, SearchBar, SlideInModal } from "../../../shared";
 
 export type BookOption = {
   id: string;

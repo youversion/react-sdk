@@ -1,5 +1,5 @@
 import { Version } from "@youversion/bible-core";
-import { useVersions } from "../../hooks";
+import { useVersions } from "../../../hooks";
 import { BibleVersionAcronymCard } from "./BibleVersionAcronymCard";
 
 interface VersionSelectionListProps {

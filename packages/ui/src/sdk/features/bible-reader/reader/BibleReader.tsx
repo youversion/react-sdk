@@ -1,8 +1,8 @@
 "use client";
 
-import { ReaderProvider } from "../../context";
-import { useBook, useChapter, useVersion } from "../../hooks";
-import { BibleReaderNavigator } from "./BibleReaderNavigator";
+import { ReaderProvider } from "../../../context";
+import { useBook, useChapter, useVersion } from "../../../hooks";
+import { BibleReaderNavigator } from "../navigation/BibleReaderNavigator";
 import { ChapterRenderer } from "./ChapterRenderer";
 
 const DEFAULT_VERSION = 206;

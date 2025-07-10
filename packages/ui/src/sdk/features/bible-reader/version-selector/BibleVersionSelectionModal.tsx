@@ -1,10 +1,10 @@
 import { useMemo, useState, useCallback } from "react";
 import { BibleVersionLanguageFilter } from "./BibleVersionLangaugeFilter";
-import { useReaderContext } from "../../context";
-import { useVersions } from "../../hooks";
+import { useReaderContext } from "../../../context";
+import { useVersions } from "../../../hooks";
 import { Version } from "@youversion/bible-core";
-import { ModalHeader, SearchBar, SlideInModal } from "../../shared";
-import { VersionSelectionList } from ".";
+import { ModalHeader, SearchBar, SlideInModal } from "../../../shared";
+import { VersionSelectionList } from "..";
 
 interface Props {
   onSelect: (selection: Version) => void;

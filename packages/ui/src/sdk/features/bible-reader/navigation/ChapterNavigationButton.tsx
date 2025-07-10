@@ -1,14 +1,14 @@
-import { useReaderContext } from "../../context";
-import { useChapters } from "../../hooks";
-import { ChevronLeftIcon, ChevronRightIcon } from "../../shared";
+import { useReaderContext } from "../../../context";
+import { useChapters } from "../../../hooks";
+import { ChevronLeftIcon, ChevronRightIcon } from "../../../shared";
 
 interface ChapterNavigationButtonProps {
   direction: "left" | "right";
 }
 
 export function ChapterNavigationButton({
-                                          direction,
-                                        }: ChapterNavigationButtonProps) {
+  direction,
+}: ChapterNavigationButtonProps) {
   const { currentChapter, currentVersion, currentBook, setChapter } =
     useReaderContext();
 
