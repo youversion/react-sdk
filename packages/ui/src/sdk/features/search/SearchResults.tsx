@@ -3,10 +3,9 @@ import {
   useSearch,
   useReaderContext,
   useBibleClient,
+  useVerseSelection,
 } from "@youversion/bible-hooks";
 import { SearchResult } from "./SearchResult";
-import { findVerseElement } from "../bible-reader";
-import { useVerseSelection } from "../verse-selection";
 import { SearchResultItem } from "@youversion/bible-core";
 import { useState } from "react";
 import { useBreakpoint } from "../../hooks";
@@ -38,7 +37,7 @@ export function SearchResults({ query, isOpen, onClose }: Props) {
     if (book && chapter && verseNumber && !loading) {
       setIsNavigating(true);
       onClose();
-      //clearSelection();
+      clearSelection();
       const bookData = await bibleClient.getBook(currentVersion.id, book);
       const chapterData = await bibleClient.getChapter(
         currentVersion.id,
