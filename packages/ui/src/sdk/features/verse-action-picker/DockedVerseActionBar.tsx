@@ -4,6 +4,7 @@ import { CopyButton } from "./CopyButton";
 import { ShareButton } from "./ShareButton";
 import { Divider } from "../../shared/Divider";
 import { useEffect, useState } from "react";
+import { PlayVersesButton } from "./PlaySelectedButton";
 
 type BarPosition = "left" | "right" | "top" | "bottom";
 
@@ -77,6 +78,7 @@ export const DockedVerseActionBar = ({
       <Divider direction={dividerDirection} />
       <CopyButton type="circle" className="rounded-xl" />
       <ShareButton type="circle" className="rounded-xl" />
+      <PlayVersesButton type="circle" className="rounded-xl" />
     </div>
   );
 };

@@ -49,13 +49,8 @@ export function ChapterHighlights({ children, className = "" }: Props) {
         `[data-usfm="${highlight.usfm}"]`,
       ) as HTMLElement;
       if (element) {
-        const contentElement = element.querySelector(".content") as HTMLElement;
-        if (contentElement) {
-          contentElement.style.backgroundColor = hexToRgba(
-            highlight.color,
-            0.35,
-          );
-        }
+        const contentElement = element.querySelector(".verse") as HTMLElement;
+        contentElement.style.backgroundColor = hexToRgba(highlight.color, 0.3);
       }
     });
   }, [highlights, selectedVerseUsfms]);
