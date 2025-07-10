@@ -43,42 +43,54 @@ export function BibleReaderNavigator({ placement = "bottom" }: Props) {
     }
   }
 
-  async function onVersionSelection(newVersion: Version) {
-    setVersion(newVersion);
-
+  async function findMatchingBookAndChapter(newVersion: Version) {
     const books = await bibleClient.getBooks(newVersion.id);
-
-    // Attempt to find the current book in the new version
     const matchedBook = books.data.find((x) => x.usfm === currentBook.usfm);
+
     if (matchedBook) {
       setBook(matchedBook);
+
       const chapter = await bibleClient.getChapter(
         newVersion.id,
         matchedBook.usfm,
         parseInt(currentChapter.title)
       );
+
       if (chapter) {
         setChapter(chapter);
       }
-      setIsVersionSelectionOpen(false);
-      return;
-    } else {
-      // If the current book is not found, set the first book and chapter
-      const firstBook = books?.data[0];
-      if (firstBook) {
-        const chapters = await bibleClient.getChapters(
-          newVersion.id,
-          firstBook?.usfm
-        );
-        const firstChapter = chapters?.data[0];
 
-        setBook(firstBook);
-        if (firstChapter) {
-          setChapter(firstChapter);
-        }
-      }
+      return true;
     }
 
+    return false;
+  }
+
+  async function selectFirstBookAndChapter(newVersion: Version) {
+    const books = await bibleClient.getBooks(newVersion.id);
+    const firstBook = books?.data[0];
+
+    if (firstBook) {
+      setBook(firstBook);
+
+      const chapters = await bibleClient.getChapters(
+        newVersion.id,
+        firstBook.usfm
+      );
+      const firstChapter = chapters?.data[0];
+
+      if (firstChapter) {
+        setChapter(firstChapter);
+      }
+    }
+  }
+
+  async function onVersionSelection(newVersion: Version) {
+    setVersion(newVersion);
+    const found = await findMatchingBookAndChapter(newVersion);
+    if (!found) {
+      await selectFirstBookAndChapter(newVersion);
+    }
     setIsVersionSelectionOpen(false);
   }
 
