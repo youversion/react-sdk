@@ -65,6 +65,24 @@ export function SlideInModal({
     if (!isOpen || !closeOnClickOutside) return;
 
     const handleClickOutside = (e: MouseEvent) => {
+      if (!modalRef.current) return;
+
+      // THIS LOGIC SOLVES COMPETITION WITH BOTTOM OR TOP MENU BARS
+      // Only close the modal if click is above the modal.
+      const modalRect = modalRef.current.getBoundingClientRect();
+      const clickX = e.clientX;
+      const clickY = e.clientY;
+
+      // Check if click is within modal bounds
+      const isWithinModalBounds = (
+        clickX >= modalRect.left &&
+        clickX <= modalRect.right &&
+        clickY >= modalRect.top - (position === "top" ? distance : 0) &&
+        clickY <= modalRect.bottom + (position === "bottom" ? distance : 0)
+      );
+
+      if (isWithinModalBounds) return;
+
       if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
         onClose();
       }
@@ -72,7 +90,7 @@ export function SlideInModal({
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isOpen, closeOnClickOutside, onClose]);
+  }, [isOpen, closeOnClickOutside, onClose, distance, position]);
 
   // Handle backdrop click (only if backdrop is enabled)
   const handleBackdropClick = (e: React.MouseEvent) => {

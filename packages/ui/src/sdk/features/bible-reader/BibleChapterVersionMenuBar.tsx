@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, MouseEvent } from "react";
 
 interface BibleChapterVersionSelectorProps {
   chapter?: string;
   version?: string;
   onChapterButtonClicked?: () => void;
   onVersionButtonClicked?: () => void;
-  disabled?: boolean;
+  chapterButtonDisabled?: boolean;
+  versionButtonDisabled?: boolean;
   className?: string;
 }
 
@@ -16,20 +17,25 @@ export function BibleChapterVersionMenuBar({
   version = "NIV",
   onChapterButtonClicked,
   onVersionButtonClicked,
-  disabled = false,
+  chapterButtonDisabled = false,
+  versionButtonDisabled = false,
   className = "",
 }: BibleChapterVersionSelectorProps) {
   const [isChapterPressed, setIsChapterPressed] = useState(false);
   const [isVersionPressed, setIsVersionPressed] = useState(false);
 
-  const handleChapterClick = () => {
-    if (!disabled && onChapterButtonClicked) {
+  const handleChapterClick = (e: MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!chapterButtonDisabled && onChapterButtonClicked) {
       onChapterButtonClicked();
     }
   };
 
-  const handleVersionClick = () => {
-    if (!disabled && onVersionButtonClicked) {
+  const handleVersionClick = (e: MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!versionButtonDisabled && onVersionButtonClicked) {
       onVersionButtonClicked();
     }
   };
@@ -39,14 +45,14 @@ export function BibleChapterVersionMenuBar({
     font-bold text-[13px] 
     transition-all duration-150 ease-in-out
     select-none
-    ${disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer hover:shadow-sm"}
+    cursor-pointer hover:shadow-sm
   `;
 
   const chapterButtonClasses = `
     ${baseButtonClasses}
     flex-grow
     ${
-      isChapterPressed && !disabled
+      isChapterPressed && !chapterButtonDisabled
         ? "bg-[#e7e4e4] shadow-inner"
         : "bg-[#EDEBEB] hover:bg-gray-150 active:bg-[#e7e4e4]"
     }
@@ -57,7 +63,7 @@ export function BibleChapterVersionMenuBar({
     px-3
     uppercase
     ${
-      isVersionPressed && !disabled
+      isVersionPressed && !versionButtonDisabled
         ? "bg-[#e7e4e4] shadow-inner"
         : "bg-[#EDEBEB] hover:bg-gray-150 active:bg-[#e7e4e4]"
     }
@@ -74,10 +80,9 @@ export function BibleChapterVersionMenuBar({
       <button
         className={chapterButtonClasses}
         onClick={handleChapterClick}
-        onMouseDown={() => !disabled && setIsChapterPressed(true)}
+        onMouseDown={() => !chapterButtonDisabled && setIsChapterPressed(true)}
         onMouseUp={() => setIsChapterPressed(false)}
         onMouseLeave={() => setIsChapterPressed(false)}
-        disabled={disabled}
         aria-label={`Select chapter: ${chapter}`}
       >
         {chapter}
@@ -86,10 +91,9 @@ export function BibleChapterVersionMenuBar({
       <button
         className={versionButtonClasses}
         onClick={handleVersionClick}
-        onMouseDown={() => !disabled && setIsVersionPressed(true)}
+        onMouseDown={() => !versionButtonDisabled && setIsVersionPressed(true)}
         onMouseUp={() => setIsVersionPressed(false)}
         onMouseLeave={() => setIsVersionPressed(false)}
-        disabled={disabled}
         aria-label={`Select version: ${version}`}
       >
         {version.slice(0, 4)}

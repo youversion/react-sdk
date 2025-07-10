@@ -51,7 +51,7 @@ export function BibleReaderNavigator() {
         remainOpenOnSelect={true}
       />
       <div
-        className="fixed p-5 pb-7 sm:pb-5 bottom-0 left-0 right-0 z-900 bg-white border-t border-[#DDDBDB]"
+        className="fixed p-5 pb-7 sm:pb-5 bottom-0 left-0 right-0 z-900 bg-white border-t border-border-primary"
       >
         <div className="flex justify-between px-2 sm:justify-center sm:px-0 sm:gap-4">
           <ChapterNavigationButton direction="left" />
@@ -59,11 +59,15 @@ export function BibleReaderNavigator() {
             className="min-w-[215px]"
             chapter={`${currentBook.title} ${currentChapter.title}`}
             version={`${currentVersion.abbreviation}`}
-            onChapterButtonClicked={() =>
-              setIsChapterSelectionOpen(prev => !prev)
+            onChapterButtonClicked={() => {
+                setIsChapterSelectionOpen(prev => !prev);
+                setIsVersionSelectionOpen(false);
+              }
             }
-            onVersionButtonClicked={() =>
-              setIsVersionSelectionOpen(prev => !prev)
+            onVersionButtonClicked={() => {
+                setIsVersionSelectionOpen(prev => !prev);
+                setIsChapterSelectionOpen(false);
+              }
             }
           />
           <ChapterNavigationButton direction="right" />
