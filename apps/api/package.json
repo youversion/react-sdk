@@ -3,7 +3,7 @@
   "packageManager": "yarn@4.9.2",
   "type": "module",
   "scripts": {
-    "dev": "node --experimental-strip-types index.ts"
+    "dev": ""
   },
   "private": true,
   "dependencies": {

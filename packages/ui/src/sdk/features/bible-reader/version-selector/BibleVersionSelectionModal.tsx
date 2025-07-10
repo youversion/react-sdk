@@ -53,11 +53,9 @@ export function BibleVersionSelectionModal({
   const handleVersionSelect = useCallback(
     (version: Version) => {
       onSelect(version);
-      if (!remainOpenOnSelect) {
-        onClose();
-      }
+      onClose();
     },
-    [onSelect, onClose, remainOpenOnSelect]
+    [onSelect, onClose,]
   );
 
   const handleSearchChange = useCallback((searchValue: string) => {
