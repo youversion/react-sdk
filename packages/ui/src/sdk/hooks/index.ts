@@ -10,3 +10,5 @@ export * from "./utility/useDebounce";
 export * from "./useVersions";
 export * from "./useFilteredVersions";
 export * from "./useElevenLabsService";
+export * from "./useSearch";
+export * from "./useSearchClient";
