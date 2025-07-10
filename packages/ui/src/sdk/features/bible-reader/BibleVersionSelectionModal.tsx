@@ -1,16 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState, useCallback } from "react";
+import { BibleVersionLanguageFilter } from "./BibleVersionLangaugeFilter";
 import { useReaderContext } from "../../context";
 import { useVersions } from "../../hooks";
 import { Version } from "@youversion/bible-core";
 import { ModalHeader, SearchBar, SlideInModal } from "../../shared";
 import { VersionSelectionList } from ".";
-
-export type VersionOption = {
-  id: number;
-  name: string;
-  abbreviation: string;
-  language: string;
-};
 
 interface Props {
   onSelect: (selection: Version) => void;
@@ -22,75 +16,127 @@ interface Props {
   languages?: string[];
 }
 
+const DEFAULT_SCREEN_EDGE_GAP = 100;
+const DEFAULT_DEBOUNCE_TIME = 50;
+
+/**
+ * Custom hook to filter versions based on search term
+ */
+function useFilteredVersions(
+  versions: Version[],
+  searchTerm: string,
+  selectedLanguage: string
+): Version[] {
+  return useMemo(() => {
+    let result = [...versions];
+
+    // Language filter
+    if (selectedLanguage && selectedLanguage !== "*") {
+      result = result.filter(
+        (v) =>
+          (
+            v.language.iso_639_1 ||
+            v.language.iso_639_3 ||
+            "unknown"
+          ).toLowerCase() === selectedLanguage.toLowerCase()
+      );
+    }
+
+    // Search filter
+    if (searchTerm.trim()) {
+      const searchLower = searchTerm.toLowerCase();
+      result = result.filter(
+        (version) =>
+          version.title.toLowerCase().includes(searchLower) ||
+          version.abbreviation.toLowerCase().includes(searchLower) ||
+          version.language.iso_639_1.toLowerCase().includes(searchLower)
+      );
+    }
+
+    return result;
+  }, [versions, searchTerm, selectedLanguage]);
+}
+
+/**
+ * Loading state component
+ */
+function VersionLoadingState() {
+  return <div className="p-4">Loading versions...</div>;
+}
+
 export function BibleVersionSelectionModal({
-  modalPlacement,
-  screenEdgeGap,
+  modalPlacement = "bottom",
+  screenEdgeGap = DEFAULT_SCREEN_EDGE_GAP,
   isOpen,
   onSelect,
   onClose,
-  remainOpenOnSelect,
+  remainOpenOnSelect = false,
   languages,
 }: Props) {
-  const [filteredVersions, setFilteredVersions] = useState<Array<VersionOption>>([]);
   const [versionSearch, setVersionSearch] = useState("");
-
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("*");
   const { currentVersion } = useReaderContext();
-  const { versions, loading: loadingVersions } = useVersions(languages?.join(',') ?? '*');
+  const { versions, loading: isLoading } = useVersions("*");
 
-  const versionOptions: VersionOption[] = useMemo(() => {
-    if (!versions?.data) return [];
-    return versions.data.map((v) => ({
-      id: v.id,
-      name: v.title,
-      abbreviation: v.abbreviation,
-      language: v.language.name,
-    }));
-  }, [versions]);
+  const filteredVersions = useFilteredVersions(
+    versions?.data || [],
+    versionSearch,
+    selectedLanguage
+  );
 
-  useEffect(() => {
-    if ((versionOptions && versionSearch === "") || versionSearch == null) {
-      setFilteredVersions(versionOptions);
-      return;
-    }
-    setFilteredVersions(
-      versionOptions.filter((v: VersionOption) =>
-        v.name.toLowerCase().includes(versionSearch.toLowerCase()) ||
-        v.abbreviation.toLowerCase().includes(versionSearch.toLowerCase()) ||
-        v.language.toLowerCase().includes(versionSearch.toLowerCase())
-      )
-    );
-  }, [versionSearch, versionOptions]);
+  const handleVersionSelect = useCallback(
+    (version: Version) => {
+      onSelect(version);
+      if (!remainOpenOnSelect) {
+        onClose();
+      }
+    },
+    [onSelect, onClose, remainOpenOnSelect]
+  );
 
-  function onVersionSelected(version: Version) {
-    onSelect(version);
-
-    if (!remainOpenOnSelect) {
-      onClose();
-    }
-  }
+  const handleSearchChange = useCallback((searchValue: string) => {
+    setVersionSearch(searchValue);
+  }, []);
 
   return (
     <SlideInModal
       isOpen={isOpen}
       onClose={onClose}
-      position={modalPlacement ?? "bottom"}
-      distance={screenEdgeGap ?? 100}
-      backdrop={true}
-      closeOnClickOutside={true}
+      position={modalPlacement}
+      distance={screenEdgeGap}
+      backdrop
+      closeOnClickOutside
       className="w-screen sm:w-[500px] sm:rounded-lg"
     >
       <ModalHeader title="Bible Versions" onCloseClicked={onClose}>
-        <SearchBar onChange={(v) => setVersionSearch(v)} debounceTime={50} />
+        <div className="space-y-2 w-full">
+          <SearchBar
+            onChange={handleSearchChange}
+            debounceTime={DEFAULT_DEBOUNCE_TIME}
+            placeholder="Search versions..."
+          />
+          {(!languages || languages.length === 0) && (
+            <BibleVersionLanguageFilter
+              selectedLanguage={selectedLanguage}
+              onLanguageChange={(lang) => {
+                setSelectedLanguage(lang);
+                setVersionSearch("");
+              }}
+              className="w-full"
+            />
+          )}
+        </div>
       </ModalHeader>
-      {!loadingVersions ? (
+
+      {isLoading ? (
+        <VersionLoadingState />
+      ) : (
         <VersionSelectionList
           className="px-4 mt-2"
           versions={filteredVersions}
           currentVersionId={currentVersion.id}
-          onSelect={onVersionSelected}
+          onSelect={handleVersionSelect}
         />
-      ) : (
-        <div className="p-4">Loading versions...</div>
       )}
     </SlideInModal>
   );

@@ -5,9 +5,14 @@ import { useDebounce } from "../hooks/utility/useDebounce";
 interface Props {
   onChange: (query: string) => void;
   debounceTime?: number;
+  placeholder?: string;
 }
 
-export function SearchBar({ onChange, debounceTime = 300 }: Props) {
+export function SearchBar({
+  onChange,
+  debounceTime = 300,
+  placeholder = "Search",
+}: Props) {
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query, debounceTime);
 
@@ -24,7 +29,7 @@ export function SearchBar({ onChange, debounceTime = 300 }: Props) {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search"
+        placeholder={placeholder}
         className="w-full bg-transparent outline-none text-md placeholder-[#636161]"
       />
     </div>

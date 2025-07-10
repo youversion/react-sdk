@@ -15,6 +15,7 @@
   },
   "scripts": {
     "build": "npm run build:css && tsc",
+    "build:watch": "npm run build:css -- --watch && tsc --watch",
     "build:css": "npx @tailwindcss/cli -i ./src/styles.css -o ./dist/styles.css",
     "watch:css": "npx @tailwindcss/cli -i ./src/styles.css -o ./dist/styles.css --watch",
     "dev": "tsc --watch",
