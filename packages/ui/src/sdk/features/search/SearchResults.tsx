@@ -92,7 +92,7 @@ export function SearchResults({ query, isOpen, onClose }: Props) {
         position="top"
         distance={breakpoint === "xs" ? 100 : 130}
         closeOnClickOutside
-        className="w-screen top-0 sm:w-[500px] sm:rounded-lg"
+        className="w-screen top-0 sm:w-[500px] sm:rounded-lg touch-none"
       >
         <ModalHeader title="Search Results" onCloseClicked={onClose} />
 
