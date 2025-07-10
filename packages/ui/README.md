@@ -1,12 +1,12 @@
 # @youversion/bible-ui
 
-A comprehensive React UI component library for building Bible applications. This package provides ready-to-use components, hooks, and providers for creating rich Bible reading experiences with features like verse selection, audio playback, search, and user authentication.
+A comprehensive React UI component library for building Bible applications. This package provides ready-to-use components, hooks, and providers for creating rich Bible reading experiences with features like verse selection, highlighting, audio playback, search, and user authentication.
 
 ## Getting Started
 
-Before using the components, you'll need to obtain an App ID from the [YouVersion Developer Portal](https://developers.youversion.com/).
+Before using the components, you'll need to obtain an App ID from the YouVersion Developer Portal.
 
-## Installation
+### Installation
 
 ```bash
 # npm
@@ -22,10 +22,9 @@ pnpm add @youversion/bible-ui @youversion/bible-core
 ## Quick Start
 
 ### CSS Import
-
 TailwindCSS is required for styling. Import the required CSS file in your application:
 
-```ts
+```tsx
 import "@youversion/bible-ui/styles.css";
 ```
 
@@ -47,6 +46,7 @@ function App() {
 
 - **Complete Bible Reader** - Full-featured Bible reading component with navigation
 - **Verse Selection** - Interactive verse selection with action menus
+- **Verse Highlighting** - Color-coded verse highlighting with persistent storage
 - **Audio Playback** - Text-to-speech integration with ElevenLabs
 - **Search Functionality** - Powerful Bible search with result highlighting
 - **Authentication** - YouVersion login integration
@@ -65,7 +65,9 @@ import {
   ChapterRenderer,
   BibleReaderNavigator,
   VerseSelectionProvider,
+  VerseHighlightProvider,
   VerseActionModal,
+  ChapterHighlights,
 } from "@youversion/bible-ui";
 
 function CustomBibleReader() {
@@ -77,13 +79,17 @@ function CustomBibleReader() {
         currentChapter={chapter}
         currentVerse={null}
       >
-        <VerseSelectionProvider>
-          <div className="bible-reader">
-            <ChapterRenderer />
-            <VerseActionModal />
-            <BibleReaderNavigator placement="bottom" />
-          </div>
-        </VerseSelectionProvider>
+        <VerseHighlightProvider>
+          <VerseSelectionProvider>
+            <div className="bible-reader">
+              <ChapterHighlights>
+                <ChapterRenderer />
+              </ChapterHighlights>
+              <VerseActionModal />
+              <BibleReaderNavigator placement="bottom" />
+            </div>
+          </VerseSelectionProvider>
+        </VerseHighlightProvider>
       </ReaderProvider>
     </BibleSDKProvider>
   );
@@ -93,7 +99,6 @@ function CustomBibleReader() {
 ## Core Components
 
 ### BibleReader
-
 The main component that provides a complete Bible reading experience.
 
 ```tsx
@@ -103,7 +108,6 @@ import { BibleReader } from "@youversion/bible-ui";
 ```
 
 ### ChapterRenderer
-
 Renders Bible chapter content with verse selection capabilities.
 
 ```tsx
@@ -113,7 +117,6 @@ import { ChapterRenderer } from "@youversion/bible-ui";
 ```
 
 ### BibleReaderNavigator
-
 Navigation component for switching between books, chapters, and versions.
 
 ```tsx
@@ -122,7 +125,42 @@ import { BibleReaderNavigator } from "@youversion/bible-ui";
 <BibleReaderNavigator placement="bottom" />;
 ```
 
-### Search Components
+## Highlighting Components
+
+### ChapterHighlights
+Automatically applies highlights to all verses within its children.
+
+```tsx
+import { ChapterHighlights } from "@youversion/bible-ui";
+
+<ChapterHighlights>
+  {verses.map((verse) => (
+    <SelectableVerse key={verse.usfm} verse={verse} />
+  ))}
+</ChapterHighlights>
+```
+
+### Highlightable
+Wraps individual verse components to apply highlights.
+
+```tsx
+import { Highlightable } from "@youversion/bible-ui";
+
+<Highlightable usfm="GEN.1.1">
+  <SelectableVerse verse={verse} />
+</Highlightable>
+```
+
+### HighlightsTray
+Color picker component for highlighting selected verses.
+
+```tsx
+import { HighlightsTray } from "@youversion/bible-ui";
+
+<HighlightsTray direction="horizontal" />
+```
+
+## Search Components
 
 Powerful search functionality with result highlighting.
 
@@ -133,7 +171,7 @@ import { Search, SearchResults } from '@youversion/bible-ui';
 <SearchResults />
 ```
 
-### Authentication
+## Authentication
 
 YouVersion login integration for personalized experiences.
 
@@ -178,6 +216,30 @@ const { chapter } = useChapter(206, "GEN", 1);
 const { verses } = useVerses(206, "GEN", 1);
 ```
 
+### Highlighting Hooks
+
+```tsx
+import { useVerseHighlight } from "@youversion/bible-ui";
+
+const { 
+  addHighlight, 
+  removeHighlight, 
+  getHighlight,
+  hasHighlight,
+  colors,
+  clearAllHighlights 
+} = useVerseHighlight();
+
+// Add a highlight
+addHighlight('GEN.1.1', 0); // Yellow highlight
+
+// Check if verse is highlighted
+const isHighlighted = hasHighlight('GEN.1.1');
+
+// Get highlight details
+const highlight = getHighlight('GEN.1.1');
+```
+
 ### Search Hooks
 
 ```tsx
@@ -208,7 +270,6 @@ const { login, logout, user, isLoggedIn } = useYouVersionLogin();
 ## Providers
 
 ### BibleSDKProvider
-
 Main provider that initializes the Bible SDK context.
 
 ```tsx
@@ -220,7 +281,6 @@ import { BibleSDKProvider } from "@youversion/bible-ui";
 ```
 
 ### ReaderProvider
-
 Provides reading context for Bible components.
 
 ```tsx
@@ -237,7 +297,6 @@ import { ReaderProvider } from "@youversion/bible-ui";
 ```
 
 ### VerseSelectionProvider
-
 Manages verse selection state across components.
 
 ```tsx
@@ -248,8 +307,18 @@ import { VerseSelectionProvider } from "@youversion/bible-ui";
 </VerseSelectionProvider>;
 ```
 
-### ElevenLabsProvider
+### VerseHighlightProvider
+Manages verse highlighting state with localStorage persistence.
 
+```tsx
+import { VerseHighlightProvider } from "@youversion/bible-ui";
+
+<VerseHighlightProvider>
+  {/* Components that need highlighting */}
+</VerseHighlightProvider>;
+```
+
+### ElevenLabsProvider
 Provides text-to-speech capabilities using ElevenLabs.
 
 ```tsx
@@ -260,11 +329,11 @@ import { ElevenLabsProvider } from "@youversion/bible-ui";
 </ElevenLabsProvider>;
 ```
 
-## <� Styling
+## Styling
 
 This package uses Tailwind CSS for styling. The components are designed to be customizable and themeable.
 
-## =� Responsive Design
+## Responsive Design
 
 All components are built with mobile-first responsive design principles:
 
@@ -273,7 +342,7 @@ All components are built with mobile-first responsive design principles:
 - Accessibility features built-in
 - Smooth animations and transitions
 
-## =' Configuration
+## Configuration
 
 ### Advanced Configuration
 
@@ -292,60 +361,59 @@ import { BibleSDKProvider } from "@youversion/bible-ui";
 </BibleSDKProvider>;
 ```
 
-## =� Component Categories
+## Component Categories
 
 ### Reading Components
-
-- `BibleReader` - Complete Bible reading experience
-- `ChapterRenderer` - Chapter content display
-- `SelectableVerse` - Individual verse with selection
-- `UnselectableVerse` - Read-only verse display
+- **BibleReader** - Complete Bible reading experience
+- **ChapterRenderer** - Chapter content display
+- **SelectableVerse** - Individual verse with selection
+- **UnselectableVerse** - Read-only verse display
 
 ### Navigation Components
-
-- `BibleReaderNavigator` - Main navigation bar
-- `BibleChapterVersionMenuBar` - Chapter/version selector
-- `ChapterNavigationButton` - Chapter navigation
-- `BookSelectionList` - Book selection interface
-- `ChapterGrid` - Chapter grid selector
+- **BibleReaderNavigator** - Main navigation bar
+- **BibleChapterVersionMenuBar** - Chapter/version selector
+- **ChapterNavigationButton** - Chapter navigation
+- **BookSelectionList** - Book selection interface
+- **ChapterGrid** - Chapter grid selector
 
 ### Selection Components
+- **BibleChapterSelectionModal** - Chapter selection modal
+- **BibleVersionSelectionModal** - Version selection modal
+- **VersionSelectionList** - Version list interface
+- **BibleVersionAcronymCard** - Version display card
 
-- `BibleChapterSelectionModal` - Chapter selection modal
-- `BibleVersionSelectionModal` - Version selection modal
-- `VersionSelectionList` - Version list interface
-- `BibleVersionAcronymCard` - Version display card
+### Highlighting Components
+- **ChapterHighlights** - Automatic chapter-wide highlighting
+- **Highlightable** - Individual verse highlighting wrapper
+- **HighlightsTray** - Color picker for highlighting
 
 ### Action Components
-
-- `VerseActionPicker` - Verse action menu
-- `VerseActionModal` - Action modal dialog
-- `ActionButton` - Individual action button
+- **VerseActionPicker** - Verse action menu
+- **VerseActionModal** - Action modal dialog
+- **ActionButton** - Individual action button
+- **DockedVerseActionBar** - Desktop action bar
+- **MobileVerseActionBar** - Mobile action bar
 
 ### Search Components
-
-- `Search` - Main search interface
-- `SearchResults` - Search results display
-- `SearchResult` - Individual search result
-- `SearchBar` - Search input component
+- **Search** - Main search interface
+- **SearchResults** - Search results display
+- **SearchResult** - Individual search result
+- **SearchBar** - Search input component
 
 ### Audio Components
-
-- `AudioButton` - Audio playback control
+- **AudioButton** - Audio playback control
 
 ### Authentication Components
-
-- `YouVersionLoginButton` - Login button
+- **YouVersionLoginButton** - Login button
 
 ### Utility Components
+- **Modal** - Generic modal component
+- **SlideInModal** - Slide-in modal variant
+- **ModalHeader** - Modal header component
+- **Icons** - Icon components
+- **Passage** - Passage display component
 
-- `Modal` - Generic modal component
-- `SlideInModal` - Slide-in modal variant
-- `ModalHeader` - Modal header component
-- `Icons` - Icon components
-- `Passage` - Passage display component
-
-## =� Error Handling
+## Error Handling
 
 The components include built-in error handling and loading states:
 
@@ -358,7 +426,7 @@ import { BibleReader } from "@youversion/bible-ui";
 />;
 ```
 
-## =� Performance
+## Performance
 
 The library is optimized for performance with:
 
@@ -368,10 +436,9 @@ The library is optimized for performance with:
 - Optimized re-renders
 - Tree-shaking support
 
-## =' Development
+## Development
 
 ### Prerequisites
-
 - Node.js 18+
 - React 18+
 - TypeScript 4.8+
@@ -395,7 +462,7 @@ yarn test
 yarn run lint
 ```
 
-## =� Storybook
+## Storybook
 
 View component documentation and examples:
 
@@ -403,6 +470,7 @@ View component documentation and examples:
 yarn run storybook
 ```
 
-## =� Related Packages
+## Related Packages
 
-- `@youversion/bible-core` - Core TypeScript library for Bible data
+- **[@youversion/bible-core](https://www.npmjs.com/package/@youversion/bible-core)** - Core TypeScript library for Bible data
+- **[Complete Features Guide](./FEATURES.md)** - Comprehensive documentation of all SDK features

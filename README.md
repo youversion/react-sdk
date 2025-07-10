@@ -1,135 +1,158 @@
-# Turborepo starter
+# Bible SDK
 
-This Turborepo starter is maintained by the Turborepo core team.
+A comprehensive, modular Bible SDK built with TypeScript and React. This monorepo contains core data clients, UI components, and hooks for building modern Bible applications.
 
-## Using this example
+## What's Inside
 
-Run the following command:
+### Bible SDK Packages
+- **`@youversion/core`** - Core API clients and TypeScript types for Bible data
+- **`@youversion/ui`** - React UI components for Bible reading experiences
+- **`@youversion/native`** - React Native UI components for Bible reading experiences
+- **`@youversion/hooks`** - Shared hooks for React and React Native applications
 
-```sh
-npx create-turbo@latest
+### Example Applications
+- **`web`** - Example Bible reading application
+
+### Development Tools
+- **`@repo/eslint-config`** - ESLint configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- **`@repo/typescript-config`** - Shared TypeScript configurations
+
+All packages are 100% TypeScript with comprehensive type definitions.
+
+## Quick Start
+
+```bash
+# Install dependencies
+yarn install
+
+# Start development
+yarn build
+
+# Start development
+yarn dev
 ```
 
-## What's inside?
+## Documentation
 
-This Turborepo includes the following packages/apps:
+📚 **[Complete Features Guide](./packages/ui/README.md)** - Comprehensive documentation of all SDK features including:
+- Bible reading interface
+- Search functionality
+- Verse selection system
+- Actions and highlighting
+- Integration patterns
 
-### Apps and Packages
+📚 **[Core Guide](./packages/core/README.md)** - Comprehensive documentation core features:
+- Setup
+- API Client Usage
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@youversion/bible-ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## Development Tools
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+This monorepo uses Turborepo for efficient development and includes:
+- **TypeScript** for static type checking
+- **ESLint** for code linting
+- **Prettier** for code formatting
+- **Turbo** for build orchestration
 
-### Utilities
+---
 
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## Turborepo Commands
 
 ### Build
+Build all apps and packages:
 
-To build all apps and packages, run the following command:
+```bash
+cd bible-sdk
 
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+# With global turbo installed (recommended)
 turbo build
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+# Without global turbo
 npx turbo build
 yarn dlx turbo build
 pnpm exec turbo build
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+Build a specific package:
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+```bash
+# Build just the UI package
+turbo build --filter=@youversion/bible-ui
+
+# Build just the docs
 turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
 ```
 
-### Develop
+### Development
+Develop all apps and packages:
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+```bash
+# Start all development servers
 turbo dev
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+# Develop specific package
 turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+turbo dev --filter=docs
 ```
 
 ### Remote Caching
 
 > [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+> Vercel Remote Cache is free for all plans. Get started at [vercel.com](https://vercel.com).
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+Enable remote caching to share build artifacts across your team:
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+```bash
+# Authenticate with Vercel
 turbo login
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+# Link to remote cache
 turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
 ```
 
-## Useful Links
+## Package Structure
 
-Learn more about the power of Turborepo:
+```
+bible-sdk/
+├── apps/
+│   └── web/            # Example Bible app
+│   ├── api/           # API application
+│   ├── docs/          # Documentation site
+│   ├── web/           # Example Bible web app
+│   └── youbible/      # YouBible application
+├── packages/
+│   ├── core/           # Core API clients and types
+│   ├── ui/             # React UI components
+│   ├── hooks/          # Shared React hooks
+│   ├── native/         # React Native UI Components
+│   ├── eslint-config/  # ESLint configuration
+│   └── typescript-config/ # TypeScript configuration
+└── docs/
+    └── FEATURES.md     # Complete feature documentation
+│   ├── core/          # Core API clients and types
+│   ├── eslint-config/ # ESLint configuration
+│   ├── hooks/         # Shared React hooks
+│   ├── native/        # React Native UI Components
+│   ├── typescript-config/ # TypeScript configuration
+│   └── ui/            # React UI components with SDK features:
+│       ├── sdk/features/
+│       │   ├── bible-reader/
+│       │   ├── highlights/
+│       │   ├── search/
+│       │   ├── verse-action-picker/
+│       │   ├── verse-selection/
+│       │   └── youversion-auth/
+```
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
+## Learn More
+
+- 📖 **[Features Documentation](./docs/FEATURES.md)** - Complete guide to all SDK features
+- ⚡ **[Turborepo Documentation](https://turborepo.com/docs)** - Learn about the build system
+- 🔧 **[Package Development](./packages/README.md)** - Contributing to SDK packages
+
+### Turborepo Resources
+- [Tasks](https://turborepo.com/docs/core-concepts/tasks)
+- [Caching](https://turborepo.com/docs/core-concepts/caching)
 - [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
+- [Filtering](https://turborepo.com/docs/core-concepts/filtering)
 - [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+- [CLI Usage](https://turborepo.com/docs/reference/cli)
