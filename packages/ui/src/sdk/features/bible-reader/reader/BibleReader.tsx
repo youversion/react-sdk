@@ -4,6 +4,7 @@ import { ReaderProvider } from "../../../context";
 import { useBook, useChapter, useVersion } from "../../../hooks";
 import { BibleReaderNavigator } from "../navigation";
 import { ChapterRenderer } from "./ChapterRenderer";
+import { VerseSelectionProvider } from "../../verse-selection";
 
 const DEFAULT_VERSION = 206;
 const DEFAULT_BOOK = "GEN";
@@ -37,10 +38,12 @@ export function BibleReader({
       currentChapter={chapter}
       currentVerse={null}
     >
-      <div className="mb-20">
-        <ChapterRenderer />
-      </div>
-      <BibleReaderNavigator placement={navPlacement} />
+      <VerseSelectionProvider>
+        <div className="mb-20">
+          <ChapterRenderer />
+        </div>
+        <BibleReaderNavigator placement={navPlacement} />
+      </VerseSelectionProvider>
     </ReaderProvider>
   );
 }
