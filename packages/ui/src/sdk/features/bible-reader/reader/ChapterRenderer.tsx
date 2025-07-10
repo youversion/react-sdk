@@ -1,7 +1,7 @@
 "use client";
 
-import { useVerses } from "../../hooks";
-import { useReaderContext } from "../../context/ReaderContext";
+import { useReaderContext } from "../../../context";
+import { useVerses } from "../../../hooks";
 
 export function ChapterRenderer() {
   const { currentVersion, currentBook, currentChapter } = useReaderContext();

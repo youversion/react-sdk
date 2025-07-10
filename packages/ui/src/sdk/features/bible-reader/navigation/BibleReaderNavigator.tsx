@@ -1,21 +1,27 @@
-import { useReaderContext } from "../../context";
+import { useReaderContext } from "../../../context";
 import { useState } from "react";
-import { useBooks, useChapters } from "../../hooks";
+import { useBooks, useChapters } from "../../../hooks";
 import {
   BibleChapterSelectionModal,
   BookChapterSelection,
-} from "./BibleChapterSelectionModal";
+} from "../chapter-selector/BibleChapterSelectionModal";
 import { BibleChapterVersionMenuBar } from "./BibleChapterVersionMenuBar";
 import { ChapterNavigationButton } from "./ChapterNavigationButton";
-import { BibleVersionSelectionModal } from "./BibleVersionSelectionModal";
+import { BibleVersionSelectionModal } from "../version-selector/BibleVersionSelectionModal";
 import { Version } from "@youversion/bible-core";
 
 export function BibleReaderNavigator() {
   const [isChapterSelectionOpen, setIsChapterSelectionOpen] = useState(false);
   const [isVersionSelectionOpen, setIsVersionSelectionOpen] = useState(false);
 
-  const { setBook, setChapter, setVersion, currentVersion, currentBook, currentChapter } =
-    useReaderContext();
+  const {
+    setBook,
+    setChapter,
+    setVersion,
+    currentVersion,
+    currentBook,
+    currentChapter,
+  } = useReaderContext();
 
   const { books } = useBooks(currentVersion.id);
   const { chapters } = useChapters(currentVersion.id, currentBook.usfm);
@@ -50,9 +56,7 @@ export function BibleReaderNavigator() {
         screenEdgeGap={87}
         remainOpenOnSelect={true}
       />
-      <div
-        className="fixed p-5 pb-7 sm:pb-5 bottom-0 left-0 right-0 z-900 bg-white border-t border-border-primary"
-      >
+      <div className="fixed p-5 pb-7 sm:pb-5 bottom-0 left-0 right-0 z-900 bg-white border-t border-border-primary">
         <div className="flex justify-between px-2 sm:justify-center sm:px-0 sm:gap-4">
           <ChapterNavigationButton direction="left" />
           <BibleChapterVersionMenuBar
@@ -60,12 +64,12 @@ export function BibleReaderNavigator() {
             chapter={`${currentBook.title} ${currentChapter.title}`}
             version={`${currentVersion.abbreviation}`}
             onChapterButtonClicked={() => {
-                setIsChapterSelectionOpen(prev => !prev);
+                setIsChapterSelectionOpen((prev) => !prev);
                 setIsVersionSelectionOpen(false);
               }
             }
             onVersionButtonClicked={() => {
-                setIsVersionSelectionOpen(prev => !prev);
+                setIsVersionSelectionOpen((prev) => !prev);
                 setIsChapterSelectionOpen(false);
               }
             }

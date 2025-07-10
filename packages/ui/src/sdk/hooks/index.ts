@@ -8,3 +8,4 @@ export * from "./useVersion";
 export * from "./useYouVersionLogin";
 export * from "./utility/useDebounce";
 export * from "./useVersions";
+export * from "./useFilteredVersions";
