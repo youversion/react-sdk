@@ -1,8 +1,7 @@
 import { BoxArrowUpIcon } from "../../shared";
 import { ActionButton, ActionButtonType } from "./ActionButton";
 import { useVerseSelection } from "../verse-selection";
-import { useBibleClient } from "../../hooks/useBibleClient";
-import { useReaderContext } from "../../context";
+import { useBibleClient, useReaderContext } from "@youversion/bible-hooks";
 import { getVerseText } from "./utils";
 
 interface ShareButtonProps {
@@ -25,7 +24,7 @@ export const ShareButton = ({ type, className }: ShareButtonProps) => {
           usfms,
           bibleClient,
           currentVersion.id,
-          currentBook.usfm,
+          currentBook.usfm
         );
 
         await navigator.share({

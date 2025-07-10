@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext, useMemo } from "react";
-import { BibleSDKContext } from "../context";
+import { BibleSDKContext } from "./context";
 import { SearchClient, ApiClient } from "@youversion/bible-core";
 
 export function useSearchClient(): SearchClient {

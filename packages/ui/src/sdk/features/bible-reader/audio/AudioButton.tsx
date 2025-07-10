@@ -1,7 +1,7 @@
 "use client";
 
 import { PlayIcon, StopIcon as PauseIcon, SpinnerIcon } from "../../../shared";
-import { useReaderTextToSpeech } from "../../../hooks/useReaderTextToSpeech";
+import { useReaderTextToSpeech } from "@youversion/bible-hooks";
 import { useVerseSelection } from "../../verse-selection";
 
 interface AudioButtonProps {

@@ -1,6 +1,10 @@
-import { useReaderContext } from "../../../context";
 import { useState } from "react";
-import { useBook, useBooks, useChapters } from "../../../hooks";
+import {
+  useReaderContext,
+  useBooks,
+  useChapters,
+  useBibleClient,
+} from "@youversion/bible-hooks";
 import {
   BibleChapterSelectionModal,
   BookChapterSelection,
@@ -10,7 +14,6 @@ import { ChapterNavigationButton } from "./ChapterNavigationButton";
 import { BibleVersionSelectionModal } from "../version-selector";
 import { AudioButton } from "../audio/AudioButton";
 import { Version } from "@youversion/bible-core";
-import { useBibleClient } from "../../../hooks/useBibleClient";
 
 interface Props {
   placement?: "top" | "bottom";

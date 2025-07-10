@@ -1,8 +1,10 @@
 import { SearchResultItem } from "@youversion/bible-core";
-import { useVerse } from "../../hooks";
-import { useReaderContext } from "../../context";
+import {
+  useVerse,
+  useReaderContext,
+  useBibleClient,
+} from "@youversion/bible-hooks";
 import { Passage } from "../../shared/Passage";
-import { useBibleClient } from "../../hooks/useBibleClient";
 import { useState } from "react";
 import { useVerseSelection } from "../verse-selection";
 

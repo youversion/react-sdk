@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ElevenLabsContext } from "../context/ElevenLabsContext";
-import { ElevenLabsService } from "../features/bible-reader/audio/ElevenLabs";
+import { ElevenLabsContext } from "./context/ElevenLabsContext";
+import { ElevenLabsService } from "./useTextToSpeech";
 
 export const useElevenLabsService = () => {
   const context = useContext(ElevenLabsContext);

@@ -1,5 +1,5 @@
 import { BibleClient } from "@youversion/bible-core";
-import { extractTextFromHtml } from "../../../utils/extractTextFromHTML";
+import { extractTextFromHtml } from "@youversion/bible-hooks";
 
 export async function getVerseText(
   usfms: string[],

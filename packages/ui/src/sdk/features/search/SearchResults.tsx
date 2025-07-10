@@ -1,7 +1,6 @@
 import { SlideInModal } from "../../shared/slide-in-modal/SlideInModal";
-import { useSearch } from "../../hooks/useSearch";
+import { useSearch, useReaderContext } from "@youversion/bible-hooks";
 import { SearchResult } from "./SearchResult";
-import { useReaderContext } from "../../context";
 import { ModalHeader } from "../../shared";
 
 interface Props {

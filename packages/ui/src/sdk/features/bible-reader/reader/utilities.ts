@@ -30,5 +30,5 @@ export function findVerseElement(usfm: string) {
  * ```
  */
 export function findAllVerseElements() {
-  return document.querySelectorAll('[data-usfm]');
+  return document.querySelectorAll("[data-usfm]");
 }

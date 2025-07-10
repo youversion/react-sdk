@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { MagnifyingGlassIcon } from "./Icons";
-import { useDebounce } from "../hooks/utility/useDebounce";
+import { useDebounce } from "@youversion/bible-hooks";
 
 interface Props {
   onChange: (query: string) => void;

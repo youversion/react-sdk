@@ -1,5 +1,4 @@
-import { useReaderContext } from "../../../context";
-import { useChapters } from "../../../hooks";
+import { useReaderContext, useChapters } from "@youversion/bible-hooks";
 import { ChevronLeftIcon, ChevronRightIcon } from "../../../shared";
 
 interface ChapterNavigationButtonProps {

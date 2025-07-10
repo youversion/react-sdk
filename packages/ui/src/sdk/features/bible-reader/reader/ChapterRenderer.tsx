@@ -1,7 +1,6 @@
 "use client";
 
-import { useReaderContext } from "../../../context";
-import { useVerses } from "../../../hooks";
+import { useReaderContext, useVerses } from "@youversion/bible-hooks";
 import { SelectableVerse } from "../../verse-selection";
 
 export function ChapterRenderer() {
@@ -61,9 +60,9 @@ export function ChapterRenderer() {
           {currentChapter.title}
         </div>
       </div>
-        {verses.data.map((verse) => (
-          <SelectableVerse key={verse.usfm} verse={verse} />
-        ))}
+      {verses.data.map((verse) => (
+        <SelectableVerse key={verse.usfm} verse={verse} />
+      ))}
     </div>
   );
 }

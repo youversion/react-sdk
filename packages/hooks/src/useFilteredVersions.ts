@@ -2,7 +2,7 @@
 
 import { Version } from "@youversion/bible-core";
 import { useMemo } from "react";
-import { getISOFromVersion } from "../utils/version";
+import { getISOFromVersion } from "./utility/version";
 
 /**
  * Custom hook to filter versions based on search term

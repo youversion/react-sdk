@@ -1,7 +1,11 @@
 "use client";
 
-import { ReaderProvider } from "../../../context";
-import { useBook, useChapter, useVersion } from "../../../hooks";
+import {
+  ReaderProvider,
+  useBook,
+  useChapter,
+  useVersion,
+} from "@youversion/bible-hooks";
 import { Search } from "../../search/Search";
 import { VerseSelectionProvider } from "../../verse-selection";
 import { BibleReaderNavigator } from "../navigation";

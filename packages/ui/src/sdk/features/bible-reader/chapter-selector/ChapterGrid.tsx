@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useChapters } from "../../../hooks";
+import { useChapters } from "@youversion/bible-hooks";
 import { Chapter } from "@youversion/bible-core";
 
 interface ChapterGridProps {

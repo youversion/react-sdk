@@ -1,7 +1,7 @@
 import { BoxArrowUpIcon, PlayIcon, StopIcon } from "../../shared";
 import { ActionButton, ActionButtonType } from "./ActionButton";
 import { useVerseSelection } from "../verse-selection";
-import { useReaderTextToSpeech } from "../../hooks";
+import { useReaderTextToSpeech } from "@youversion/bible-hooks";
 
 interface Props {
   className?: string;

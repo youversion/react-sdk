@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 import { useVerses } from ".";
-import { useReaderContext } from "../context";
+import { useReaderContext } from "./context";
 import { useTextToSpeech } from "./useTextToSpeech";
-import { extractTextFromHtml } from "../utils/extractTextFromHTML";
+import { extractTextFromHtml } from "./utility/extractTextFromHTML";
 
 interface Props {
   autoPlay?: boolean;

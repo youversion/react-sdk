@@ -6,9 +6,9 @@ interface UnselectableVerseProps {
 }
 
 export function UnselectableVerse({
-                                  verse,
-                                  className = 'verse-content cursor-pointer',
-                                }: UnselectableVerseProps) {
+  verse,
+  className = "verse-content cursor-pointer",
+}: UnselectableVerseProps) {
   return (
     <div
       className={`${className}`}

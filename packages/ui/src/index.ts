@@ -8,3 +8,5 @@ export type {
   Version,
   Collection,
 } from "@youversion/bible-core";
+
+export { BibleSDKProvider, BibleSDKContext } from "@youversion/bible-hooks";

@@ -1,11 +1,9 @@
 import { useState, useCallback } from "react";
 import { BibleVersionLanguageFilter } from "./BibleVersionLangaugeFilter";
-import { useReaderContext } from "../../../context";
-import { useVersions } from "../../../hooks";
 import { Version } from "@youversion/bible-core";
 import { ModalHeader, SearchBar, SlideInModal } from "../../../shared";
 import { VersionSelectionList } from "..";
-import { useFilteredVersions } from "../../../hooks/useFilteredVersions";
+import { useFilteredVersions, useVersions, useReaderContext } from "@youversion/bible-hooks";
 import { LANGUAGES } from "../../../shared/constants";
 
 interface Props {
@@ -53,7 +51,7 @@ export function BibleVersionSelectionModal({
       onSelect(version);
       onClose();
     },
-    [onSelect, onClose,]
+    [onSelect, onClose]
   );
 
   const handleSearchChange = useCallback((searchValue: string) => {
@@ -75,7 +73,7 @@ export function BibleVersionSelectionModal({
           <SearchBar
             onChange={handleSearchChange}
             debounceTime={DEFAULT_DEBOUNCE_TIME}
-            placeholder="Search versions..."
+            placeholder="Search"
           />
           {(!languages || languages.length === 0) && (
             <BibleVersionLanguageFilter

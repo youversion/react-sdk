@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { BookSelectionList } from "./BookSelectionList";
-import { useReaderContext } from "../../../context";
-import { useBooks } from "../../../hooks";
+import { useReaderContext, useBooks } from "@youversion/bible-hooks";
 import { Chapter } from "@youversion/bible-core";
 import { ModalHeader, SearchBar, SlideInModal } from "../../../shared";
 

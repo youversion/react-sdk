@@ -1,0 +1,35 @@
+{
+  "name": "@youversion/bible-native",
+  "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "lint": "eslint . --max-warnings 0",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@youversion/bible-core": "*",
+    "@youversion/bible-hooks": "*",
+    "react": "^19.1.0",
+    "react-native": "^0.80.1"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "^19.1.8",
+    "@types/react-native": "^0.73.0",
+    "eslint": "^9.30.0",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3"
+  }
+}

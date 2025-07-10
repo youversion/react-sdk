@@ -1,9 +1,9 @@
 import { BoxStackIcon } from "../../shared";
 import { useVerseSelection } from "../verse-selection";
-import { useBibleClient } from "../../hooks/useBibleClient";
-import { useReaderContext, useToast } from "../../context";
+import { useBibleClient, useReaderContext } from "@youversion/bible-hooks";
 import { ActionButton, ActionButtonType } from "./ActionButton";
 import { getVerseText } from "./utils";
+import { useToast } from "../../context";
 
 interface CopyButtonProps {
   hideText?: boolean;
@@ -24,7 +24,7 @@ export const CopyButton = ({ hideText, className, type }: CopyButtonProps) => {
       usfms,
       bibleClient,
       currentVersion.id,
-      currentBook.usfm,
+      currentBook.usfm
     );
 
     await navigator.clipboard.writeText(text);
