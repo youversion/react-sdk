@@ -2,6 +2,7 @@
 
 import { Version } from "@youversion/bible-core";
 import { useMemo } from "react";
+import { getISOFromVersion } from "../utils/version";
 
 /**
  * Custom hook to filter versions based on search term
@@ -17,12 +18,9 @@ export function useFilteredVersions(
     // Language filter
     if (selectedLanguage && selectedLanguage !== "*") {
       result = result.filter(
-        (v) =>
-          (
-            v.language.iso_639_1 ||
-            v.language.iso_639_3 ||
-            "unknown"
-          ).toLowerCase() === selectedLanguage.toLowerCase()
+        (version) =>
+          getISOFromVersion(version).toLowerCase() ===
+          selectedLanguage.toLowerCase()
       );
     }
 
@@ -33,7 +31,7 @@ export function useFilteredVersions(
         (version) =>
           version.title.toLowerCase().includes(searchLower) ||
           version.abbreviation.toLowerCase().includes(searchLower) ||
-          version.language.iso_639_1.toLowerCase().includes(searchLower)
+          getISOFromVersion(version).toLowerCase().includes(searchLower)
       );
     }
 

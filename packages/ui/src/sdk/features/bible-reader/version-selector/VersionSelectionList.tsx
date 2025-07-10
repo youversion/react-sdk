@@ -7,7 +7,6 @@ interface VersionSelectionListProps {
   versions: Version[];
   currentVersionId: number;
   onSelect: (version: Version) => void;
-  selectedLanguage: string;
 }
 
 export function VersionSelectionList({
@@ -15,12 +14,11 @@ export function VersionSelectionList({
   versions,
   currentVersionId,
   onSelect,
-  selectedLanguage,
 }: VersionSelectionListProps) {
-  const { versions: fullVersions } = useVersions(selectedLanguage);
+  const { versions: allVersions } = useVersions("*");
 
   function handleVersionClick(versionId: number) {
-    const fullVersion = fullVersions?.data.find((v) => v.id === versionId);
+    const fullVersion = allVersions?.data.find((v) => v.id === versionId);
     if (fullVersion) {
       onSelect(fullVersion);
     }
