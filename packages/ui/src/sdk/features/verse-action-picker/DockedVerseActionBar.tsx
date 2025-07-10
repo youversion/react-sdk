@@ -1,4 +1,4 @@
-import { useVerseSelection } from "../verse-selection";
+import { useVerseSelection } from "@youversion/bible-hooks";
 import { HighlightsTray } from "./HighlightsTray";
 import { CopyButton } from "./CopyButton";
 import { ShareButton } from "./ShareButton";

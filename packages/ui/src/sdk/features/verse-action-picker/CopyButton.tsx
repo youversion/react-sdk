@@ -1,6 +1,9 @@
 import { BoxStackIcon } from "../../shared";
-import { useVerseSelection } from "../verse-selection";
-import { useBibleClient, useReaderContext } from "@youversion/bible-hooks";
+import {
+  useBibleClient,
+  useReaderContext,
+  useVerseSelection,
+} from "@youversion/bible-hooks";
 import { ActionButton, ActionButtonType } from "./ActionButton";
 import { getVerseText } from "./utils";
 import { useToast } from "../../context";

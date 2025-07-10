@@ -1,11 +1,13 @@
 import { PropsWithChildren, useCallback, useState } from "react";
-import { VerseSelectionContext } from ".";
+import { VerseSelectionContext } from "./VerseSelectionContext";
 
 export function VerseSelectionProvider({ children }: PropsWithChildren) {
-  const [selectedVerseUsfms, setSelectedVerseUsfms] = useState<Set<string>>(new Set());
+  const [selectedVerseUsfms, setSelectedVerseUsfms] = useState<Set<string>>(
+    new Set()
+  );
 
   const toggleVerse = useCallback((usfm: string) => {
-    setSelectedVerseUsfms(prev => {
+    setSelectedVerseUsfms((prev) => {
       const newSet = new Set(prev); // Make a new set to trigger rerender
       if (newSet.has(usfm)) {
         newSet.delete(usfm);
@@ -16,9 +18,12 @@ export function VerseSelectionProvider({ children }: PropsWithChildren) {
     });
   }, []);
 
-  const isSelected = useCallback((usfm: string) => {
-    return selectedVerseUsfms.has(usfm);
-  }, [selectedVerseUsfms]);
+  const isSelected = useCallback(
+    (usfm: string) => {
+      return selectedVerseUsfms.has(usfm);
+    },
+    [selectedVerseUsfms]
+  );
 
   const clearSelection = useCallback(() => {
     setSelectedVerseUsfms(new Set());
