@@ -41,20 +41,19 @@ export function BibleReaderNavigator() {
         onSelect={onSelection}
         isOpen={isChapterSelectionOpen}
         onClose={() => setIsChapterSelectionOpen(false)}
-        screenEdgeGap={90}
+        screenEdgeGap={87}
       />
       <BibleVersionSelectionModal
         onSelect={onVersionSelection}
         isOpen={isVersionSelectionOpen}
         onClose={() => setIsVersionSelectionOpen(false)}
-        screenEdgeGap={90}
+        screenEdgeGap={87}
         remainOpenOnSelect={true}
       />
       <div
-        className="fixed p-4 bottom-0 left-0 right-0 z-900 bg-white"
-        style={{ borderTop: "solid 1px #DDDBDB" }}
+        className="fixed p-5 pb-7 sm:pb-5 bottom-0 left-0 right-0 z-900 bg-white border-t border-[#DDDBDB]"
       >
-        <div className="flex gap-4 justify-center">
+        <div className="flex justify-between px-2 sm:justify-center sm:px-0 sm:gap-4">
           <ChapterNavigationButton direction="left" />
           <BibleChapterVersionMenuBar
             className="min-w-[215px]"

@@ -11,8 +11,6 @@ interface BottomModalProps {
   closeOnClickOutside?: boolean;
   closeOnEscape?: boolean;
   animationDuration?: number; // In milliseconds
-  maxHeight?: string;
-  minHeight?: string;
   width?: string;
   backdrop?: boolean;
 }
@@ -27,8 +25,6 @@ export function SlideInModal({
   closeOnClickOutside = false,
   closeOnEscape = true,
   animationDuration = 300,
-  maxHeight = "80vh",
-  minHeight,
   backdrop = false,
 }: BottomModalProps) {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -89,12 +85,10 @@ export function SlideInModal({
 
   const getPositionStyles = () => {
     const baseStyles = {
-      position: "fixed" as const,
       left: "50%",
       transform: "translateX(-50%)",
-      maxHeight: maxHeight,
-      minHeight: minHeight ?? maxHeight,
       zIndex: 800,
+      height: `calc(100vh - ${distance}px)`
     };
 
     if (position === "bottom") {
@@ -129,6 +123,7 @@ export function SlideInModal({
       <div
         ref={modalRef}
         className={`
+          fixed inset-0 sm:max-h-[500px] sm:inset-auto
           bg-white shadow-[0_0_3px_rgba(0,0,0,0.2)] border border-gray-200 overflow-hidden
           transition-transform duration-${animationDuration} ease-out bg-white min-w-[200px] min-h-[150px]
           scrollbar-hidden
@@ -139,8 +134,7 @@ export function SlideInModal({
       >
         {/* Content */}
         <div
-          className="overflow-y-scroll scrollbar-hidden"
-          style={{ maxHeight: maxHeight }}
+          className="overflow-y-scroll scrollbar-hidden h-full"
         >
           {children}
         </div>

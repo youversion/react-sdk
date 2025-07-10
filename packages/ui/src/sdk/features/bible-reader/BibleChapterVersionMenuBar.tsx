@@ -35,7 +35,7 @@ export function BibleChapterVersionMenuBar({
   };
 
   const baseButtonClasses = `
-    relative py-2.5 px-6 
+    relative py-2.5 px-4 sm:px-6 
     font-bold text-[13px] 
     transition-all duration-150 ease-in-out
     select-none
@@ -55,6 +55,7 @@ export function BibleChapterVersionMenuBar({
   const versionButtonClasses = `
     ${baseButtonClasses}
     px-3
+    uppercase
     ${
       isVersionPressed && !disabled
         ? "bg-[#e7e4e4] shadow-inner"
@@ -91,7 +92,7 @@ export function BibleChapterVersionMenuBar({
         disabled={disabled}
         aria-label={`Select version: ${version}`}
       >
-        {version}
+        {version.slice(0, 4)}
       </button>
     </div>
   );
