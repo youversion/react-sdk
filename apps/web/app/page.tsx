@@ -3,5 +3,5 @@
 import { BibleReader } from "@youversion/bible-ui";
 
 export default function Home() {
-  return <BibleReader />;
+  return <BibleReader usePositionStorage />;
 }
