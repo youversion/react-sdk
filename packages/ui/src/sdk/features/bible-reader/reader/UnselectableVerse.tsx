@@ -7,7 +7,7 @@ interface UnselectableVerseProps {
 
 export function UnselectableVerse({
   verse,
-  className = "verse-content cursor-pointer",
+  className = "verse-content",
 }: UnselectableVerseProps) {
   return (
     <div

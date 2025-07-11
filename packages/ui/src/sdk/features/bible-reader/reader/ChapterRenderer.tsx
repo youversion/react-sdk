@@ -3,14 +3,47 @@
 import { useReaderContext, useVerses } from "@youversion/bible-hooks";
 import { SelectableVerse } from "../../verse-selection";
 import { ChapterHighlights } from "../../highlights";
+import { UnselectableVerse } from "./UnselectableVerse";
+import { useMemo } from "react";
 
-export function ChapterRenderer() {
+/**
+ * Interface representing properties for a component or configuration.
+ *
+ * @property {boolean} [enableHighlights]
+ * Indicates whether the highlights feature is enabled. If true, the component
+ * will require a parent VerseHighlightProvider and will display highlights. If
+ * false or undefined, highlights will be disabled.
+ */
+interface Props {
+  highlights?: boolean;
+  selectable?: boolean;
+}
+
+/**
+ * Renders the chapter content for the current book and chapter in the reader context.
+ * Supports optional highlighting of verses.
+ *
+ * @param highlights - If true, component requires a VerseHighlightProvider and
+ * will display highlights. If false or undefined, highlights will be disabled.
+ *
+ * @param selectable - If true, component requires a VerseSelectionProvider and
+ * If false none is needed and verses are not clickable.
+ *
+ * @return The rendered chapter content, including loading, error, and empty state handling,
+ * or the list of verses for the chapter with or without highlighting enabled.
+ */
+export function ChapterRenderer({ highlights, selectable }: Props) {
   const { currentVersion, currentBook, currentChapter } = useReaderContext();
 
   const { verses, loading, error } = useVerses(
     currentVersion.id,
     currentBook.usfm,
     parseInt(currentChapter.title),
+  );
+
+  const VerseComponent = useMemo(
+    () => (selectable ? SelectableVerse : UnselectableVerse),
+    [selectable],
   );
 
   if (loading) {
@@ -61,11 +94,17 @@ export function ChapterRenderer() {
           {currentChapter.title}
         </div>
       </div>
-      <ChapterHighlights>
-        {verses.data.map((verse) => (
-          <SelectableVerse key={verse.usfm} verse={verse} />
-        ))}
-      </ChapterHighlights>
+      {highlights ? (
+        <ChapterHighlights>
+          {verses.data.map((verse) => (
+            <VerseComponent key={verse.usfm} verse={verse} />
+          ))}
+        </ChapterHighlights>
+      ) : (
+        verses.data.map((verse) => (
+          <VerseComponent key={verse.usfm} verse={verse} />
+        ))
+      )}
     </div>
   );
 }

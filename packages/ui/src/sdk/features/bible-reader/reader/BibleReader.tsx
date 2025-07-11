@@ -14,7 +14,7 @@ import { DockedVerseActionBar } from "../../verse-action-picker";
 import { useBreakpoint } from "../../../hooks";
 import { MobileVerseActionBar } from "../../verse-action-picker/MobileVerseActionBar";
 import { VerseHighlightProvider } from "../../highlights";
-import { ToastProvider } from "../../../context/ToastContext";
+import { ToastProvider } from "../../../context";
 
 const DEFAULT_VERSION = 206;
 const DEFAULT_BOOK = "GEN";
@@ -62,7 +62,7 @@ export function BibleReader({
             <Search />
             <div className="mb-20">
               <ChapterSwipeNavigation>
-                <ChapterRenderer />
+                <ChapterRenderer highlights selectable />
               </ChapterSwipeNavigation>
             </div>
             {actionBar}
