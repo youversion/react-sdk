@@ -1,5 +1,11 @@
 # @youversion/bible-core
 
+## 0.4.0
+
+### Minor Changes
+
+- 53db5c6: Updates
+
 ## 0.3.0
 
 ### Minor Changes

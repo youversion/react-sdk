@@ -1,6 +1,6 @@
 {
   "name": "@youversion/bible-hooks",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publishConfig": {
     "access": "public"
   },
@@ -17,13 +17,15 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@youversion/bible-core": "*",
-    "react": "^19.1.0"
+    "@youversion/bible-core": "*"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "@types/react": "^19.1.0",
+    "@types/react": "^19.0.0",
     "eslint": "^9.30.0",
     "typescript": "^5.8.3"
   }
