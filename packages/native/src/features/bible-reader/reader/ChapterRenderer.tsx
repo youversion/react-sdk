@@ -6,8 +6,7 @@ import {
   ActivityIndicator,
   StyleSheet,
 } from "react-native";
-import { useReaderContext } from "../../../context";
-import { useVerses } from "@youversion/bible-hooks";
+import { useReaderContext, useVerses } from "@youversion/bible-hooks";
 import { SelectableVerse } from "../verse-selection/SelectableVerse";
 
 export function ChapterRenderer() {
