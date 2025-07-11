@@ -67,7 +67,8 @@ import {
   VerseSelectionProvider,
   VerseHighlightProvider,
   VerseActionModal,
-  ChapterHighlights,
+  ChapterHighlights, 
+  ChapterSwipeNavigation,
 } from "@youversion/bible-ui";
 
 function CustomBibleReader() {
@@ -83,10 +84,12 @@ function CustomBibleReader() {
           <VerseSelectionProvider>
             <div className="bible-reader">
               <ChapterHighlights>
-                <ChapterRenderer />
+                <ChapterSwipeNavigation>
+                  <ChapterRenderer />
+                </ChapterSwipeNavigation>
               </ChapterHighlights>
-              <VerseActionModal />
-              <BibleReaderNavigator placement="bottom" />
+              <VerseActionModal/>
+              <BibleReaderNavigator placement="bottom"/>
             </div>
           </VerseSelectionProvider>
         </VerseHighlightProvider>
@@ -126,6 +129,17 @@ import { BibleReaderNavigator } from "@youversion/bible-ui";
 ```
 
 ## Highlighting Components
+
+### ChapterSwipeNavigation
+Add touch swipe navigation to ChapterRenderer.
+
+```tsx
+import { ChapterSwipeNavigation } from "@youversion/bible-ui";
+
+<ChapterSwipeNavigation>
+  <ChapterRenderer />
+</ChapterSwipeNavigation>
+```
 
 ### ChapterHighlights
 Automatically applies highlights to all verses within its children.

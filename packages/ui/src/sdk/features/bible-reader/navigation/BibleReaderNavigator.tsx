@@ -12,8 +12,9 @@ import {
 import { BibleChapterVersionMenuBar } from "./BibleChapterVersionMenuBar";
 import { ChapterNavigationButton } from "./ChapterNavigationButton";
 import { BibleVersionSelectionModal } from "../version-selector";
-import { AudioButton } from "../audio/AudioButton";
+import { AudioButton } from "../audio";
 import { Version } from "@youversion/bible-core";
+import { useBreakpoint } from "../../../hooks";
 
 interface Props {
   placement?: "top" | "bottom";
@@ -37,6 +38,8 @@ export function BibleReaderNavigator({ placement = "bottom" }: Props) {
   const { books } = useBooks(currentVersion.id);
   const { chapters } = useChapters(currentVersion.id, currentBook.usfm);
 
+  const breakpoint = useBreakpoint();
+
   function onSelection(selection: BookChapterSelection) {
     const book = books?.data.find((b) => b.usfm === selection.bookId);
     if (book) {
@@ -56,7 +59,7 @@ export function BibleReaderNavigator({ placement = "bottom" }: Props) {
       const chapter = await bibleClient.getChapter(
         newVersion.id,
         matchedBook.usfm,
-        parseInt(currentChapter.title)
+        parseInt(currentChapter.title),
       );
 
       if (chapter) {
@@ -78,7 +81,7 @@ export function BibleReaderNavigator({ placement = "bottom" }: Props) {
 
       const chapters = await bibleClient.getChapters(
         newVersion.id,
-        firstBook.usfm
+        firstBook.usfm,
       );
       const firstChapter = chapters?.data[0];
 

@@ -8,7 +8,7 @@ import {
   VerseSelectionProvider,
 } from "@youversion/bible-hooks";
 import { Search } from "../../search";
-import { BibleReaderNavigator } from "../navigation";
+import { BibleReaderNavigator, ChapterSwipeNavigation } from "../navigation";
 import { ChapterRenderer } from "./ChapterRenderer";
 import { DockedVerseActionBar } from "../../verse-action-picker";
 import { useBreakpoint } from "../../../hooks";
@@ -59,7 +59,9 @@ export function BibleReader({
         <VerseSelectionProvider>
           <Search />
           <div className="mb-20">
-            <ChapterRenderer />
+            <ChapterSwipeNavigation>
+              <ChapterRenderer />
+            </ChapterSwipeNavigation>
           </div>
           {actionBar}
           <BibleReaderNavigator placement={navPlacement} />

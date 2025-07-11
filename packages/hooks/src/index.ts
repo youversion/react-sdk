@@ -17,3 +17,4 @@ export * from "./context";
 export * from "./utility";
 export * from "./useBibleClient";
 export * from "./useVerseSelection";
+export * from "./useChapterNavigation";

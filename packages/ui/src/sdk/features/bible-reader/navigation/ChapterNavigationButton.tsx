@@ -1,4 +1,4 @@
-import { useReaderContext, useChapters } from "@youversion/bible-hooks";
+import { useChapterNavigation } from "@youversion/bible-hooks";
 import { ChevronLeftIcon, ChevronRightIcon } from "../../../shared";
 
 interface ChapterNavigationButtonProps {
@@ -8,38 +8,20 @@ interface ChapterNavigationButtonProps {
 export function ChapterNavigationButton({
   direction,
 }: ChapterNavigationButtonProps) {
-  const { currentChapter, currentVersion, currentBook, setChapter } =
-    useReaderContext();
-
-  const { chapters, loading: chaptersLoading } = useChapters(
-    currentVersion.id,
-    currentBook.usfm
-  );
-
-  const currentChapterIndex =
-    chapters?.data.findIndex((c) => c.title === currentChapter.title) ?? -1;
-  const nextChapterIndex =
-    direction === "left" ? currentChapterIndex - 1 : currentChapterIndex + 1;
+  const {
+    canNavigatePrevious,
+    canNavigateNext,
+    navigateToPrevious,
+    navigateToNext,
+  } = useChapterNavigation();
 
   const icon =
     direction === "left" ? <ChevronLeftIcon /> : <ChevronRightIcon />;
 
-  // Check if navigation is possible
   const canNavigate =
-    !chaptersLoading &&
-    chapters?.data &&
-    currentChapterIndex !== -1 &&
-    nextChapterIndex >= 0 &&
-    nextChapterIndex < chapters.data.length;
-
-  const handleNavigation = () => {
-    if (canNavigate) {
-      const nextChapter = chapters.data[nextChapterIndex];
-      if (nextChapter) {
-        setChapter(nextChapter);
-      }
-    }
-  };
+    direction === "left" ? canNavigatePrevious : canNavigateNext;
+  const handleNavigation =
+    direction === "left" ? navigateToPrevious : navigateToNext;
 
   return (
     <button
