@@ -5,8 +5,8 @@ A comprehensive, modular Bible SDK built with TypeScript and React. This monorep
 ## What's Inside
 
 ### Bible SDK Packages
-- **`@youversion/core`** - Core API clients and TypeScript types for Bible data
-- **`@youversion/ui`** - React UI components for Bible reading experiences
+- **`@youversion/bible-core`** - Core API clients and TypeScript types for Bible data
+- **`@youversion/bible-ui`** - React UI components for Bible reading experiences
 - **`@youversion/native`** - React Native UI components for Bible reading experiences
 - **`@youversion/hooks`** - Shared hooks for React and React Native applications
 
