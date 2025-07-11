@@ -1,26 +1,28 @@
-import React from "react";
+import { ReactNode } from "react";
 import clsx from "clsx";
 
 export type ActionButtonType = "circle" | "regular";
 
-interface BaseActionButtonProps {
+export interface BaseActionButtonProps {
   onClick: () => void;
   className?: string;
   title?: string;
 }
 
-interface RegularActionButtonProps extends BaseActionButtonProps {
+export interface RegularActionButtonProps extends BaseActionButtonProps {
   type: "regular";
-  icon: React.ReactNode;
+  icon: ReactNode;
   text: string;
 }
 
-interface CircleActionButtonProps extends BaseActionButtonProps {
+export interface CircleActionButtonProps extends BaseActionButtonProps {
   type: "circle";
-  icon: React.ReactNode;
+  icon: ReactNode;
 }
 
-type ActionButtonProps = RegularActionButtonProps | CircleActionButtonProps;
+export type ActionButtonProps =
+  | RegularActionButtonProps
+  | CircleActionButtonProps;
 
 export function ActionButton(props: ActionButtonProps) {
   const { onClick, className = "", type, title } = props;

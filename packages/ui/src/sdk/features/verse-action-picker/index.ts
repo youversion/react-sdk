@@ -5,3 +5,4 @@ export * from "./ShareButton";
 export * from "./SelectedVerseDisplay";
 export * from "./DockedVerseActionBar";
 export * from "./PlaySelectedButton";
+export * from "./ActionButton";
