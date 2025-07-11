@@ -27,7 +27,7 @@ export const ShareButton = ({ type, className }: ShareButtonProps) => {
           usfms,
           bibleClient,
           currentVersion.id,
-          currentBook.usfm
+          currentBook.usfm,
         );
 
         await navigator.share({
@@ -44,6 +44,7 @@ export const ShareButton = ({ type, className }: ShareButtonProps) => {
     return (
       <ActionButton
         type={type}
+        title="Share Selected Verses"
         text={"Share"}
         icon={<BoxArrowUpIcon />}
         className={className}
@@ -55,6 +56,7 @@ export const ShareButton = ({ type, className }: ShareButtonProps) => {
     return (
       <ActionButton
         type={type}
+        title="Share Selected Verses"
         icon={<BoxArrowUpIcon />}
         className={className}
         onClick={handleShare}

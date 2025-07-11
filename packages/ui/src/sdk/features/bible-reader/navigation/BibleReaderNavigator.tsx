@@ -121,26 +121,51 @@ export function BibleReaderNavigator({ placement = "bottom" }: Props) {
         screenEdgeGap={87}
         modalPlacement={placement}
       />
-      <div
-        className={`fixed p-5 left-0 right-0 z-900 bg-white border-border-primary ${placement === "bottom" ? bottomClasses : topClasses}`}
-      >
-        <div className="flex justify-between px-2 sm:justify-center sm:px-0 sm:gap-4">
-          <ChapterNavigationButton direction="left" />
-          <BibleChapterVersionMenuBar
-            className="min-w-[215px]"
-            chapter={`${currentBook.title} ${currentChapter.title}`}
-            version={`${currentVersion.abbreviation}`}
-            onChapterButtonClicked={() => {
-              setIsChapterSelectionOpen((prev) => !prev);
-              setIsVersionSelectionOpen(false);
-            }}
-            onVersionButtonClicked={() => {
-              setIsVersionSelectionOpen((prev) => !prev);
-              setIsChapterSelectionOpen(false);
-            }}
-          />
-          <ChapterNavigationButton direction="right" />
+      {breakpoint === "xs" && (
+        <div
+          className="fixed bottom-0 flex items-center justify-center"
+          style={{
+            transform: "translateY(-100px) translateX(calc(50vw - 50%))",
+            zIndex: 100,
+          }}
+        >
           <AudioButton />
+        </div>
+      )}
+      <div
+        className={`fixed p-4 left-0 right-0 z-900 bg-white border-border-primary ${placement === "bottom" ? bottomClasses : topClasses}`}
+      >
+        <div className="flex justify-center w-full">
+          <div className="flex w-full sm:w-fit sm:justify-center justify-between gap-2 sm:gap-8 grow items-center">
+            <ChapterNavigationButton direction="left" />
+            <BibleChapterVersionMenuBar
+              className="min-w-[190px] sm:min-w-[215px]"
+              chapter={`${currentBook.title} ${currentChapter.title}`}
+              version={`${currentVersion.abbreviation}`}
+              onChapterButtonClicked={() => {
+                setIsChapterSelectionOpen((prev) => !prev);
+                setIsVersionSelectionOpen(false);
+              }}
+              onVersionButtonClicked={() => {
+                setIsVersionSelectionOpen((prev) => !prev);
+                setIsChapterSelectionOpen(false);
+              }}
+            />
+            <ChapterNavigationButton direction="right" />
+          </div>
+          {breakpoint !== "xs" ? (
+            <div
+              className="fixed right-0 flex h-fit"
+              style={{
+                justifyContent: "flex-end",
+                translate: "-25px",
+              }}
+            >
+              <AudioButton iconSize={20}>
+                <span className="text-xs text-center items-center">Listen</span>
+              </AudioButton>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

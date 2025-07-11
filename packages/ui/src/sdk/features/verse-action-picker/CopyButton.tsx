@@ -9,12 +9,11 @@ import { getVerseText } from "./utils";
 import { useToast } from "../../context";
 
 interface CopyButtonProps {
-  hideText?: boolean;
   className?: string;
   type: ActionButtonType;
 }
 
-export const CopyButton = ({ hideText, className, type }: CopyButtonProps) => {
+export const CopyButton = ({ className, type }: CopyButtonProps) => {
   const { selectedVerseUsfms } = useVerseSelection();
   const bibleClient = useBibleClient();
   const { currentVersion, currentBook } = useReaderContext();
@@ -27,7 +26,7 @@ export const CopyButton = ({ hideText, className, type }: CopyButtonProps) => {
       usfms,
       bibleClient,
       currentVersion.id,
-      currentBook.usfm
+      currentBook.usfm,
     );
 
     await navigator.clipboard.writeText(text);
@@ -38,6 +37,7 @@ export const CopyButton = ({ hideText, className, type }: CopyButtonProps) => {
     return (
       <ActionButton
         type={type}
+        title="Copy To Clipboard"
         text={"Copy"}
         icon={<BoxStackIcon />}
         className={className}
@@ -49,6 +49,7 @@ export const CopyButton = ({ hideText, className, type }: CopyButtonProps) => {
     return (
       <ActionButton
         type={type}
+        title="Copy To Clipboard"
         icon={<BoxStackIcon />}
         className={className}
         onClick={handleCopy}

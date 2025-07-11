@@ -5,6 +5,8 @@ import { ShareButton } from "./ShareButton";
 import { Divider } from "../../shared/Divider";
 import { useEffect, useState } from "react";
 import { PlayVersesButton } from "./PlaySelectedButton";
+import { ActionButton } from "./ActionButton";
+import { XIcon } from "../../shared";
 
 type BarPosition = "left" | "right" | "top" | "bottom";
 
@@ -76,9 +78,18 @@ export const DockedVerseActionBar = ({
     <div className={className}>
       <HighlightsTray direction={highlightDirection} />
       <Divider direction={dividerDirection} />
-      <CopyButton type="circle" className="rounded-xl" />
-      <ShareButton type="circle" className="rounded-xl" />
-      <PlayVersesButton type="circle" className="rounded-xl" />
+      <CopyButton type="circle" className="rounded-2xl" />
+      <ShareButton type="circle" className="rounded-2xl" />
+      <PlayVersesButton type="circle" className="rounded-2xl" />
+      <Divider direction={dividerDirection} />
+
+      <ActionButton
+        type={"circle"}
+        title="Clear Selected"
+        className="bg-none opacity-60 rounded-2xl"
+        icon={<XIcon />}
+        onClick={clearSelection}
+      />
     </div>
   );
 };

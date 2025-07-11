@@ -28,8 +28,9 @@ export function ChapterNavigationButton({
       onClick={handleNavigation}
       disabled={!canNavigate}
       className={`
-       p-3 sm:p-2 rounded-full transition-colors bg-[#EDEBEB] hover:shadow-sm
+       p-2 rounded-full transition-colors bg-[#EDEBEB] hover:shadow-sm
        text-gray-400 cursor-not-allowed hover:cursor-pointer active:bg-[#e7e4e4]`}
+      style={{ height: "fit-content" }}
     >
       {icon}
     </button>

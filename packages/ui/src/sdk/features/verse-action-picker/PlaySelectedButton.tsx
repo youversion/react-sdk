@@ -33,6 +33,7 @@ export const PlayVersesButton = ({ type, className }: Props) => {
     return (
       <ActionButton
         type={type}
+        title="Play Selected Verses"
         text={"Play"}
         icon={icon}
         className={className}
@@ -44,6 +45,7 @@ export const PlayVersesButton = ({ type, className }: Props) => {
     return (
       <ActionButton
         type={type}
+        title="Play Selected Verses"
         icon={icon}
         className={className}
         onClick={handlePlay}

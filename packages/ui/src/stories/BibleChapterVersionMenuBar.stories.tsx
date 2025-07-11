@@ -1,6 +1,5 @@
 import type { Meta } from "@storybook/react";
 import { BibleChapterVersionMenuBar } from "../sdk";
-import React from "react";
 
 const meta = {
   title: "Bible Components/Chapter & Version Menu Bar",
@@ -30,7 +29,7 @@ export function BasicRender() {
       <div className="flex gap-5">
         <div className="flex flex-col gap-2 w-full justify-between items-center text-center">
           <h1 className="font-bold text-lg">Disabled</h1>
-          <BibleChapterVersionMenuBar className="w-[600px]" disabled={true} />
+          <BibleChapterVersionMenuBar className="w-[400px]" />
         </div>
       </div>
     </div>

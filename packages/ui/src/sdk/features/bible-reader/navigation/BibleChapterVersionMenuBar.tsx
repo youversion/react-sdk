@@ -41,7 +41,7 @@ export function BibleChapterVersionMenuBar({
   };
 
   const baseButtonClasses = `
-    relative py-2.5 px-4 sm:px-6 
+    relative px-6 py-2.5
     font-bold text-[13px] 
     transition-all duration-150 ease-in-out
     select-none
@@ -72,7 +72,7 @@ export function BibleChapterVersionMenuBar({
   return (
     <div
       className={`
-      flex gap-[2px] rounded-full bg-white overflow-hidden w-fit
+      flex gap-[2px] rounded-full bg-white overflow-hidden w-fit h-fit
       ${className}
     `}
     >
