@@ -6,14 +6,6 @@ import { ChapterHighlights } from "../../highlights";
 import { UnselectableVerse } from "./UnselectableVerse";
 import { useMemo } from "react";
 
-/**
- * Interface representing properties for a component or configuration.
- *
- * @property {boolean} [enableHighlights]
- * Indicates whether the highlights feature is enabled. If true, the component
- * will require a parent VerseHighlightProvider and will display highlights. If
- * false or undefined, highlights will be disabled.
- */
 interface Props {
   highlights?: boolean;
   selectable?: boolean;
