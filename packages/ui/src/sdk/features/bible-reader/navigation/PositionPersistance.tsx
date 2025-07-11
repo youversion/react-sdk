@@ -54,6 +54,8 @@ export function saveBiblePositionToStorage(
   book: string,
   chapter: number,
 ) {
+  if (typeof window === "undefined") return;
+
   try {
     const position: SavedPosition = { version, book, chapter };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(position));
@@ -71,6 +73,8 @@ export function saveBiblePositionToStorage(
  * @return The saved Bible position object if available and valid, or null if no valid data is found.
  */
 export function getBiblePositionFromStorage() {
+  if (typeof window === "undefined") return null;
+
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
@@ -85,4 +89,15 @@ export function getBiblePositionFromStorage() {
   }
 
   return null;
+}
+
+/**
+ * Clears the saved position data from the browser's local storage.
+ *
+ * This method removes an item from the local storage identified by the predefined storage key.
+ * If the local storage is not supported, the method handles it gracefully without throwing an error.
+ */
+export function clearPositionStorage() {
+  if (typeof window === "undefined") return;
+  localStorage.removeItem(STORAGE_KEY);
 }

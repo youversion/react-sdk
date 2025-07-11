@@ -2,15 +2,14 @@
 
 import {
   ReaderProvider,
-  useBook,
-  useChapter,
-  useVersion,
+  useInitData,
   VerseSelectionProvider,
 } from "@youversion/bible-hooks";
 import { Search } from "../../search";
 import {
   BibleReaderNavigator,
   ChapterSwipeNavigation,
+  clearPositionStorage,
   getBiblePositionFromStorage,
   PositionPersistence,
 } from "../navigation";
@@ -20,6 +19,7 @@ import { useBreakpoint } from "../../../hooks";
 import { MobileVerseActionBar } from "../../verse-action-picker/MobileVerseActionBar";
 import { VerseHighlightProvider } from "../../highlights";
 import { ToastProvider } from "../../../context";
+import { ChapterLoading } from "./ChapterLoading";
 
 const DEFAULT_VERSION = 206;
 const DEFAULT_BOOK = "GEN";
@@ -40,25 +40,34 @@ export function BibleReader({
   navPlacement = "bottom",
   usePositionStorage = false,
 }: Props) {
-  const loadedPosition = usePositionStorage
+  const breakpoint = useBreakpoint();
+
+  const positionFromStorage = usePositionStorage
     ? getBiblePositionFromStorage()
     : null;
 
-  const resolvedVersion = loadedPosition?.version ?? defaultVersion;
-  const resolvedBook = loadedPosition?.book ?? defaultBook;
-  const resolvedChapter = loadedPosition?.chapter ?? defaultChapter;
-
-  const { version } = useVersion(resolvedVersion);
-  const { book } = useBook(resolvedVersion, resolvedBook);
-  const { chapter } = useChapter(
-    resolvedVersion,
-    resolvedBook,
-    resolvedChapter,
+  const { data, loading, error } = useInitData(
+    positionFromStorage ?? {
+      version: defaultVersion,
+      book: defaultBook,
+      chapter: defaultChapter,
+    },
   );
-  const breakpoint = useBreakpoint();
 
-  if (!version || !book || !chapter) {
-    return <></>;
+  if (loading) {
+    return <ChapterLoading />;
+  }
+
+  if (error || !data) {
+    if (positionFromStorage) {
+      clearPositionStorage(); // In case LocalStorage was invalid.
+    }
+    return (
+      <div className="w-screen h-screen flex gap-4 flex-col text-center justify-center items-center text-5xl opacity-60">
+        <p>Oh no, Something went wrong</p>
+        <p>Try refreshing!</p>
+      </div>
+    );
   }
 
   const actionBar =
@@ -70,9 +79,9 @@ export function BibleReader({
 
   return (
     <ReaderProvider
-      currentVersion={version}
-      currentBook={book}
-      currentChapter={chapter}
+      currentVersion={data.version}
+      currentBook={data.book}
+      currentChapter={data.chapter}
       currentVerse={null}
     >
       {usePositionStorage && <PositionPersistence />}

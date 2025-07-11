@@ -18,3 +18,4 @@ export * from "./utility";
 export * from "./useBibleClient";
 export * from "./useVerseSelection";
 export * from "./useChapterNavigation";
+export * from "./useInitData";
