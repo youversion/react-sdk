@@ -1,5 +1,11 @@
 # @youversion/bible-ui
 
+## 0.5.0
+
+### Minor Changes
+
+- 8eacaf2: Wrap Reader in ToastProvider
+
 ## 0.4.0
 
 ### Minor Changes
